@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why RISE — LaunchPoint RISE™</title>
+<meta name="description" content="Why RISE exists — a free financial literacy platform built to meet people exactly where they are." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --paper: #f5f1e8;
+  --paper-light: #fdfbf4;
+  --paper-warm: #ede7d6;
+  --navy: #0a1f3d;
+  --navy-soft: #1a2f4d;
+  --ink: #2a3a4d;
+  --muted: #6a7688;
+  --rule: #d4cfc0;
+  --rule-soft: #e4e0d2;
+  --gold: #b8892b;
+  --gold-soft: #d4a537;
+  --shadow: 0 1px 2px rgba(10,31,61,0.04), 0 12px 28px -12px rgba(10,31,61,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(184,137,43,0.05), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(10,31,61,0.04), transparent 40%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+*:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.serif { font-family: 'Fraunces', Georgia, serif; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); width: 100%; }
+.container-narrow { max-width: 720px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); width: 100%; }
+
+/* ============= Masthead — mirrors index.html ============= */
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-light);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+.mast-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; }
+.mast-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.05rem, 3.5vw, 1.45rem);
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.005em;
+}
+.mast-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.mast-title .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); margin-left: 1px; }
+.mast-subtitle { display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-weight: 600; margin-top: 0.15rem; }
+.mast-back {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.mast-back:hover { background: var(--navy); color: var(--paper-light); border-color: var(--navy); }
+
+/* ============= Page content ============= */
+main { flex: 1; padding: clamp(2rem, 5vw, 3.5rem) 0 4rem; }
+
+.eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: var(--gold);
+}
+.rule-gold { height: 2px; background: var(--gold); border: 0; width: 44px; margin: 1rem 0 1.4rem; }
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 300; margin-bottom: 1.4rem; }
+h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+main p {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2.3vw, 1.18rem);
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1.3rem;
+}
+
+.pull {
+  font-family: 'Fraunces', serif !important;
+  font-style: italic;
+  font-weight: 400 !important;
+  color: var(--navy);
+  font-size: clamp(1.3rem, 3.5vw, 1.7rem) !important;
+  line-height: 1.4 !important;
+  border-left: 3px solid var(--gold);
+  padding: 0.4rem 0 0.4rem 1.2rem;
+  margin: 1.8rem 0;
+}
+
+.rise-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.4rem 0 1.8rem;
+}
+.rise-list li {
+  position: relative;
+  padding: 0.95rem 1rem 0.95rem 2.6rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper-light);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+  margin-bottom: 0.6rem;
+  box-shadow: var(--shadow);
+}
+.rise-list li::before {
+  content: "";
+  position: absolute;
+  left: 1.05rem;
+  top: 1.35rem;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.closer {
+  background: linear-gradient(180deg, var(--paper-light) 0%, var(--paper-warm) 100%);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: 3px;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  margin: 2rem 0 0;
+  box-shadow: var(--shadow);
+}
+.closer p {
+  font-family: 'Fraunces', serif !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  color: var(--navy);
+  font-size: clamp(1.15rem, 3vw, 1.4rem) !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+.closer p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+/* ============= Footer ============= */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  background: var(--paper-light);
+  padding: 1.5rem 0;
+  text-align: center;
+}
+.site-footer .brand {
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+.site-footer .brand em { font-style: italic; color: var(--gold); font-weight: 400; }
+.site-footer .brand .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container">
+    <div class="mast-inner">
+      <a href="index.html" class="mast-title">
+        LaunchPoint <em>RISE</em><span class="tm">&trade;</span>
+        <span class="mast-subtitle">Real-world Income &amp; Skills Education</span>
+      </a>
+      <a href="index.html" class="mast-back">&larr; Back to tools</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container-narrow">
+    <div class="eyebrow">Our mission</div>
+    <hr class="rule-gold" />
+    <h1 class="serif">Why <em>RISE</em> Exists</h1>
+
+    <p>Most Americans never received a real financial education. Schools don't teach how to read a paycheck, how credit scores actually work, or what it takes to qualify for a car loan or mortgage. The result? Millions of capable, hardworking people get turned down for loans, pay higher interest rates, or fall into debt &mdash; not because they aren't trying, but because the rules were never explained to them.</p>
+
+    <p class="pull">RISE changes that.</p>
+
+    <p>RISE is a financial literacy platform designed to meet people exactly where they are. Whether you're 18 and just starting out, rebuilding after a setback, or saving for your first car or home, RISE breaks down the essentials:</p>
+
+    <ul class="rise-list">
+      <li>How credit really works &mdash; and how to build it</li>
+      <li>How to read and understand your paycheck</li>
+      <li>Banking 101: checking, savings, and avoiding fees</li>
+      <li>Budgeting that actually fits real life</li>
+      <li>How to prepare for a loan you'll actually qualify for</li>
+    </ul>
+
+    <div class="closer">
+      <p>When you understand the system, the system stops working against you. That's what it means to <em>RISE</em>.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="brand">LaunchPoint <em>RISE</em><span class="tm">&trade;</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -168,17 +168,19 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 @media (min-width: 480px) { .toolnav { top: 60px; } }
 .toolnav-inner { display: flex; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
 .toolnav-inner::-webkit-scrollbar { height: 0; }
-.toolnav button {
+.toolnav button, .toolnav-inner a.toolnav-link {
   background: transparent; border: 0; cursor: pointer;
   padding: 0.95rem 1rem; flex-shrink: 0;
   font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 600;
   letter-spacing: 0.05em; color: var(--muted);
   border-bottom: 3px solid transparent; transition: all 0.15s ease;
   display: inline-flex; align-items: center; gap: 0.4rem;
+  text-decoration: none;
 }
-.toolnav button:hover { color: var(--navy); }
+.toolnav button:hover, .toolnav-inner a.toolnav-link:hover { color: var(--navy); }
 .toolnav button.active { color: var(--navy); border-bottom-color: var(--gold); }
-.toolnav button .ico { font-size: 1.05rem; }
+.toolnav button .ico, .toolnav-inner a.toolnav-link .ico { font-size: 1.05rem; }
+.toolnav-inner a.toolnav-link { border-right: 1px dashed var(--rule); }
 
 /* Tool sections */
 .tool { display: none; padding: clamp(1.8rem, 5vw, 3rem) 0 4rem; animation: fadeIn 0.4s ease-out; }
@@ -1817,10 +1819,12 @@ function renderToolNav() {
   const nav = $('toolnav-inner');
   if (!nav) return;
   const enabledIds = Object.keys(MODULES).filter(id => CONFIG.enabled[id]);
-  nav.innerHTML = enabledIds.map((id, i) => {
+  const whyRiseTab = `<a href="why-rise.html" class="toolnav-link" data-tool="why-rise"><span class="ico">&#10024;</span><span>Why RISE</span></a>`;
+  const moduleTabs = enabledIds.map((id, i) => {
     const m = MODULES[id];
     return `<button data-tool="${id}" class="${i === 0 ? 'active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" onclick="switchTool('${id}')"><span class="ico">${m.icon}</span><span>${t('mod.' + id + '.name')}</span></button>`;
   }).join('');
+  nav.innerHTML = whyRiseTab + moduleTabs;
   if (enabledIds.length > 0) renderTool(enabledIds[0]);
 }
 
