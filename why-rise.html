@@ -60,7 +60,7 @@ body {
   z-index: 50;
   backdrop-filter: blur(8px);
 }
-.mast-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; }
+.mast-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; flex-wrap: wrap; }
 .mast-title {
   font-family: 'Fraunces', serif;
   font-size: clamp(1.05rem, 3.5vw, 1.45rem);
@@ -72,6 +72,20 @@ body {
 .mast-title em { font-style: italic; color: var(--gold); font-weight: 400; }
 .mast-title .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); margin-left: 1px; }
 .mast-subtitle { display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-weight: 600; margin-top: 0.15rem; }
+
+.mast-controls { display: flex; align-items: center; gap: 0.6rem; }
+
+.lang-toggle { display: inline-flex; background: var(--paper); border: 1px solid var(--rule); border-radius: 999px; padding: 0.2rem; }
+.lang-toggle button {
+  background: transparent; border: 0; cursor: pointer;
+  padding: 0.32rem 0.7rem;
+  font-family: 'Manrope', sans-serif; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--muted);
+  border-radius: 999px; transition: all 0.15s ease;
+}
+.lang-toggle button.active { background: var(--navy); color: var(--paper-light); }
+.lang-toggle button:hover:not(.active) { color: var(--navy); }
+
 .mast-back {
   font-family: 'Manrope', sans-serif;
   font-size: 0.76rem;
@@ -206,35 +220,41 @@ main p {
     <div class="mast-inner">
       <a href="index.html" class="mast-title">
         LaunchPoint <em>RISE</em><span class="tm">&trade;</span>
-        <span class="mast-subtitle">Real-world Income &amp; Skills Education</span>
+        <span class="mast-subtitle" data-i18n="tagline">Real-world Income &amp; Skills Education</span>
       </a>
-      <a href="index.html" class="mast-back">&larr; Back to tools</a>
+      <div class="mast-controls">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="active" onclick="setLang('en')">EN</button>
+          <button type="button" data-lang="es" onclick="setLang('es')">ES</button>
+        </div>
+        <a href="index.html" class="mast-back" data-i18n="back">&larr; Back to tools</a>
+      </div>
     </div>
   </div>
 </header>
 
 <main>
   <div class="container-narrow">
-    <div class="eyebrow">Our mission</div>
+    <div class="eyebrow" data-i18n="eyebrow">Our mission</div>
     <hr class="rule-gold" />
-    <h1 class="serif">Why <em>RISE</em> Exists</h1>
+    <h1 class="serif" data-i18n-html="title">Why <em>RISE</em> Exists</h1>
 
-    <p>Most Americans never received a real financial education. Schools don't teach how to read a paycheck, how credit scores actually work, or what it takes to qualify for a car loan or mortgage. The result? Millions of capable, hardworking people get turned down for loans, pay higher interest rates, or fall into debt &mdash; not because they aren't trying, but because the rules were never explained to them.</p>
+    <p data-i18n="p1">Most Americans never received a real financial education. Schools don't teach how to read a paycheck, how credit scores actually work, or what it takes to qualify for a car loan or mortgage. The result? Millions of capable, hardworking people get turned down for loans, pay higher interest rates, or fall into debt &mdash; not because they aren't trying, but because the rules were never explained to them.</p>
 
-    <p class="pull">RISE changes that.</p>
+    <p class="pull" data-i18n="pull">RISE changes that.</p>
 
-    <p>RISE is a financial literacy platform designed to meet people exactly where they are. Whether you're 18 and just starting out, rebuilding after a setback, or saving for your first car or home, RISE breaks down the essentials:</p>
+    <p data-i18n="p2">RISE is a financial literacy platform designed to meet people exactly where they are. Whether you're 18 and just starting out, rebuilding after a setback, or saving for your first car or home, RISE breaks down the essentials:</p>
 
     <ul class="rise-list">
-      <li>How credit really works &mdash; and how to build it</li>
-      <li>How to read and understand your paycheck</li>
-      <li>Banking 101: checking, savings, and avoiding fees</li>
-      <li>Budgeting that actually fits real life</li>
-      <li>How to prepare for a loan you'll actually qualify for</li>
+      <li data-i18n="b1">How credit really works &mdash; and how to build it</li>
+      <li data-i18n="b2">How to read and understand your paycheck</li>
+      <li data-i18n="b3">Banking 101: checking, savings, and avoiding fees</li>
+      <li data-i18n="b4">Budgeting that actually fits real life</li>
+      <li data-i18n="b5">How to prepare for a loan you'll actually qualify for</li>
     </ul>
 
     <div class="closer">
-      <p>When you understand the system, the system stops working against you. That's what it means to <em>RISE</em>.</p>
+      <p data-i18n-html="closer">When you understand the system, the system stops working against you. That's what it means to <em>RISE</em>.</p>
     </div>
   </div>
 </main>
@@ -244,6 +264,91 @@ main p {
     <div class="brand">LaunchPoint <em>RISE</em><span class="tm">&trade;</span></div>
   </div>
 </footer>
+
+<script>
+(function () {
+  // ============= EN/ES dictionary =============
+  var I18N = {
+    en: {
+      pageTitle: 'Why RISE — LaunchPoint RISE™',
+      tagline: 'Real-world Income & Skills Education',
+      back: '← Back to tools',
+      eyebrow: 'Our mission',
+      title: 'Why <em>RISE</em> Exists',
+      p1: "Most Americans never received a real financial education. Schools don't teach how to read a paycheck, how credit scores actually work, or what it takes to qualify for a car loan or mortgage. The result? Millions of capable, hardworking people get turned down for loans, pay higher interest rates, or fall into debt — not because they aren't trying, but because the rules were never explained to them.",
+      pull: 'RISE changes that.',
+      p2: "RISE is a financial literacy platform designed to meet people exactly where they are. Whether you're 18 and just starting out, rebuilding after a setback, or saving for your first car or home, RISE breaks down the essentials:",
+      b1: 'How credit really works — and how to build it',
+      b2: 'How to read and understand your paycheck',
+      b3: 'Banking 101: checking, savings, and avoiding fees',
+      b4: 'Budgeting that actually fits real life',
+      b5: "How to prepare for a loan you'll actually qualify for",
+      closer: "When you understand the system, the system stops working against you. That's what it means to <em>RISE</em>."
+    },
+    es: {
+      pageTitle: '¿Por qué RISE? — LaunchPoint RISE™',
+      tagline: 'Educación Real sobre Ingresos y Habilidades',
+      back: '← Volver a las herramientas',
+      eyebrow: 'Nuestra misión',
+      title: 'Por qué existe <em>RISE</em>',
+      p1: 'La mayoría de los estadounidenses nunca recibieron una verdadera educación financiera. Las escuelas no enseñan cómo leer un cheque de pago, cómo funcionan realmente los puntajes de crédito, ni qué se necesita para calificar para un préstamo de auto o una hipoteca. ¿El resultado? Millones de personas capaces y trabajadoras son rechazadas para préstamos, pagan tasas de interés más altas o caen en deudas — no porque no se esfuercen, sino porque nunca les explicaron las reglas.',
+      pull: 'RISE cambia eso.',
+      p2: 'RISE es una plataforma de educación financiera diseñada para encontrarte exactamente donde estás. Ya sea que tengas 18 años y apenas estés empezando, te estés recuperando de un revés, o estés ahorrando para tu primer auto o casa, RISE desglosa lo esencial:',
+      b1: 'Cómo funciona realmente el crédito — y cómo construirlo',
+      b2: 'Cómo leer y entender tu cheque de pago',
+      b3: 'Banca 101: cuentas corrientes, ahorros y cómo evitar cargos',
+      b4: 'Presupuestos que realmente se ajustan a la vida real',
+      b5: 'Cómo prepararte para un préstamo para el que realmente calificarás',
+      closer: 'Cuando entiendes el sistema, el sistema deja de trabajar en tu contra. Eso es lo que significa <em>RISE</em>.'
+    }
+  };
+
+  // ============= Initial language: ?lang=… > localStorage > 'en' =============
+  function pickInitialLang() {
+    var url = new URL(window.location.href);
+    var q = url.searchParams.get('lang');
+    if (q === 'en' || q === 'es') return q;
+    try {
+      var stored = localStorage.getItem('rise.lang');
+      if (stored === 'en' || stored === 'es') return stored;
+    } catch (e) {}
+    return 'en';
+  }
+
+  function applyLang(lang) {
+    var dict = I18N[lang] || I18N.en;
+    document.documentElement.lang = lang;
+    document.title = dict.pageTitle;
+    // textContent for the plain strings
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    // innerHTML for strings that contain inline tags (e.g. <em>RISE</em>)
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    // Toggle button states
+    document.querySelectorAll('.lang-toggle button').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+
+  window.setLang = function (lang) {
+    if (lang !== 'en' && lang !== 'es') return;
+    try { localStorage.setItem('rise.lang', lang); } catch (e) {}
+    // Reflect in URL without reloading, so refresh/share keeps the choice
+    var url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState(null, '', url.toString());
+    applyLang(lang);
+  };
+
+  // Boot
+  applyLang(pickInitialLang());
+})();
+</script>
 
 </body>
 </html>

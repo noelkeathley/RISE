@@ -803,6 +803,7 @@ const I18N = {
     'footer.copy': '© 2026 LaunchPoint Navigator™',
     'footer.admin': 'Administrator Login',
     // Module names
+    'mod.whyrise.name': 'Why RISE',
     'mod.paycheck.name': 'Paycheck Decoder',
     'mod.paycheck.desc': 'Understand exactly where every dollar of your paycheck goes',
     'mod.budget.name': 'Real Budget',
@@ -989,6 +990,7 @@ const I18N = {
     'footer.copy': '© 2026 LaunchPoint Navigator™',
     'footer.admin': 'Acceso de Administrador',
     // Module names
+    'mod.whyrise.name': '¿Por qué RISE?',
     'mod.paycheck.name': 'Descifrador de Cheque',
     'mod.paycheck.desc': 'Entiende exactamente a dónde va cada dólar de tu cheque',
     'mod.budget.name': 'Presupuesto Real',
@@ -1801,6 +1803,7 @@ const MODULE_META = {
 // ============= LANGUAGE TOGGLE =============
 function setLanguage(lang) {
   LANG = lang;
+  try { localStorage.setItem('rise.lang', lang); } catch (e) {}
   document.documentElement.lang = lang;
   document.querySelectorAll('#lang-toggle button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   // Re-render i18n attributes
@@ -1808,7 +1811,12 @@ function setLanguage(lang) {
     const key = el.getAttribute('data-i18n');
     if (key) el.textContent = t(key);
   });
-  // Re-render current tool
+  // Re-render the toolnav so tab labels and the Why RISE link update,
+  // then restore whichever tool the user was on
+  const prevTool = CURRENT_TOOL;
+  renderToolNav();
+  if (prevTool && CONFIG.enabled[prevTool] && MODULES[prevTool]) switchTool(prevTool);
+  // Re-render current tool (covers the no-prevTool case too)
   renderActiveTool();
   // Refresh signed-in identity pill in case label needs translating
   if (typeof refreshUserAuthIdentity === 'function') refreshUserAuthIdentity();
@@ -1819,7 +1827,7 @@ function renderToolNav() {
   const nav = $('toolnav-inner');
   if (!nav) return;
   const enabledIds = Object.keys(MODULES).filter(id => CONFIG.enabled[id]);
-  const whyRiseTab = `<a href="why-rise.html" class="toolnav-link" data-tool="why-rise"><span class="ico">&#10024;</span><span>Why RISE</span></a>`;
+  const whyRiseTab = `<a href="why-rise.html?lang=${LANG}" class="toolnav-link" data-tool="why-rise"><span class="ico">&#10024;</span><span>${t('mod.whyrise.name')}</span></a>`;
   const moduleTabs = enabledIds.map((id, i) => {
     const m = MODULES[id];
     return `<button data-tool="${id}" class="${i === 0 ? 'active' : ''}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" onclick="switchTool('${id}')"><span class="ico">${m.icon}</span><span>${t('mod.' + id + '.name')}</span></button>`;
@@ -1872,7 +1880,10 @@ function applyConfig() {
   // Language toggle visibility
   const langToggle = $('lang-toggle');
   if (langToggle) langToggle.style.display = CONFIG.allowLangSwitch ? '' : 'none';
-  LANG = CONFIG.defaultLang;
+  // Prefer the user's last choice (persisted in localStorage) over the configured default
+  let savedLang = null;
+  try { savedLang = localStorage.getItem('rise.lang'); } catch (e) {}
+  LANG = (savedLang === 'en' || savedLang === 'es') ? savedLang : CONFIG.defaultLang;
   document.documentElement.lang = LANG;
   document.querySelectorAll('#lang-toggle button').forEach(b => b.classList.toggle('active', b.dataset.lang === LANG));
   // Update i18n
