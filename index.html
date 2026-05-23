@@ -165,6 +165,57 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 .admin-bar-track { height: 8px; background: var(--rule-soft); border-radius: 99px; overflow: hidden; }
 .admin-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-soft) 100%); border-radius: 99px; transition: width 0.4s ease; }
 
+/* Brand logo (uploaded by admin) — shown in the masthead in place of the brand name */
+.mast-logo { display: block; max-height: 40px; max-width: 220px; width: auto; height: auto; object-fit: contain; }
+@media (min-width: 600px) { .mast-logo { max-height: 44px; max-width: 280px; } }
+
+/* Admin logo upload dropzone */
+.admin-logo-drop {
+  border: 2px dashed var(--rule);
+  border-radius: 3px;
+  padding: 1.1rem 1rem;
+  text-align: center;
+  background: var(--paper);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  font-family: 'Manrope', sans-serif;
+  color: var(--muted);
+}
+.admin-logo-drop:hover, .admin-logo-drop.dragover { border-color: var(--gold); background: var(--sun); color: var(--navy); }
+.admin-logo-drop .admin-logo-drop-icon { font-size: 1.5rem; display: block; margin-bottom: 0.3rem; }
+.admin-logo-drop .admin-logo-drop-main { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+.admin-logo-drop .admin-logo-drop-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+.admin-logo-preview {
+  display: none;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--paper-light);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+.admin-logo-preview.has-logo { display: flex; }
+.admin-logo-preview img { max-height: 44px; max-width: 140px; width: auto; height: auto; object-fit: contain; background: white; padding: 4px; border: 1px solid var(--rule-soft); border-radius: 2px; }
+.admin-logo-preview .admin-logo-meta { flex: 1; font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+.admin-logo-preview .admin-logo-meta strong { color: var(--navy); display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.15rem; }
+.admin-logo-remove {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--red);
+  padding: 0.4rem 0.7rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.admin-logo-remove:hover { background: var(--red); color: var(--paper-light); border-color: var(--red); }
+
 /* Tab nav */
 .toolnav { background: var(--paper-light); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: sticky; top: 56px; z-index: 40; }
 @media (min-width: 480px) { .toolnav { top: 60px; } }
@@ -1159,6 +1210,7 @@ const DEFAULT_CONFIG = {
   allowLangSwitch: true,
   brandName: 'LaunchPoint RISE™',
   brandTag: 'Real-world Income & Skills Education',
+  brandLogo: '',
   announcement: '',
   announcementActive: false,
   accessCode: '',
@@ -1857,21 +1909,25 @@ function renderTool(id) {
 }
 function renderActiveTool() { if (CURRENT_TOOL) renderTool(CURRENT_TOOL); }
 
-function applyConfig() {
-  // Update masthead branding
-  const titleEl = $('mast-title');
+// Render masthead + footer brand based on CONFIG (logo > custom name > default).
+// Shared by applyConfig() and the admin Branding controls.
+function renderMastheadBrand() {
+  const titleEl = document.getElementById('mast-title');
   if (titleEl) {
-    if (CONFIG.brandName !== DEFAULT_CONFIG.brandName) {
+    if (CONFIG.brandLogo) {
+      const altText = (CONFIG.brandName && CONFIG.brandName !== DEFAULT_CONFIG.brandName) ? CONFIG.brandName : 'Brand logo';
+      titleEl.innerHTML = `<img class="mast-logo" src="${CONFIG.brandLogo}" alt="${altText.replace(/"/g, '&quot;')}">`;
+    } else if (CONFIG.brandName !== DEFAULT_CONFIG.brandName) {
       titleEl.innerHTML = `<span style="color:var(--navy);">${CONFIG.brandName}</span>`;
     } else {
       titleEl.innerHTML = `LaunchPoint <em>RISE</em><span class="tm">™</span>`;
     }
   }
-  const subtitleEl = $('mast-subtitle');
+  const subtitleEl = document.getElementById('mast-subtitle');
   if (subtitleEl) {
     subtitleEl.textContent = CONFIG.brandTag || DEFAULT_CONFIG.brandTag;
   }
-  const footerEl = $('footer-brand');
+  const footerEl = document.getElementById('footer-brand');
   if (footerEl) {
     if (CONFIG.brandName !== DEFAULT_CONFIG.brandName) {
       footerEl.innerHTML = `<span style="color:var(--navy);">${CONFIG.brandName}</span>`;
@@ -1879,6 +1935,10 @@ function applyConfig() {
       footerEl.innerHTML = `LaunchPoint <em style="font-style:italic;color:var(--gold);">RISE</em><span style="font-size:0.55em;vertical-align:super;color:var(--gold);">™</span>`;
     }
   }
+}
+
+function applyConfig() {
+  renderMastheadBrand();
   // Language toggle visibility
   const langToggle = $('lang-toggle');
   if (langToggle) langToggle.style.display = CONFIG.allowLangSwitch ? '' : 'none';
@@ -4904,7 +4964,7 @@ MODULES.admin = {
             <!-- ===== Branding ===== -->
             <div class="admin-card">
               <div class="admin-card-head"><h3>${isEs ? 'Marca' : 'Branding'}</h3></div>
-              <p class="admin-card-sub">${isEs ? 'Personaliza el nombre y la frase de tu organización.' : 'White-label the platform for your organization.'}</p>
+              <p class="admin-card-sub">${isEs ? 'Personaliza el nombre, la frase y el logo de tu organización.' : 'White-label the platform for your organization.'}</p>
               <div class="field">
                 <label>${isEs ? 'Nombre' : 'Brand name'}</label>
                 <input type="text" id="admin-brand-name" value="${adminEsc(CONFIG.brandName)}" oninput="adminUpdateBrand()" />
@@ -4912,6 +4972,16 @@ MODULES.admin = {
               <div class="field" style="margin-top:0.6rem;">
                 <label>${isEs ? 'Frase / Tagline' : 'Tagline'}</label>
                 <input type="text" id="admin-brand-tag" value="${adminEsc(CONFIG.brandTag)}" oninput="adminUpdateBrand()" />
+              </div>
+              <div class="field" style="margin-top:0.9rem;">
+                <label>${isEs ? 'Logo (reemplaza el nombre en el encabezado)' : 'Logo (replaces the brand name in the masthead)'}</label>
+                <input type="file" id="admin-logo-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden />
+                <div id="admin-logo-drop" class="admin-logo-drop" role="button" tabindex="0" aria-label="${isEs ? 'Subir logo' : 'Upload logo'}">
+                  <span class="admin-logo-drop-icon" aria-hidden="true">&#x2B06;</span>
+                  <span class="admin-logo-drop-main">${isEs ? 'Arrastra un logo aquí o haz clic para subir' : 'Drag a logo here, or click to upload'}</span>
+                  <span class="admin-logo-drop-sub">${isEs ? 'PNG, JPG, SVG o WebP &middot; 500 KB máximo &middot; transparente recomendado' : 'PNG, JPG, SVG, or WebP &middot; 500 KB max &middot; transparent background recommended'}</span>
+                </div>
+                <div id="admin-logo-preview" class="admin-logo-preview" aria-live="polite"></div>
               </div>
             </div>
 
@@ -5040,7 +5110,10 @@ MODULES.admin = {
     `;
   },
   init() {
-    // No special init needed — handlers are wired inline.
+    // Wire the logo dropzone if the admin is unlocked (the dropzone only exists then).
+    if (document.getElementById('admin-logo-drop')) {
+      adminBindLogoDropzone();
+    }
   }
 };
 
@@ -5150,26 +5223,103 @@ function adminUpdateBrand() {
   CONFIG.brandName = name;
   CONFIG.brandTag = tag;
   saveConfig();
-  const titleEl = document.getElementById('mast-title');
-  if (titleEl) {
-    if (name !== DEFAULT_CONFIG.brandName) {
-      titleEl.innerHTML = `<span style="color:var(--navy);">${adminEsc(name)}</span>`;
-    } else {
-      titleEl.innerHTML = 'LaunchPoint <em>RISE</em><span class="tm">™</span>';
+  renderMastheadBrand();
+}
+
+// ============= Brand logo upload (admin only) =============
+const ADMIN_LOGO_MAX_BYTES = 500 * 1024; // 500 KB — keeps us well under localStorage quotas
+
+function adminHandleLogoFile(file) {
+  if (!file) return;
+  const isEs = (typeof LANG !== 'undefined' && LANG === 'es');
+  if (!file.type || !file.type.startsWith('image/')) {
+    showToast(isEs ? 'Por favor sube un archivo de imagen (PNG, JPG, SVG, WebP).' : 'Please upload an image file (PNG, JPG, SVG, WebP).', 'error');
+    return;
+  }
+  if (file.size > ADMIN_LOGO_MAX_BYTES) {
+    showToast(isEs ? 'Imagen muy grande. Máximo 500 KB.' : 'Image is too large. Max 500 KB.', 'error');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const dataUrl = e.target.result;
+    try {
+      CONFIG.brandLogo = dataUrl;
+      saveConfig();
+    } catch (err) {
+      showToast(isEs ? 'No se pudo guardar el logo. Intenta una imagen más pequeña.' : "Couldn't save the logo. Try a smaller image.", 'error');
+      return;
     }
+    renderMastheadBrand();
+    refreshAdminLogoPreview(file.name, file.size);
+    showToast(isEs ? 'Logo actualizado' : 'Logo updated', 'success');
+  };
+  reader.onerror = function () {
+    showToast(isEs ? 'No se pudo leer el archivo.' : "Couldn't read that file.", 'error');
+  };
+  reader.readAsDataURL(file);
+}
+
+function adminRemoveLogo() {
+  const isEs = (typeof LANG !== 'undefined' && LANG === 'es');
+  CONFIG.brandLogo = '';
+  saveConfig();
+  renderMastheadBrand();
+  refreshAdminLogoPreview();
+  const fileInput = document.getElementById('admin-logo-file');
+  if (fileInput) fileInput.value = '';
+  showToast(isEs ? 'Logo eliminado' : 'Logo removed', 'success');
+}
+
+function refreshAdminLogoPreview(fileName, fileSize) {
+  const preview = document.getElementById('admin-logo-preview');
+  const drop = document.getElementById('admin-logo-drop');
+  if (!preview) return;
+  if (CONFIG.brandLogo) {
+    const isEs = (typeof LANG !== 'undefined' && LANG === 'es');
+    const sizeKb = fileSize ? Math.max(1, Math.round(fileSize / 1024)) : null;
+    const metaLine = fileName
+      ? `${fileName}${sizeKb ? ` &middot; ${sizeKb} KB` : ''}`
+      : (isEs ? 'Logo personalizado activo' : 'Custom logo in use');
+    preview.innerHTML = `
+      <img src="${CONFIG.brandLogo}" alt="Brand logo preview" />
+      <div class="admin-logo-meta">
+        <strong>${isEs ? 'Logo activo' : 'Active logo'}</strong>
+        ${metaLine}
+      </div>
+      <button type="button" class="admin-logo-remove" onclick="adminRemoveLogo()">${isEs ? 'Eliminar' : 'Remove'}</button>
+    `;
+    preview.classList.add('has-logo');
+    if (drop) drop.style.display = 'none';
+  } else {
+    preview.innerHTML = '';
+    preview.classList.remove('has-logo');
+    if (drop) drop.style.display = '';
   }
-  const subtitleEl = document.getElementById('mast-subtitle');
-  if (subtitleEl) {
-    subtitleEl.textContent = tag;
-  }
-  const footerEl = document.getElementById('footer-brand');
-  if (footerEl) {
-    if (name !== DEFAULT_CONFIG.brandName) {
-      footerEl.innerHTML = `<span style="color:var(--navy);">${adminEsc(name)}</span>`;
-    } else {
-      footerEl.innerHTML = 'LaunchPoint <em style="font-style:italic;color:var(--gold);">RISE</em><span style="font-size:0.55em;vertical-align:super;color:var(--gold);">™</span>';
-    }
-  }
+}
+
+function adminBindLogoDropzone() {
+  const drop = document.getElementById('admin-logo-drop');
+  const fileInput = document.getElementById('admin-logo-file');
+  if (!drop || !fileInput) return;
+  drop.addEventListener('click', () => fileInput.click());
+  drop.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+  });
+  drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('dragover'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+  drop.addEventListener('drop', (e) => {
+    e.preventDefault();
+    drop.classList.remove('dragover');
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    adminHandleLogoFile(file);
+  });
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    adminHandleLogoFile(file);
+  });
+  // Reflect current state
+  refreshAdminLogoPreview();
 }
 
 function adminUpdateLang() {
