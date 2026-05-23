@@ -438,6 +438,16 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 .user-auth-hero .rule-gold { width: 60px; height: 2px; background: var(--gold); border: 0; margin: 1rem auto; }
 .user-auth-hero h1.serif { font-family: 'Fraunces', serif; font-size: clamp(1.6rem, 4.5vw, 2.2rem); font-weight: 300; color: var(--navy); margin: 0.5rem 0 1rem; }
 .user-auth-lede { color: var(--muted); font-family: 'Fraunces', serif; font-weight: 300; font-size: 1rem; line-height: 1.55; max-width: 420px; margin: 0 auto; }
+
+/* "What is RISE?" intro card — shown above sign-in/create account */
+.rise-intro { background: var(--paper-light); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: 3px; padding: clamp(1.6rem, 4.5vw, 2.2rem) clamp(1.3rem, 4vw, 2rem); margin: 0 auto 2.4rem; text-align: center; box-shadow: var(--shadow); }
+.rise-intro h2 { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 4.2vw, 1.95rem); font-weight: 400; color: var(--navy); margin: 0; letter-spacing: -0.01em; line-height: 1.2; }
+.rise-intro h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.rise-intro .rule-gold { width: 44px; height: 2px; background: var(--gold); border: 0; margin: 0.9rem auto 1.3rem; }
+.rise-intro p { font-family: 'Fraunces', serif; font-weight: 300; color: var(--ink); font-size: 1rem; line-height: 1.65; margin: 0 0 0.9rem; }
+.rise-intro p:last-child { margin-bottom: 0; }
+.rise-intro .rise-intro-punch { font-family: 'Manrope', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.95rem; letter-spacing: 0.01em; margin: 1.1rem 0; }
+.rise-intro .rise-intro-tagline { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; color: var(--gold); font-size: 1.15rem; margin-top: 1.2rem; }
 .user-auth-tabs { display: flex; gap: 0; margin: 0 0 1.6rem; border-bottom: 1px solid var(--rule); }
 .user-auth-tab { flex: 1; background: transparent; border: 0; border-bottom: 2px solid transparent; padding: 0.9rem 0.5rem; font-family: 'Manrope', sans-serif; font-size: 0.92rem; font-weight: 600; letter-spacing: 0.05em; color: var(--muted); cursor: pointer; transition: color 0.15s, border-color 0.15s; }
 .user-auth-tab:hover { color: var(--ink); }
@@ -503,6 +513,16 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
       <span class="mast-title">LaunchPoint <em>RISE</em><span class="tm">™</span></span>
       <p class="user-auth-tagline" data-i18n="userauth.tagline">Real-world Income & Skills Education</p>
     </div>
+
+    <!-- What is RISE? — intro shown to visitors before they're asked to sign in -->
+    <section class="rise-intro" aria-labelledby="rise-intro-heading">
+      <h2 class="serif" id="rise-intro-heading">What is <em>RISE</em>?</h2>
+      <hr class="rule-gold" />
+      <p>RISE — Real-world Income &amp; Skills Education — is a free learning platform built to give you the financial confidence you were never taught in school. From understanding your first paycheck to building credit, budgeting, and qualifying for a car loan or mortgage, RISE walks you through it in plain language.</p>
+      <p class="rise-intro-punch">No jargon. No sales pitch. No catches.</p>
+      <p>Because financial freedom doesn't start with a loan — it starts with knowing how money works.</p>
+      <p class="rise-intro-tagline">Start learning. Start rising.</p>
+    </section>
 
     <div class="user-auth-hero">
       <div class="eyebrow" data-i18n="userauth.dateline">Sign in to save your progress</div>
