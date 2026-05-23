@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Partners — LaunchPoint RISE™</title>
+<meta name="description" content="LaunchPoint RISE is a white-labeled financial literacy platform for banks, credit unions, and auto dealerships." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --paper: #f5f1e8;
+  --paper-light: #fdfbf4;
+  --paper-warm: #ede7d6;
+  --navy: #0a1f3d;
+  --navy-soft: #1a2f4d;
+  --ink: #2a3a4d;
+  --muted: #6a7688;
+  --muted-soft: #9aa3b0;
+  --rule: #d4cfc0;
+  --rule-soft: #e4e0d2;
+  --gold: #b8892b;
+  --gold-soft: #d4a537;
+  --shadow: 0 1px 2px rgba(10,31,61,0.04), 0 12px 28px -12px rgba(10,31,61,0.10);
+  --shadow-lg: 0 2px 4px rgba(10,31,61,0.05), 0 24px 48px -20px rgba(10,31,61,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(184,137,43,0.06), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(10,31,61,0.05), transparent 42%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+*:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.serif { font-family: 'Fraunces', Georgia, serif; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); width: 100%; }
+.container-narrow { max-width: 780px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); width: 100%; }
+
+/* ============= Masthead ============= */
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-light);
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(8px);
+}
+.mast-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; gap: 1rem; flex-wrap: wrap; }
+.mast-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.05rem, 3.5vw, 1.45rem);
+  font-weight: 400; color: var(--navy);
+  text-decoration: none; letter-spacing: -0.005em;
+  display: inline-flex; flex-direction: column;
+}
+.mast-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.mast-title .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); margin-left: 1px; }
+.mast-subtitle { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-weight: 600; margin-top: 0.18rem; }
+
+.partner-pill {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.62rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--gold);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: var(--paper);
+  white-space: nowrap;
+}
+
+/* ============= Hero ============= */
+main { flex: 1; padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(2rem, 5vw, 3.5rem); }
+
+.eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.24em; font-weight: 700;
+  color: var(--gold);
+}
+.rule-gold { height: 2px; background: var(--gold); border: 0; width: 52px; margin: 1.1rem 0 1.6rem; }
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400; color: var(--navy);
+  letter-spacing: -0.012em; line-height: 1.18;
+}
+h1 {
+  font-size: clamp(2rem, 5.4vw, 2.85rem);
+  font-weight: 400;
+  margin-bottom: 1.4rem;
+  max-width: 22ch;
+}
+h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+h1 .brand-mark { font-style: italic; color: var(--gold); font-weight: 500; }
+
+.lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.4vw, 1.28rem);
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 62ch;
+  margin-bottom: 2.6rem;
+}
+
+/* ============= Benefits section ============= */
+.benefits-section { margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+
+h2 {
+  font-size: clamp(1.35rem, 3.4vw, 1.7rem);
+  font-weight: 400;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.005em;
+}
+
+.benefits-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.85rem; }
+.benefit {
+  position: relative;
+  background: var(--paper-light);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  border-radius: 2px;
+  padding: 1.15rem 1.3rem 1.15rem 1.4rem;
+  box-shadow: var(--shadow);
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.benefit strong {
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+/* ============= Closing statement + CTA ============= */
+.closing {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--navy);
+  font-size: clamp(1.15rem, 2.7vw, 1.35rem);
+  line-height: 1.5;
+  max-width: 60ch;
+  margin: clamp(2rem, 5vw, 2.8rem) 0 clamp(1.8rem, 4vw, 2.4rem);
+  padding-left: 1.4rem;
+  border-left: 3px solid var(--gold);
+}
+
+.cta-card {
+  background: linear-gradient(180deg, var(--paper-light) 0%, var(--paper-warm) 100%);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: 3px;
+  padding: clamp(1.8rem, 4.5vw, 2.4rem);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  margin-top: 1rem;
+}
+.cta-card .cta-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  color: var(--ink);
+  margin-bottom: 1.3rem;
+  line-height: 1.55;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--navy);
+  color: var(--paper-light);
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.95rem 1.7rem;
+  border: 1px solid var(--navy);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  box-shadow: 0 1px 2px rgba(10,31,61,0.06), 0 8px 18px -10px rgba(10,31,61,0.25);
+}
+.cta-btn:hover { background: var(--navy-soft); border-color: var(--navy-soft); transform: translateY(-1px); box-shadow: 0 2px 3px rgba(10,31,61,0.08), 0 14px 24px -12px rgba(10,31,61,0.30); }
+.cta-btn:active { transform: translateY(0); }
+.cta-btn .arrow { color: var(--gold-soft); transition: transform 0.18s ease; }
+.cta-btn:hover .arrow { transform: translateX(3px); }
+
+/* ============= Footer ============= */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  background: var(--paper-light);
+  padding: 1.8rem 0;
+  text-align: center;
+}
+.site-footer .brand {
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+}
+.site-footer .brand em { font-style: italic; color: var(--gold); font-weight: 400; }
+.site-footer .brand .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); }
+.site-footer .footer-meta {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container">
+    <div class="mast-inner">
+      <a href="index.html" class="mast-title">
+        LaunchPoint <em>RISE</em><span class="tm">&trade;</span>
+        <span class="mast-subtitle">Real-world Income &amp; Skills Education</span>
+      </a>
+      <span class="partner-pill">For Partners</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container-narrow">
+    <div class="eyebrow">For banks, credit unions &amp; auto dealerships</div>
+    <hr class="rule-gold" />
+    <h1 class="serif"><span class="brand-mark">RISE:</span> Better-Informed Customers Are Better Customers</h1>
+
+    <p class="lede">RISE is a white-labeled financial literacy platform that banks, credit unions, and auto dealers can offer to their customers as a free educational resource.</p>
+
+    <section class="benefits-section">
+      <h2 class="serif">Why partners offer RISE to their customers:</h2>
+      <ul class="benefits-list">
+        <li class="benefit"><strong>Higher loan approval rates.</strong> Customers who understand credit walk in with stronger applications.</li>
+        <li class="benefit"><strong>Lower default risk.</strong> Financially literate borrowers manage payments more reliably.</li>
+        <li class="benefit"><strong>Deeper customer loyalty.</strong> Being the institution that helped them get ready builds lifelong trust.</li>
+        <li class="benefit"><strong>Community impact.</strong> Demonstrate real commitment to financial inclusion &mdash; useful for CRA compliance, marketing, and community relations.</li>
+        <li class="benefit"><strong>Zero lift on your end.</strong> RISE is fully hosted, branded to match your site, and updated for you.</li>
+      </ul>
+    </section>
+
+    <p class="closing">Your customers become more loan-ready. You become the institution that helped them get there.</p>
+
+    <div class="cta-card">
+      <p class="cta-lede">Ready to add RISE to your customer portal?</p>
+      <a href="mailto:noelkeathley@mylaunchpoint.ai?subject=RISE%20Partnership%20Inquiry" class="cta-btn">
+        <span>Contact us to add RISE to your customer portal</span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="brand">LaunchPoint <em>RISE</em><span class="tm">&trade;</span></div>
+    <div class="footer-meta">Partner Information</div>
+  </div>
+</footer>
+
+</body>
+</html>
