@@ -21,8 +21,10 @@
   --muted-soft: #9aa3b0;
   --rule: #d4cfc0;
   --rule-soft: #e4e0d2;
-  --gold: #b8892b;
-  --gold-soft: #d4a537;
+  --gold: #0d7377;       /* historical name; now teal */
+  --gold-soft: #2a9d8f;  /* lighter teal */
+  --sun: #fef3c7;        /* soft light yellow — highlights & welcome moments */
+  --sun-soft: #fff7d6;
   --shadow: 0 1px 2px rgba(10,31,61,0.04), 0 12px 28px -12px rgba(10,31,61,0.10);
   --shadow-lg: 0 2px 4px rgba(10,31,61,0.05), 0 24px 48px -20px rgba(10,31,61,0.18);
 }
@@ -39,7 +41,7 @@ html, body {
 }
 body {
   background-image:
-    radial-gradient(circle at 12% 8%, rgba(184,137,43,0.06), transparent 42%),
+    radial-gradient(circle at 12% 8%, rgba(13,115,119,0.06), transparent 42%),
     radial-gradient(circle at 88% 92%, rgba(10,31,61,0.05), transparent 42%);
   min-height: 100vh;
   display: flex;
@@ -160,12 +162,14 @@ h2 {
   line-height: 1.5;
   max-width: 60ch;
   margin: clamp(2rem, 5vw, 2.8rem) 0 clamp(1.8rem, 4vw, 2.4rem);
-  padding-left: 1.4rem;
+  background: var(--sun);
+  padding: 1rem 1.3rem 1rem 1.4rem;
   border-left: 3px solid var(--gold);
+  border-radius: 0 3px 3px 0;
 }
 
 .cta-card {
-  background: linear-gradient(180deg, var(--paper-light) 0%, var(--paper-warm) 100%);
+  background: linear-gradient(180deg, var(--paper-light) 0%, var(--sun) 100%);
   border: 1px solid var(--rule);
   border-top: 3px solid var(--gold);
   border-radius: 3px;

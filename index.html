@@ -19,8 +19,10 @@
   --muted-soft: #9aa3b0;
   --rule: #d4cfc0;
   --rule-soft: #e4e0d2;
-  --gold: #b8892b;
-  --gold-soft: #d4a537;
+  --gold: #0d7377;       /* historical name; now teal */
+  --gold-soft: #2a9d8f;  /* lighter teal */
+  --sun: #fef3c7;        /* soft light yellow — highlights & welcome moments */
+  --sun-soft: #fff7d6;
   --red: #a8321e;
   --red-light: #f5e7e3;
   --green: #2d6a3c;
@@ -36,7 +38,7 @@ html { scroll-behavior: smooth; }
 html, body { background: var(--paper); color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 body {
   background-image:
-    radial-gradient(circle at 15% 10%, rgba(184,137,43,0.05), transparent 40%),
+    radial-gradient(circle at 15% 10%, rgba(13,115,119,0.05), transparent 40%),
     radial-gradient(circle at 85% 90%, rgba(10,31,61,0.04), transparent 40%);
   min-height: 100vh;
 }
@@ -208,7 +210,7 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 }
 .field textarea { resize: vertical; min-height: 100px; line-height: 1.5; }
 .field select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%236a7688' d='M6 8L0 0h12z'/></svg>"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 3px rgba(184,137,43,0.18); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 3px rgba(13,115,119,0.18); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
 @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 .input-prefix { position: relative; }
@@ -347,7 +349,7 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 /* Search box */
 .search-box { position: relative; margin-bottom: 1.2rem; }
 .search-box input { width: 100%; padding: 0.85rem 0.95rem 0.85rem 2.6rem; border: 1px solid var(--rule); background: var(--paper-light); font-family: 'Manrope', sans-serif; font-size: 1rem; color: var(--ink); border-radius: 2px; }
-.search-box input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(184,137,43,0.18); }
+.search-box input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(13,115,119,0.18); }
 .search-box .ico { position: absolute; left: 0.95rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1.05rem; }
 
 /* Coming Soon placeholder */
@@ -410,7 +412,7 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 .switch-slider::before { position: absolute; content: ''; height: 20px; width: 20px; left: 3px; bottom: 3px; background: white; transition: 0.2s; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 .switch input:checked + .switch-slider { background: var(--navy); }
 .switch input:checked + .switch-slider::before { transform: translateX(22px); }
-.switch input:focus-visible + .switch-slider { box-shadow: 0 0 0 3px rgba(184,137,43,0.4); }
+.switch input:focus-visible + .switch-slider { box-shadow: 0 0 0 3px rgba(13,115,119,0.4); }
 
 /* Login gate */
 #auth-gate { display: none; position: fixed; inset: 0; background: var(--navy); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
@@ -442,7 +444,7 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 .user-auth-lede { color: var(--muted); font-family: 'Fraunces', serif; font-weight: 300; font-size: 1rem; line-height: 1.55; max-width: 420px; margin: 0 auto; }
 
 /* "What is RISE?" intro card — shown above sign-in/create account */
-.rise-intro { background: var(--paper-light); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: 3px; padding: clamp(1.6rem, 4.5vw, 2.2rem) clamp(1.3rem, 4vw, 2rem); margin: 0 auto 2.4rem; text-align: center; box-shadow: var(--shadow); }
+.rise-intro { background: var(--sun); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: 3px; padding: clamp(1.6rem, 4.5vw, 2.2rem) clamp(1.3rem, 4vw, 2rem); margin: 0 auto 2.4rem; text-align: center; box-shadow: var(--shadow); }
 .rise-intro h2 { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 4.2vw, 1.95rem); font-weight: 400; color: var(--navy); margin: 0; letter-spacing: -0.01em; line-height: 1.2; }
 .rise-intro h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
 .rise-intro .rule-gold { width: 44px; height: 2px; background: var(--gold); border: 0; margin: 0.9rem auto 1.3rem; }
@@ -4733,7 +4735,7 @@ MODULES.profile = {
               ${BADGES.map(b => {
                 const earned = PROGRESS.badges.has(b.id);
                 const lbl = isEs ? b.es : b.en;
-                return `<div title="${lbl.desc.replace(/"/g, '&quot;')}" style="text-align:center;padding:1rem 0.6rem;background:${earned ? 'linear-gradient(180deg, var(--paper-warm) 0%, var(--paper-light) 100%)' : 'var(--paper-light)'};border:1px solid ${earned ? 'var(--gold)' : 'var(--rule)'};border-radius:3px;${earned ? 'box-shadow:0 1px 3px rgba(184,137,43,0.15);' : 'opacity:0.5;'}">
+                return `<div title="${lbl.desc.replace(/"/g, '&quot;')}" style="text-align:center;padding:1rem 0.6rem;background:${earned ? 'linear-gradient(180deg, var(--paper-warm) 0%, var(--paper-light) 100%)' : 'var(--paper-light)'};border:1px solid ${earned ? 'var(--gold)' : 'var(--rule)'};border-radius:3px;${earned ? 'box-shadow:0 1px 3px rgba(13,115,119,0.15);' : 'opacity:0.5;'}">
                   <div style="font-size:2rem;line-height:1;${earned ? '' : 'filter:grayscale(0.8);'}margin-bottom:0.4rem;">${b.icon}</div>
                   <div style="font-family:'Fraunces',serif;font-size:0.82rem;font-weight:500;color:${earned ? 'var(--navy)' : 'var(--muted)'};line-height:1.2;margin-bottom:0.3rem;">${lbl.name}</div>
                   <div style="font-size:0.7rem;color:var(--muted);line-height:1.3;">${lbl.desc}</div>

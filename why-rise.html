@@ -19,8 +19,10 @@
   --muted: #6a7688;
   --rule: #d4cfc0;
   --rule-soft: #e4e0d2;
-  --gold: #b8892b;
-  --gold-soft: #d4a537;
+  --gold: #0d7377;       /* historical name; now teal */
+  --gold-soft: #2a9d8f;  /* lighter teal */
+  --sun: #fef3c7;        /* soft light yellow — highlights & welcome moments */
+  --sun-soft: #fff7d6;
   --shadow: 0 1px 2px rgba(10,31,61,0.04), 0 12px 28px -12px rgba(10,31,61,0.10);
 }
 
@@ -36,7 +38,7 @@ html, body {
 }
 body {
   background-image:
-    radial-gradient(circle at 15% 10%, rgba(184,137,43,0.05), transparent 40%),
+    radial-gradient(circle at 15% 10%, rgba(13,115,119,0.05), transparent 40%),
     radial-gradient(circle at 85% 90%, rgba(10,31,61,0.04), transparent 40%);
   min-height: 100vh;
   display: flex;
@@ -141,8 +143,10 @@ main p {
   color: var(--navy);
   font-size: clamp(1.3rem, 3.5vw, 1.7rem) !important;
   line-height: 1.4 !important;
+  background: var(--sun);
   border-left: 3px solid var(--gold);
-  padding: 0.4rem 0 0.4rem 1.2rem;
+  border-radius: 0 3px 3px 0;
+  padding: 0.85rem 1.1rem 0.85rem 1.4rem;
   margin: 1.8rem 0;
 }
 
@@ -177,7 +181,7 @@ main p {
 }
 
 .closer {
-  background: linear-gradient(180deg, var(--paper-light) 0%, var(--paper-warm) 100%);
+  background: linear-gradient(180deg, var(--paper-light) 0%, var(--sun) 100%);
   border: 1px solid var(--rule);
   border-top: 3px solid var(--gold);
   border-radius: 3px;
