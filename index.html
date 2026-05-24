@@ -165,9 +165,13 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 .admin-bar-track { height: 8px; background: var(--rule-soft); border-radius: 99px; overflow: hidden; }
 .admin-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-soft) 100%); border-radius: 99px; transition: width 0.4s ease; }
 
-/* Brand logo (uploaded by admin) — shown in the masthead in place of the brand name */
-.mast-logo { display: block; max-height: 40px; max-width: 220px; width: auto; height: auto; object-fit: contain; }
-@media (min-width: 600px) { .mast-logo { max-height: 44px; max-width: 280px; } }
+/* Partner logo (uploaded by admin) — shown in the hero body alongside the headline */
+.hero-grid { display: flex; flex-wrap: wrap-reverse; align-items: center; gap: clamp(1.4rem, 4vw, 2.6rem); }
+.hero-text { flex: 1 1 320px; min-width: 0; }
+.hero-logo { flex: 0 0 auto; max-width: min(300px, 90vw); margin-left: auto; display: flex; align-items: center; justify-content: center; padding: clamp(1rem, 3vw, 1.6rem); background: var(--paper-light); border: 1px solid var(--rule); border-radius: 4px; box-shadow: var(--shadow); }
+.hero-logo[hidden] { display: none; }
+.hero-logo img { display: block; max-height: 200px; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+@media (max-width: 720px) { .hero-logo { margin: 0 auto 0.4rem; max-width: 240px; } .hero-logo img { max-height: 140px; } }
 
 /* Admin logo upload dropzone */
 .admin-logo-drop {
@@ -671,14 +675,19 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 
   <section class="hero">
     <div class="container-narrow">
-      <div class="eyebrow hero-eyebrow" data-i18n="hero.eyebrow">Money tools that work for you</div>
-      <h1 class="serif"><span data-i18n="hero.title1">Real numbers.</span> <em data-i18n="hero.title2">Real life.</em> <span data-i18n="hero.title3">No lectures.</span></h1>
-      <p class="hero-lede" data-i18n="hero.lede">Free tools to help you understand your paycheck, build a budget that fits your life, find good jobs you can get with a GED, dodge predatory loans, and build credit from zero.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="num mono">7.65%</span><span class="lbl" data-i18n="hero.stat1">FICA on your check</span></div>
-        <div class="hero-stat"><span class="num mono">391%</span><span class="lbl" data-i18n="hero.stat2">Avg payday loan APR</span></div>
-        <div class="hero-stat"><span class="num mono">~6mo</span><span class="lbl" data-i18n="hero.stat3">Build credit from zero</span></div>
-        <div class="hero-stat"><span class="num mono">$0</span><span class="lbl" data-i18n="hero.stat4">Cost to use these tools</span></div>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow hero-eyebrow" data-i18n="hero.eyebrow">Money tools that work for you</div>
+          <h1 class="serif"><span data-i18n="hero.title1">Real numbers.</span> <em data-i18n="hero.title2">Real life.</em> <span data-i18n="hero.title3">No lectures.</span></h1>
+          <p class="hero-lede" data-i18n="hero.lede">Free tools to help you understand your paycheck, build a budget that fits your life, find good jobs you can get with a GED, dodge predatory loans, and build credit from zero.</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><span class="num mono">7.65%</span><span class="lbl" data-i18n="hero.stat1">FICA on your check</span></div>
+            <div class="hero-stat"><span class="num mono">391%</span><span class="lbl" data-i18n="hero.stat2">Avg payday loan APR</span></div>
+            <div class="hero-stat"><span class="num mono">~6mo</span><span class="lbl" data-i18n="hero.stat3">Build credit from zero</span></div>
+            <div class="hero-stat"><span class="num mono">$0</span><span class="lbl" data-i18n="hero.stat4">Cost to use these tools</span></div>
+          </div>
+        </div>
+        <aside class="hero-logo" id="hero-logo" hidden aria-label="Partner logo"></aside>
       </div>
     </div>
   </section>
@@ -1920,15 +1929,13 @@ function renderTool(id) {
 }
 function renderActiveTool() { if (CURRENT_TOOL) renderTool(CURRENT_TOOL); }
 
-// Render masthead + footer brand based on CONFIG (logo > custom name > default).
+// Render masthead + footer brand based on CONFIG (custom name > default).
 // Shared by applyConfig() and the admin Branding controls.
+// Brand logos appear in the hero body via renderHeroLogo(), not in the masthead.
 function renderMastheadBrand() {
   const titleEl = document.getElementById('mast-title');
   if (titleEl) {
-    if (CONFIG.brandLogo) {
-      const altText = (CONFIG.brandName && CONFIG.brandName !== DEFAULT_CONFIG.brandName) ? CONFIG.brandName : 'Brand logo';
-      titleEl.innerHTML = `<img class="mast-logo" src="${CONFIG.brandLogo}" alt="${altText.replace(/"/g, '&quot;')}">`;
-    } else if (CONFIG.brandName !== DEFAULT_CONFIG.brandName) {
+    if (CONFIG.brandName !== DEFAULT_CONFIG.brandName) {
       titleEl.innerHTML = `<span style="color:var(--navy);">${CONFIG.brandName}</span>`;
     } else {
       titleEl.innerHTML = `LaunchPoint <em>RISE</em><span class="tm">™</span>`;
@@ -1948,8 +1955,23 @@ function renderMastheadBrand() {
   }
 }
 
+// Inject the partner logo into the hero body alongside the headline, or hide it if no logo is set.
+function renderHeroLogo() {
+  const aside = document.getElementById('hero-logo');
+  if (!aside) return;
+  if (CONFIG.brandLogo) {
+    const altText = (CONFIG.brandName && CONFIG.brandName !== DEFAULT_CONFIG.brandName) ? CONFIG.brandName : 'Brand logo';
+    aside.innerHTML = `<img src="${CONFIG.brandLogo}" alt="${altText.replace(/"/g, '&quot;')}" />`;
+    aside.hidden = false;
+  } else {
+    aside.innerHTML = '';
+    aside.hidden = true;
+  }
+}
+
 function applyConfig() {
   renderMastheadBrand();
+  renderHeroLogo();
   // Language toggle visibility
   const langToggle = $('lang-toggle');
   if (langToggle) langToggle.style.display = CONFIG.allowLangSwitch ? '' : 'none';
@@ -5256,7 +5278,7 @@ function adminHandleLogoFile(file) {
       showToast(isEs ? 'No se pudo guardar el logo. Intenta una imagen más pequeña.' : "Couldn't save the logo. Try a smaller image.", 'error');
       return;
     }
-    renderMastheadBrand();
+    renderHeroLogo();
     refreshAdminLogoPreview(file.name, file.size);
     showToast(isEs ? 'Logo actualizado' : 'Logo updated', 'success');
   };
@@ -5270,7 +5292,7 @@ function adminRemoveLogo() {
   const isEs = (typeof LANG !== 'undefined' && LANG === 'es');
   CONFIG.brandLogo = '';
   saveConfig();
-  renderMastheadBrand();
+  renderHeroLogo();
   refreshAdminLogoPreview();
   const fileInput = document.getElementById('cc-logo-file');
   if (fileInput) fileInput.value = '';
