@@ -554,12 +554,24 @@ main {
           <span><span class="fill-line short"></span> <span class="fill-static">.launchpointrise.com</span></span>
         </div>
         <div class="field-row">
-          <span class="field-label">Tier</span>
+          <span class="field-label">Customer Asset Size</span>
+          <span>$<span class="fill-line" style="display:inline-block;min-width:13rem;vertical-align:middle;border-bottom:1px solid var(--ink);min-height:1.4rem;"></span> <span class="fill-static" style="color:var(--muted);font-style:italic;">(verified via NCUA / FDIC)</span></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Tier (based on asset size)</span>
+          <div class="tier-options" style="flex-direction:column;align-items:flex-start;gap:0.55rem;">
+            <label><input type="checkbox" /> <strong>Community</strong> ($199/mo or $2,149/yr) &mdash; under $100M</label>
+            <label><input type="checkbox" /> <strong>Growth</strong> ($399/mo or $4,309/yr) &mdash; $100M&ndash;$500M</label>
+            <label><input type="checkbox" /> <strong>Standard</strong> ($699/mo or $7,549/yr) &mdash; $500M&ndash;$1B</label>
+            <label><input type="checkbox" /> <strong>Regional</strong> ($1,299/mo or $14,029/yr) &mdash; $1B&ndash;$3B</label>
+            <label><input type="checkbox" /> <strong>Enterprise</strong> (Custom: $<span class="custom-fill"></span>/mo) &mdash; over $3B</label>
+          </div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Billing Frequency</span>
           <div class="tier-options">
-            <label><input type="checkbox" /> Starter ($199/mo)</label>
-            <label><input type="checkbox" /> Standard ($499/mo)</label>
-            <label><input type="checkbox" /> Enterprise ($999/mo)</label>
-            <label><input type="checkbox" /> Custom: $<span class="custom-fill"></span>/mo</label>
+            <label><input type="checkbox" /> Monthly</label>
+            <label><input type="checkbox" /> Annual (10% discount applied)</label>
           </div>
         </div>
         <div class="field-row">
