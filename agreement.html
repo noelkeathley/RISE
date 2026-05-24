@@ -204,11 +204,33 @@ main {
 }
 .field-row {
   display: grid;
-  grid-template-columns: 12rem 1fr;
+  grid-template-columns: 16rem 1fr;
   gap: 0.7rem;
   align-items: baseline;
   font-size: 0.95rem;
   line-height: 1.5;
+}
+.schedule-instruction {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0.4rem 0 0.6rem;
+}
+.schedule-subsection {
+  margin-top: 1.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+.schedule-subsection-head {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin-bottom: 0.85rem;
 }
 .field-row .field-label {
   font-family: 'Fraunces', serif;
@@ -366,6 +388,9 @@ main {
   .clause-body ol.lettered li::before { color: #000000 !important; }
 
   .schedule { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid #000000 !important; page-break-before: auto; }
+  .schedule-instruction { color: #000000 !important; font-size: 10.5pt; margin: 0.3rem 0 0.4rem; }
+  .schedule-subsection { margin-top: 0.9rem; padding-top: 0.5rem; border-top: 1px solid #000000 !important; page-break-inside: avoid; }
+  .schedule-subsection-head { color: #000000 !important; font-size: 9.5pt; margin-bottom: 0.45rem; }
   .field-row { font-size: 10.5pt; }
   .field-row .field-label { color: #000000 !important; }
   .fill-line { border-bottom: 1px solid #000000 !important; min-height: 1.2rem; }
@@ -544,47 +569,123 @@ main {
     <!-- ============= SCHEDULE A ============= -->
     <section class="schedule" aria-labelledby="schedule-a">
       <h2 id="schedule-a">Schedule A &mdash; License Fee and Customer Details</h2>
-      <div class="schedule-form">
-        <div class="field-row">
-          <span class="field-label">Customer Name</span>
-          <span class="fill-line"></span>
-        </div>
-        <div class="field-row">
-          <span class="field-label">Customer URL</span>
-          <span><span class="fill-line short"></span> <span class="fill-static">.launchpointrise.com</span></span>
-        </div>
-        <div class="field-row">
-          <span class="field-label">Customer Asset Size</span>
-          <span>$<span class="fill-line" style="display:inline-block;min-width:13rem;vertical-align:middle;border-bottom:1px solid var(--ink);min-height:1.4rem;"></span> <span class="fill-static" style="color:var(--muted);font-style:italic;">(verified via NCUA / FDIC)</span></span>
-        </div>
-        <div class="field-row">
-          <span class="field-label">Tier (based on asset size)</span>
-          <div class="tier-options" style="flex-direction:column;align-items:flex-start;gap:0.55rem;">
-            <label><input type="checkbox" /> <strong>Community</strong> ($199/mo or $2,149/yr) &mdash; under $100M</label>
-            <label><input type="checkbox" /> <strong>Growth</strong> ($399/mo or $4,309/yr) &mdash; $100M&ndash;$500M</label>
-            <label><input type="checkbox" /> <strong>Standard</strong> ($699/mo or $7,549/yr) &mdash; $500M&ndash;$1B</label>
-            <label><input type="checkbox" /> <strong>Regional</strong> ($1,299/mo or $14,029/yr) &mdash; $1B&ndash;$3B</label>
-            <label><input type="checkbox" /> <strong>Enterprise</strong> (Custom: $<span class="custom-fill"></span>/mo) &mdash; over $3B</label>
+      <p class="schedule-instruction">Select the applicable section below based on Customer type, then complete the &ldquo;All Customer Types&rdquo; section at the bottom.</p>
+
+      <!-- ===== Financial Institutions ===== -->
+      <div class="schedule-subsection">
+        <div class="schedule-subsection-head">For Financial Institutions (Banks, Credit Unions)</div>
+        <div class="schedule-form">
+          <div class="field-row">
+            <span class="field-label">Customer Name</span>
+            <span class="fill-line"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Customer URL</span>
+            <span><span class="fill-line short"></span> <span class="fill-static">.launchpointrise.com</span></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Customer Asset Size</span>
+            <span>$<span class="fill-line" style="display:inline-block;min-width:13rem;vertical-align:middle;border-bottom:1px solid var(--ink);min-height:1.4rem;"></span> <span class="fill-static" style="color:var(--muted);font-style:italic;">(verified via NCUA / FDIC)</span></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Tier (based on asset size)</span>
+            <div class="tier-options" style="flex-direction:column;align-items:flex-start;gap:0.55rem;">
+              <label><input type="checkbox" /> <strong>Community</strong> ($199/mo or $2,149/yr) &mdash; under $100M</label>
+              <label><input type="checkbox" /> <strong>Growth</strong> ($399/mo or $4,309/yr) &mdash; $100M&ndash;$500M</label>
+              <label><input type="checkbox" /> <strong>Standard</strong> ($699/mo or $7,549/yr) &mdash; $500M&ndash;$1B</label>
+              <label><input type="checkbox" /> <strong>Regional</strong> ($1,299/mo or $14,029/yr) &mdash; $1B&ndash;$3B</label>
+              <label><input type="checkbox" /> <strong>Enterprise</strong> (Custom: $<span class="custom-fill"></span>/mo) &mdash; over $3B</label>
+            </div>
           </div>
         </div>
-        <div class="field-row">
-          <span class="field-label">Billing Frequency</span>
-          <div class="tier-options">
-            <label><input type="checkbox" /> Monthly</label>
-            <label><input type="checkbox" /> Annual (10% discount applied)</label>
+      </div>
+
+      <!-- ===== Auto Dealerships ===== -->
+      <div class="schedule-subsection">
+        <div class="schedule-subsection-head">For Auto Dealerships</div>
+        <div class="schedule-form">
+          <div class="field-row">
+            <span class="field-label">Customer Name</span>
+            <span class="fill-line"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Customer URL</span>
+            <span><span class="fill-line short"></span> <span class="fill-static">.launchpointrise.com</span></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Number of Locations</span>
+            <span class="fill-line short"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Approximate Monthly Vehicle Volume</span>
+            <span class="fill-line short"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Tier (based on operation size)</span>
+            <div class="tier-options" style="flex-direction:column;align-items:flex-start;gap:0.55rem;">
+              <label><input type="checkbox" /> <strong>Independent Used Dealer</strong> ($149/mo or $1,609/yr) &mdash; under 50 vehicles/mo</label>
+              <label><input type="checkbox" /> <strong>Single Store</strong> ($249/mo or $2,689/yr) &mdash; 1 location</label>
+              <label><input type="checkbox" /> <strong>Small Group</strong> ($499/mo or $5,389/yr) &mdash; 2&ndash;3 locations</label>
+              <label><input type="checkbox" /> <strong>Mid Group</strong> ($899/mo or $9,709/yr) &mdash; 4&ndash;10 locations</label>
+              <label><input type="checkbox" /> <strong>Large Group</strong> ($1,799/mo or $19,429/yr) &mdash; 11&ndash;25 locations</label>
+              <label><input type="checkbox" /> <strong>Enterprise</strong> (Custom: $<span class="custom-fill"></span>/mo) &mdash; 26+ locations</label>
+            </div>
           </div>
         </div>
-        <div class="field-row">
-          <span class="field-label">Effective Date</span>
-          <span class="fill-line short"></span>
+      </div>
+
+      <!-- ===== Non-Profits ===== -->
+      <div class="schedule-subsection">
+        <div class="schedule-subsection-head">For Non-Profit Organizations</div>
+        <div class="schedule-form">
+          <div class="field-row">
+            <span class="field-label">Customer Name</span>
+            <span class="fill-line"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Customer URL</span>
+            <span><span class="fill-line short"></span> <span class="fill-static">.launchpointrise.com</span></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">501(c)(3) Status</span>
+            <div class="tier-options">
+              <label><input type="checkbox" /> Yes</label>
+              <label><input type="checkbox" /> No</label>
+            </div>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Tier</span>
+            <div class="tier-options" style="flex-direction:column;align-items:flex-start;gap:0.55rem;">
+              <label><input type="checkbox" /> <strong>Non-Profit Standard</strong> ($99/mo or $1,069/yr)</label>
+              <label><input type="checkbox" /> <strong>Non-Profit Enterprise</strong> (Custom: $<span class="custom-fill"></span>/mo)</label>
+            </div>
+          </div>
         </div>
-        <div class="field-row">
-          <span class="field-label">Primary Contact (Customer)</span>
-          <span class="fill-line"></span>
-        </div>
-        <div class="field-row">
-          <span class="field-label">Primary Contact (Provider)</span>
-          <span class="fill-static">Noel Keathley, noelkeathley@mylaunchpoint.ai</span>
+      </div>
+
+      <!-- ===== All Customer Types (common) ===== -->
+      <div class="schedule-subsection">
+        <div class="schedule-subsection-head">All Customer Types &mdash; complete regardless of tier</div>
+        <div class="schedule-form">
+          <div class="field-row">
+            <span class="field-label">Billing Frequency</span>
+            <div class="tier-options">
+              <label><input type="checkbox" /> Monthly</label>
+              <label><input type="checkbox" /> Annual (10% discount applied)</label>
+            </div>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Effective Date</span>
+            <span class="fill-line short"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Primary Contact (Customer)</span>
+            <span class="fill-line"></span>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Primary Contact (Provider)</span>
+            <span class="fill-static">Noel Keathley, noelkeathley@aq2tech.com</span>
+          </div>
         </div>
       </div>
     </section>
