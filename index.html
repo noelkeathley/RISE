@@ -749,6 +749,17 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
               <div class="hint">Shows under the title. Leave blank to use the default.</div>
             </div>
           </div>
+          <div class="field" style="margin-top:1.2rem;">
+            <label>Logo (replaces the brand name in the masthead)</label>
+            <input type="file" id="cc-logo-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden />
+            <div id="cc-logo-drop" class="admin-logo-drop" role="button" tabindex="0" aria-label="Upload logo">
+              <span class="admin-logo-drop-icon" aria-hidden="true">&#x2B06;</span>
+              <span class="admin-logo-drop-main">Drag a logo here, or click to upload</span>
+              <span class="admin-logo-drop-sub">PNG, JPG, SVG, or WebP &middot; 500 KB max &middot; transparent background recommended</span>
+            </div>
+            <div id="cc-logo-preview" class="admin-logo-preview" aria-live="polite"></div>
+            <div class="hint">Uploaded logos save to your browser. Use this to drop in a partner's logo for a white-label demo.</div>
+          </div>
         </div>
       </section>
 
@@ -2145,6 +2156,14 @@ function showCommandCenter() {
   buildPresets();
   buildModuleControls();
   syncCCInputs();
+  // Wire up the logo dropzone (idempotent — safe to call repeatedly because we add listeners only once per element)
+  if (!$('cc-logo-drop').dataset.bound) {
+    adminBindLogoDropzone();
+    $('cc-logo-drop').dataset.bound = 'yes';
+  } else {
+    // Already bound — just refresh the preview to reflect current CONFIG state
+    refreshAdminLogoPreview();
+  }
 }
 
 // ============= USER AUTH SYSTEM =============
@@ -4964,7 +4983,7 @@ MODULES.admin = {
             <!-- ===== Branding ===== -->
             <div class="admin-card">
               <div class="admin-card-head"><h3>${isEs ? 'Marca' : 'Branding'}</h3></div>
-              <p class="admin-card-sub">${isEs ? 'Personaliza el nombre, la frase y el logo de tu organización.' : 'White-label the platform for your organization.'}</p>
+              <p class="admin-card-sub">${isEs ? 'Personaliza el nombre y la frase de tu organización. Para subir un logo, abre el panel de Command Center.' : 'White-label the platform for your organization. To upload a logo, open the Command Center.'}</p>
               <div class="field">
                 <label>${isEs ? 'Nombre' : 'Brand name'}</label>
                 <input type="text" id="admin-brand-name" value="${adminEsc(CONFIG.brandName)}" oninput="adminUpdateBrand()" />
@@ -4972,16 +4991,6 @@ MODULES.admin = {
               <div class="field" style="margin-top:0.6rem;">
                 <label>${isEs ? 'Frase / Tagline' : 'Tagline'}</label>
                 <input type="text" id="admin-brand-tag" value="${adminEsc(CONFIG.brandTag)}" oninput="adminUpdateBrand()" />
-              </div>
-              <div class="field" style="margin-top:0.9rem;">
-                <label>${isEs ? 'Logo (reemplaza el nombre en el encabezado)' : 'Logo (replaces the brand name in the masthead)'}</label>
-                <input type="file" id="admin-logo-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden />
-                <div id="admin-logo-drop" class="admin-logo-drop" role="button" tabindex="0" aria-label="${isEs ? 'Subir logo' : 'Upload logo'}">
-                  <span class="admin-logo-drop-icon" aria-hidden="true">&#x2B06;</span>
-                  <span class="admin-logo-drop-main">${isEs ? 'Arrastra un logo aquí o haz clic para subir' : 'Drag a logo here, or click to upload'}</span>
-                  <span class="admin-logo-drop-sub">${isEs ? 'PNG, JPG, SVG o WebP &middot; 500 KB máximo &middot; transparente recomendado' : 'PNG, JPG, SVG, or WebP &middot; 500 KB max &middot; transparent background recommended'}</span>
-                </div>
-                <div id="admin-logo-preview" class="admin-logo-preview" aria-live="polite"></div>
               </div>
             </div>
 
@@ -5110,10 +5119,7 @@ MODULES.admin = {
     `;
   },
   init() {
-    // Wire the logo dropzone if the admin is unlocked (the dropzone only exists then).
-    if (document.getElementById('admin-logo-drop')) {
-      adminBindLogoDropzone();
-    }
+    // No special init needed — handlers are wired inline. (Logo upload lives in the Command Center.)
   }
 };
 
@@ -5266,14 +5272,14 @@ function adminRemoveLogo() {
   saveConfig();
   renderMastheadBrand();
   refreshAdminLogoPreview();
-  const fileInput = document.getElementById('admin-logo-file');
+  const fileInput = document.getElementById('cc-logo-file');
   if (fileInput) fileInput.value = '';
   showToast(isEs ? 'Logo eliminado' : 'Logo removed', 'success');
 }
 
 function refreshAdminLogoPreview(fileName, fileSize) {
-  const preview = document.getElementById('admin-logo-preview');
-  const drop = document.getElementById('admin-logo-drop');
+  const preview = document.getElementById('cc-logo-preview');
+  const drop = document.getElementById('cc-logo-drop');
   if (!preview) return;
   if (CONFIG.brandLogo) {
     const isEs = (typeof LANG !== 'undefined' && LANG === 'es');
@@ -5299,8 +5305,8 @@ function refreshAdminLogoPreview(fileName, fileSize) {
 }
 
 function adminBindLogoDropzone() {
-  const drop = document.getElementById('admin-logo-drop');
-  const fileInput = document.getElementById('admin-logo-file');
+  const drop = document.getElementById('cc-logo-drop');
+  const fileInput = document.getElementById('cc-logo-file');
   if (!drop || !fileInput) return;
   drop.addEventListener('click', () => fileInput.click());
   drop.addEventListener('keydown', (e) => {
