@@ -356,7 +356,15 @@ main { flex: 1; padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(2.5rem, 6vw, 4rem); }
           <input id="brand-accent" name="brand_accent_color" type="text" placeholder="#FFB81C" maxlength="9" autocomplete="off" />
         </div>
       </div>
+<div class="form-field">
+            <label for="welcome">Welcome Message</label>
+            <textarea id="welcome" name="welcome_message" rows="3" placeholder="Welcome, [Organization] members!"></textarea>
+        </div>
 
+        <div class="form-field">
+            <label for="notes">Notes or Questions</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Anything else you'd like us to know?"></textarea>
+        </div>
       <button type="submit" class="submit-btn">
         <span>Submit Partnership Request</span>
         <span class="arrow" aria-hidden="true">&rarr;</span>
