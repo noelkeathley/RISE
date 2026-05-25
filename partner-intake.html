@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Partner With Us — LaunchPoint RISE</title>
+<meta name="description" content="Start a partnership conversation with LaunchPoint RISE." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --paper: #f5f1e8;
+  --paper-light: #fdfbf4;
+  --paper-warm: #ede7d6;
+  --navy: #0a1f3d;
+  --navy-soft: #1a2f4d;
+  --ink: #2a3a4d;
+  --muted: #6a7688;
+  --rule: #d4cfc0;
+  --rule-soft: #e4e0d2;
+  --gold: #0d7377;       /* historical name; now teal */
+  --gold-soft: #2a9d8f;
+  --sun: #fef3c7;
+  --red: #a8321e;
+  --shadow: 0 1px 2px rgba(10,31,61,0.04), 0 12px 28px -12px rgba(10,31,61,0.10);
+  --shadow-lg: 0 2px 4px rgba(10,31,61,0.05), 0 24px 48px -20px rgba(10,31,61,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(13,115,119,0.05), transparent 42%),
+    radial-gradient(circle at 88% 92%, rgba(10,31,61,0.05), transparent 42%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+*:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+.serif { font-family: 'Fraunces', Georgia, serif; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); width: 100%; }
+.container-narrow { max-width: 640px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); width: 100%; }
+
+/* ============= Masthead ============= */
+.masthead { border-bottom: 1px solid var(--rule); background: var(--paper-light); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); }
+.mast-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; flex-wrap: wrap; }
+.mast-title { font-family: 'Fraunces', serif; font-size: clamp(1.05rem, 3.5vw, 1.45rem); font-weight: 400; color: var(--navy); text-decoration: none; }
+.mast-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+.mast-title .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); margin-left: 1px; }
+.mast-pill {
+  font-family: 'Manrope', sans-serif; font-size: 0.62rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold);
+  padding: 0.4rem 0.8rem; border: 1px solid var(--gold); border-radius: 2px;
+  background: var(--paper); white-space: nowrap;
+}
+
+/* ============= Page hero ============= */
+main { flex: 1; padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(2.5rem, 6vw, 4rem); }
+.page-head { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.4rem); }
+.eyebrow { font-family: 'Manrope', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.22em; font-weight: 700; color: var(--gold); }
+.rule-gold { height: 2px; background: var(--gold); border: 0; width: 52px; margin: 1rem auto 1.4rem; }
+.page-head h1 {
+  font-family: 'Fraunces', serif; font-weight: 400; color: var(--navy);
+  font-size: clamp(1.9rem, 4.8vw, 2.6rem); letter-spacing: -0.012em; line-height: 1.18;
+  margin-bottom: 0.85rem;
+}
+.page-head h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+.page-head .lede {
+  font-family: 'Fraunces', serif; font-weight: 300; color: var(--ink);
+  font-size: clamp(1.05rem, 2.3vw, 1.18rem); line-height: 1.65;
+  max-width: 52ch; margin: 0 auto;
+}
+
+/* ============= Form card ============= */
+.form-card {
+  background: var(--paper-light);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: clamp(1.8rem, 4.5vw, 2.6rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.form-field { margin-bottom: 1.2rem; }
+.form-field:last-of-type { margin-bottom: 1.6rem; }
+.form-field label {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--navy); margin-bottom: 0.4rem;
+}
+.form-field .req { color: var(--red); margin-left: 0.2rem; font-weight: 700; }
+.form-field input {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  border-radius: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form-field input:focus {
+  outline: 0;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(13,115,119,0.18);
+}
+.form-field input:invalid:not(:placeholder-shown) {
+  border-color: var(--red);
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  background: var(--navy);
+  color: var(--paper-light);
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--navy);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: 0 1px 2px rgba(10,31,61,0.06), 0 8px 18px -10px rgba(10,31,61,0.25);
+}
+.submit-btn:hover {
+  background: var(--navy-soft);
+  border-color: var(--navy-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 3px rgba(10,31,61,0.08), 0 14px 24px -12px rgba(10,31,61,0.30);
+}
+.submit-btn .arrow { color: #d4a537; transition: transform 0.18s ease; }
+.submit-btn:hover .arrow { transform: translateX(3px); }
+
+.privacy-note {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 1.2rem;
+  line-height: 1.55;
+}
+
+/* ============= Honeypot hidden from real users ============= */
+.honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* ============= Footer ============= */
+.site-footer { border-top: 1px solid var(--rule); background: var(--paper-light); padding: 1.5rem 0; text-align: center; }
+.site-footer .brand { font-family: 'Fraunces', serif; font-size: 0.95rem; color: var(--navy); }
+.site-footer .brand em { font-style: italic; color: var(--gold); font-weight: 400; }
+.site-footer .brand .tm { font-size: 0.55em; vertical-align: super; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!--
+  NOTE FOR DEPLOY:
+  This form uses Netlify Forms. After the first deploy that includes this page,
+  configure submission notifications in the Netlify dashboard:
+    Site → Forms → "partner-intake" → Notifications
+    Add an Email notification routed to: noelkeathley@mylaunchpoint.ai
+-->
+
+<header class="masthead" role="banner">
+  <div class="container mast-inner">
+    <a href="/" class="mast-title">LaunchPoint <em>RISE</em><span class="tm">&trade;</span></a>
+    <span class="mast-pill">Partner With Us</span>
+  </div>
+</header>
+
+<main>
+  <div class="container-narrow">
+    <div class="page-head">
+      <div class="eyebrow">Partnership Request</div>
+      <hr class="rule-gold" />
+      <h1 class="serif">Tell us about your <em>organization</em>.</h1>
+      <p class="lede">Share a few details and we&rsquo;ll be in touch within one business day to talk through next steps.</p>
+    </div>
+
+    <form
+      class="form-card"
+      name="partner-intake"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/partner-intake?submitted=true"
+    >
+      <!-- Netlify-required hidden field so JS-rendered submissions still associate with this form -->
+      <input type="hidden" name="form-name" value="partner-intake" />
+
+      <!-- Honeypot: hidden from real users; bots that fill any field here get silently rejected -->
+      <div class="honeypot" aria-hidden="true">
+        <label>Don&rsquo;t fill this out if you&rsquo;re human: <input type="hidden" name="bot-field" /></label>
+      </div>
+
+      <div class="form-field">
+        <label for="name">Your Name<span class="req" aria-hidden="true">*</span></label>
+        <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe" />
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email<span class="req" aria-hidden="true">*</span></label>
+        <input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@example.com" />
+      </div>
+
+      <div class="form-field">
+        <label for="organization">Organization Name<span class="req" aria-hidden="true">*</span></label>
+        <input id="organization" name="organization" type="text" autocomplete="organization" required placeholder="Example Credit Union" />
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>Submit Partnership Request</span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </button>
+
+      <p class="privacy-note">By submitting, you agree we may contact you about your inquiry. We won&rsquo;t share your information with anyone else.</p>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="brand">LaunchPoint <em>RISE</em><span class="tm">&trade;</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
