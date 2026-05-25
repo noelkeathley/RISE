@@ -100,7 +100,8 @@ main { flex: 1; padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(2.5rem, 6vw, 4rem); }
   color: var(--navy); margin-bottom: 0.4rem;
 }
 .form-field .req { color: var(--red); margin-left: 0.2rem; font-weight: 700; }
-.form-field input {
+.form-field input,
+.form-field select {
   width: 100%;
   padding: 0.75rem 0.95rem;
   border: 1px solid var(--rule);
@@ -113,7 +114,18 @@ main { flex: 1; padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(2.5rem, 6vw, 4rem); }
   appearance: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
-.form-field input:focus {
+.form-field select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230a1f3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.95rem center;
+  background-size: 12px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+.form-field select:invalid { color: var(--muted); }
+.form-field select option { color: var(--ink); }
+.form-field input:focus,
+.form-field select:focus {
   outline: 0;
   border-color: var(--navy);
   box-shadow: 0 0 0 3px rgba(13,115,119,0.18);
@@ -220,8 +232,25 @@ main { flex: 1; padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(2.5rem, 6vw, 4rem); }
       </div>
 
       <div class="form-field">
+        <label for="organization-type">Organization Type<span class="req" aria-hidden="true">*</span></label>
+        <select id="organization-type" name="organization_type" required>
+          <option value="" disabled selected>Select one&hellip;</option>
+          <option value="bank">Bank</option>
+          <option value="credit_union">Credit Union</option>
+          <option value="auto_dealership">Auto Dealership</option>
+          <option value="non_profit">Non-Profit</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-field">
         <label for="organization">Organization Name<span class="req" aria-hidden="true">*</span></label>
         <input id="organization" name="organization" type="text" autocomplete="organization" required placeholder="Example Credit Union" />
+      </div>
+
+      <div class="form-field">
+        <label for="website">Website URL<span class="req" aria-hidden="true">*</span></label>
+        <input id="website" name="website" type="url" autocomplete="url" required placeholder="https://yourorganization.com" />
       </div>
 
       <button type="submit" class="submit-btn">
