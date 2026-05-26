@@ -1850,7 +1850,7 @@ MODULES.bigpurchases = {
   render() {
     return `
       <section class="tool active" id="tool-bigpurchases" role="tabpanel">
-        <iframe id="bp-iframe" src="big-purchases.html" title="${t('mod.bigpurchases.name')}"
+        <iframe id="bp-iframe" src="big-purchases.html?lang=${LANG}" title="${t('mod.bigpurchases.name')}"
                 style="width:100%; height:100vh; border:0; display:block; background:transparent;"
                 loading="lazy"></iframe>
       </section>
@@ -1913,8 +1913,17 @@ function setLanguage(lang) {
   const prevTool = CURRENT_TOOL;
   renderToolNav();
   if (prevTool && CONFIG.enabled[prevTool] && MODULES[prevTool]) switchTool(prevTool);
-  // Re-render current tool (covers the no-prevTool case too)
-  renderActiveTool();
+  // Re-render current tool (covers the no-prevTool case too).
+  // Skip re-render for bigpurchases: it's an iframe — instead, postMessage so its in-iframe i18n updates
+  // without reloading and losing the user's place in the inner sub-modules.
+  if (CURRENT_TOOL === 'bigpurchases') {
+    const bp = document.getElementById('bp-iframe');
+    if (bp && bp.contentWindow) {
+      try { bp.contentWindow.postMessage({ type: 'rise-lang', lang: lang }, '*'); } catch (e) {}
+    }
+  } else {
+    renderActiveTool();
+  }
   // Refresh signed-in identity pill in case label needs translating
   if (typeof refreshUserAuthIdentity === 'function') refreshUserAuthIdentity();
 }
