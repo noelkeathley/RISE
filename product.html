@@ -907,6 +907,8 @@ const I18N = {
     'mod.parent.desc': 'Childcare subsidies, child tax credit, family budgeting',
     'mod.veteran.name': 'Veteran Edition',
     'mod.veteran.desc': 'GI Bill, VA benefits, transition assistance',
+    'mod.bigpurchases.name': 'Big Purchases',
+    'mod.bigpurchases.desc': 'Cars, homes, rent vs. buy, and refinancing — without the costly mistakes',
 
     // Categories
     'cat.foundational': 'Foundational',
@@ -1094,6 +1096,8 @@ const I18N = {
     'mod.parent.desc': 'Subsidios de cuidado infantil, crédito tributario por hijos, presupuesto familiar',
     'mod.veteran.name': 'Edición para Veteranos',
     'mod.veteran.desc': 'GI Bill, beneficios de VA, asistencia de transición',
+    'mod.bigpurchases.name': 'Compras Grandes',
+    'mod.bigpurchases.desc': 'Autos, casas, alquilar vs. comprar y refinanciar — sin errores costosos',
 
     // Categories
     'cat.foundational': 'Fundamentales',
@@ -1223,8 +1227,8 @@ const DEFAULT_CONFIG = {
     paycheck: true, budget: true, trap: true, credit: true,
     jobmatch: true, applysmart: true, benefits: true, taxtime: true,
     banking: true, bigdec: true, goaltracker: true, library: true,
-    reentry: true, parent: true, veteran: true, profile: true,
-    admin: true
+    reentry: true, parent: true, veteran: true, bigpurchases: true,
+    profile: true, admin: true
   },
   defaultLang: 'en',
   allowLangSwitch: true,
@@ -1836,7 +1840,22 @@ const MODULE_META = {
   library: { icon: '📺', category: 'life' },
   reentry: { icon: '🔓', category: 'special' },
   parent: { icon: '👨‍👩‍👧', category: 'special' },
-  veteran: { icon: '🎖️', category: 'special' }
+  veteran: { icon: '🎖️', category: 'special' },
+  bigpurchases: { icon: '🏷️', category: 'life' }
+};
+
+// ============= MODULE: BIG PURCHASES (embedded standalone page) =============
+MODULES.bigpurchases = {
+  id: 'bigpurchases', icon: MODULE_META.bigpurchases.icon, category: MODULE_META.bigpurchases.category, phase: 1,
+  render() {
+    return `
+      <section class="tool active" id="tool-bigpurchases" role="tabpanel">
+        <iframe id="bp-iframe" src="big-purchases.html" title="${t('mod.bigpurchases.name')}"
+                style="width:100%; height:100vh; border:0; display:block; background:transparent;"
+                loading="lazy"></iframe>
+      </section>
+    `;
+  }
 };
 
 ['applysmart','benefits','taxtime','banking','bigdec','goaltracker','library','reentry','parent','veteran'].forEach(id => {
