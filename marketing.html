@@ -494,6 +494,61 @@ section .section-head .lede {
 .pricing-note a { color: var(--navy); font-weight: 600; text-decoration: none; border-bottom: 1px dashed var(--rule); }
 .pricing-note a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
+/* ============= Security & Privacy ============= */
+.security-section { background: var(--paper-light); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.security-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+@media (min-width: 780px) { .security-grid { grid-template-columns: 1fr 1fr; gap: 2.2rem; align-items: start; } }
+.security-col {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: 3px;
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--shadow);
+}
+.security-col-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.security-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.security-list li {
+  position: relative;
+  padding-left: 2.1rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 1.35rem;
+  display: flex;
+  align-items: center;
+}
+.security-list li::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.security-list--no li::before { content: "\2715"; background: rgba(10,31,61,0.07); color: var(--navy); }
+.security-list--yes li::before { content: "\2713"; background: rgba(13,115,119,0.14); color: var(--gold); }
+
 /* ============= Contact / final CTA ============= */
 .contact-section { background: linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%); border-top: 1px solid var(--rule); }
 .contact-card {
@@ -579,6 +634,7 @@ section .section-head .lede {
     <nav class="mast-nav" aria-label="Marketing site sections">
       <a href="#why-rise">Why RISE</a>
       <a href="#how-it-works">How It Works</a>
+      <a href="#security">Security</a>
       <a href="#pricing">Pricing</a>
       <a href="/partner-intake.html">Partner With Us</a>
       <a href="#contact">Request a Demo</a>
@@ -721,6 +777,42 @@ section .section-head .lede {
         <p>We deliver aggregate, anonymized usage reports each month: who's engaging, which modules resonate, and where customers are spending time. Useful for board updates and CRA documentation.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ============= Security & Privacy ============= -->
+<section id="security" class="security-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Security &amp; Privacy</div>
+      <hr class="rule-gold centered" />
+      <h2 class="serif">A <em>Zero-Data</em> Financial Wellness Platform</h2>
+      <p class="lede">RISE is built to sail through information security review. It never touches your core systems, your customers' credentials, or their personal data &mdash; there is simply nothing sensitive for it to hold.</p>
+    </div>
+
+    <div class="security-grid">
+      <div class="security-col">
+        <h3 class="security-col-title">What RISE never touches</h3>
+        <ul class="security-list security-list--no" aria-label="What RISE does not require or collect">
+          <li>No login required</li>
+          <li>No personal information collected</li>
+          <li>No banking credentials required</li>
+          <li>No customer account access</li>
+          <li>No software installation</li>
+          <li>No integration with the bank's core systems</li>
+        </ul>
+      </div>
+      <div class="security-col">
+        <h3 class="security-col-title">How it's delivered</h3>
+        <ul class="security-list security-list--yes" aria-label="How RISE is hosted and delivered">
+          <li>Hosted securely on AWS</li>
+          <li>Encrypted with HTTPS</li>
+          <li>Accessible from any device</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="pricing-note">Designed to simplify conversations with your information security team. <a href="mailto:noelkeathley@mylaunchpoint.ai?subject=RISE%20Security%20Overview">Request our security overview</a>.</p>
   </div>
 </section>
 
