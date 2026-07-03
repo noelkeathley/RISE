@@ -569,8 +569,9 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
 <div id="user-auth">
   <div class="user-auth-wrap">
     <div class="user-auth-brand">
-      <span class="mast-title">LaunchPoint <em>RISE</em><span class="tm">™</span></span>
-      <p class="user-auth-tagline" data-i18n="userauth.tagline">Real-world Income & Skills Education</p>
+      <span class="mast-title" id="userauth-brand-title">LaunchPoint <em>RISE</em><span class="tm">™</span></span>
+      <img id="userauth-brand-logo" alt="" hidden style="display:block;max-height:120px;max-width:min(320px,80vw);width:auto;margin:0.9rem auto 0;object-fit:contain;" />
+      <p class="user-auth-tagline" id="userauth-brand-tagline" data-i18n="userauth.tagline">Real-world Income & Skills Education</p>
     </div>
 
     <!-- What is RISE? — intro shown to visitors before they're asked to sign in -->
@@ -1235,6 +1236,8 @@ const DEFAULT_CONFIG = {
   brandName: 'LaunchPoint RISE™',
   brandTag: 'Real-world Income & Skills Education',
   brandLogo: '',
+  primaryColor: '',   // partner primary/dark brand color (overrides --navy); set via admin.html
+  accentColor: '',    // partner accent color (overrides --gold); set via admin.html
   announcement: '',
   announcementActive: false,
   accessCode: '',
@@ -1995,6 +1998,75 @@ function renderMastheadBrand() {
   }
 }
 
+// Lighten (positive percent) or darken (negative) a #rrggbb hex toward white/black.
+// Used to derive the "-soft" variants from a partner's chosen brand colors.
+function shadeColor(hex, percent) {
+  if (typeof hex !== 'string') return hex;
+  const h = hex.replace('#', '');
+  if (h.length !== 6) return hex;
+  let r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+  const target = percent < 0 ? 0 : 255, p = Math.abs(percent) / 100;
+  r = Math.round((target - r) * p) + r;
+  g = Math.round((target - g) * p) + g;
+  b = Math.round((target - b) * p) + b;
+  return '#' + [r, g, b].map(x => Math.max(0, Math.min(255, x)).toString(16).padStart(2, '0')).join('');
+}
+
+// Apply partner brand colors as CSS-variable overrides on :root.
+// Precedence mirrors branding: admin CONFIG override > partners.json default > built-in theme.
+//   primaryColor -> --navy / --navy-soft   (masthead, buttons, footer, headings)
+//   accentColor  -> --gold / --gold-soft   (rules, focus rings, highlights, CTAs)
+function applyBrandColors() {
+  const root = document.documentElement;
+  const partnerPrimary = (PARTNER_CONFIG && PARTNER_CONFIG.primaryColor) || '';
+  const partnerAccent  = (PARTNER_CONFIG && PARTNER_CONFIG.accentColor)  || '';
+  const primary = (CONFIG.primaryColor || partnerPrimary || '').trim();
+  const accent  = (CONFIG.accentColor  || partnerAccent  || '').trim();
+  if (primary) {
+    root.style.setProperty('--navy', primary);
+    root.style.setProperty('--navy-soft', shadeColor(primary, 18));
+  } else {
+    root.style.removeProperty('--navy');
+    root.style.removeProperty('--navy-soft');
+  }
+  if (accent) {
+    root.style.setProperty('--gold', accent);
+    root.style.setProperty('--gold-soft', shadeColor(accent, 22));
+  } else {
+    root.style.removeProperty('--gold');
+    root.style.removeProperty('--gold-soft');
+  }
+}
+
+// Brand the member sign-in screen (name, tagline, logo) so a partner's visitors
+// see their institution's identity before signing in. Colors are handled by
+// applyBrandColors() on :root, which themes the whole page including this gate.
+function brandAuthGate() {
+  const adminCustom = (CONFIG.brandName && CONFIG.brandName !== DEFAULT_CONFIG.brandName);
+  const partnerName = (PARTNER_CONFIG && PARTNER_CONFIG.name) || null;
+  const effectiveName = adminCustom ? CONFIG.brandName : (partnerName || DEFAULT_CONFIG.brandName);
+  const isDefault = effectiveName === DEFAULT_CONFIG.brandName;
+
+  const titleEl = document.getElementById('userauth-brand-title');
+  if (titleEl) {
+    titleEl.innerHTML = isDefault
+      ? 'LaunchPoint <em>RISE</em><span class="tm">™</span>'
+      : `<span style="color:var(--navy);">${effectiveName}</span>`;
+  }
+  const tagEl = document.getElementById('userauth-brand-tagline');
+  if (tagEl) {
+    const adminTagCustom = (CONFIG.brandTag && CONFIG.brandTag !== DEFAULT_CONFIG.brandTag);
+    const partnerTag = (PARTNER_CONFIG && PARTNER_CONFIG.tagline) || null;
+    tagEl.textContent = adminTagCustom ? CONFIG.brandTag : (partnerTag || DEFAULT_CONFIG.brandTag);
+  }
+  const logoEl = document.getElementById('userauth-brand-logo');
+  if (logoEl) {
+    const logoSrc = CONFIG.brandLogo || (PARTNER_CONFIG && PARTNER_CONFIG.logo) || '';
+    if (logoSrc) { logoEl.src = logoSrc; logoEl.alt = effectiveName + ' logo'; logoEl.hidden = false; }
+    else { logoEl.removeAttribute('src'); logoEl.hidden = true; }
+  }
+}
+
 // Inject the partner logo into the hero body alongside the headline, or hide it if no logo is set.
 function renderHeroLogo() {
   const aside = document.getElementById('hero-logo');
@@ -2041,6 +2113,7 @@ async function loadPartnerConfig() {
 function applyConfig() {
   renderMastheadBrand();
   renderHeroLogo();
+  applyBrandColors();
   // Language toggle visibility
   const langToggle = $('lang-toggle');
   if (langToggle) langToggle.style.display = CONFIG.allowLangSwitch ? '' : 'none';
@@ -2538,6 +2611,9 @@ function init() {
   }
   // Wire user-auth handlers always
   initUserAuthHandlers();
+  // Theme the page + sign-in screen from any saved/partner branding before gating
+  applyBrandColors();
+  brandAuthGate();
   // Sign-in is required: check session, gate accordingly
   const u = userCurrent();
   if (u) {
@@ -5676,6 +5752,8 @@ loadPartnerConfig().then(pc => {
     PARTNER_CONFIG = pc;
     renderMastheadBrand();
     renderHeroLogo();
+    applyBrandColors();
+    brandAuthGate();
   }
 });
 </script>
