@@ -3,14 +3,14 @@
     "name": "Oxford Federal Credit Union",
     "tagline": "Real-world Income & Skills Education",
     "logo": null,
-    "primaryColor": "#0a2540",
-    "accentColor": "#1f8a70"
+    "primaryColor": null,
+    "accentColor": null
   },
   "velocitycu": {
     "name": "Velocity Credit Union",
     "tagline": "Real-world Income & Skills Education",
     "logo": null,
-    "primaryColor": "#12235b",
-    "accentColor": "#e8622c"
+    "primaryColor": null,
+    "accentColor": null
   }
 }
