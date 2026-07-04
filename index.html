@@ -29,7 +29,6 @@
   Routes:
     launchpointrise.com / www.launchpointrise.com   ->  /marketing.html
     <sub>.launchpointrise.com  where <sub> in partners.json   ->  /product.html
-                                     (or /prototype.html if entry.experience === 'hub')
     <sub>.launchpointrise.com  where <sub> NOT in partners.json   ->  /not-found.html
 
   Local development / preview:
@@ -69,8 +68,7 @@
       .catch(function () { return {}; })
       .then(function (partners) {
         if (partners && Object.prototype.hasOwnProperty.call(partners, sub)) {
-          var exp = partners[sub] && partners[sub].experience;
-          go(exp === 'hub' ? '/prototype.html' : '/product.html');
+          go('/product.html');
         } else {
           go('/not-found.html');
         }

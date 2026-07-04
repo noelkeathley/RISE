@@ -870,9 +870,9 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
      PREVIEW TABS + LIVE IFRAME
      ========================================================================== */
   function productUrl() {
-    // Point the live preview at the hub, branded for this partner (reads admin's
-    // saved branding/modules from localStorage, and this partner from ?partner).
-    return 'prototype.html?mode=customer&partner=' + encodeURIComponent((partnerKey && partnerKey !== '__new__') ? partnerKey : '');
+    // Point the live preview at the RISE product, branded from the admin's
+    // saved branding in localStorage (lpn-realmoney-config-v3).
+    return 'product.html';
   }
   function refreshLive() {
     var f = $('liveFrame');
