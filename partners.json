@@ -12,5 +12,14 @@
     "logo": null,
     "primaryColor": null,
     "accentColor": null
+  },
+  "hancockwhitney": {
+    "name": "Hancock Whitney Bank",
+    "tagline": "Financial Wellness Center",
+    "logo": null,
+    "primaryColor": "#00594f",
+    "accentColor": "#c99700",
+    "experience": "hub",
+    "modules": {}
   }
 }

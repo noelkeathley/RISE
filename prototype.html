@@ -658,7 +658,9 @@ function initLangToggle(){
    preview, the "For Institutions" nav link, and swaps the hero copy so it
    speaks to the end customer instead of the bank buyer.
    ========================================================================== */
-var MODE=((new URLSearchParams(location.search).get("mode"))||"demo").toLowerCase();
+var _modeParam=((new URLSearchParams(location.search).get("mode"))||"").toLowerCase();
+var _onPartnerSub=(function(){var h=location.hostname.toLowerCase(),a="launchpointrise.com";if(h.endsWith("."+a)){var sdn=h.slice(0,h.length-a.length-1);return !!(sdn&&sdn!=="www");}return false;})();
+var MODE=_modeParam||(_onPartnerSub?"customer":"demo");
 document.documentElement.setAttribute("data-mode",MODE);
 if(MODE==="customer"){
   ["value","whitelabel"].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display="none";});
@@ -1052,9 +1054,55 @@ var CATEGORIES=[
 ];
 var CAT_OF={};CATEGORIES.forEach(function(c){c.modules.forEach(function(m){CAT_OF[m]=c;});});
 /* Module on/off — the admin console writes disabled modules to this key. Default: all on. */
-var MOD_CFG={};
-try{MOD_CFG=JSON.parse(localStorage.getItem("lpn-rise-modules")||"{}")||{};}catch(e){MOD_CFG={};}
+var LS_MODS={};
+try{LS_MODS=JSON.parse(localStorage.getItem("lpn-rise-modules")||"{}")||{};}catch(e){LS_MODS={};}
+var MOD_CFG=LS_MODS;
 function modEnabled(name){return MOD_CFG[name]!==false;}
+/* Admin localStorage branding override (for admin preview) */
+var ADMIN_CFG={};
+try{ADMIN_CFG=JSON.parse(localStorage.getItem("lpn-realmoney-config-v3")||"{}")||{};}catch(e){ADMIN_CFG={};}
+var PARTNER=null;
+function partnerSub(){
+  var h=location.hostname.toLowerCase(),a="launchpointrise.com";
+  if(h.endsWith("."+a)){var sdn=h.slice(0,h.length-a.length-1);if(sdn&&sdn!=="www")return sdn;}
+  var q=new URLSearchParams(location.search).get("partner");
+  return q?q.toLowerCase().replace(/[^a-z0-9-]/g,""):null;
+}
+function shade(hex,pct){var h=(hex||"").replace("#","");if(h.length!==6)return hex;var r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);var t2=pct<0?0:255,p=Math.abs(pct)/100;r=Math.round((t2-r)*p)+r;g=Math.round((t2-g)*p)+g;b=Math.round((t2-b)*p)+b;return "#"+[r,g,b].map(function(x){return ("0"+Math.max(0,Math.min(255,x)).toString(16)).slice(-2);}).join("");}
+function hexA(hex,al){var h=(hex||"").replace("#","");if(h.length!==6)return "rgba(13,115,119,"+al+")";return "rgba("+parseInt(h.slice(0,2),16)+","+parseInt(h.slice(2,4),16)+","+parseInt(h.slice(4,6),16)+","+al+")";}
+function applyPartnerColors(primary,accent){
+  var r=document.documentElement.style;
+  if(primary){r.setProperty("--navy",primary);r.setProperty("--navy-soft",shade(primary,16));r.setProperty("--ink",primary);}
+  if(accent){r.setProperty("--teal",accent);r.setProperty("--teal-soft",shade(accent,20));r.setProperty("--indigo",accent);r.setProperty("--indigo-dark",shade(accent,-18));r.setProperty("--ring","0 0 0 4px "+hexA(accent,.2));r.setProperty("--bg-tint",hexA(accent,.08));}
+  if(primary&&accent){
+    r.setProperty("--grad-hero","linear-gradient(135deg,"+primary+" 0%,"+shade(primary,12)+" 52%,"+accent+" 100%)");
+    r.setProperty("--grad-cta","linear-gradient(135deg,"+primary+","+accent+")");
+    r.setProperty("--grad-mint","linear-gradient(135deg,"+accent+","+shade(accent,18)+")");
+  }
+}
+function applyPartnerBrand(name,logo){
+  $$(".brand").forEach(function(b){
+    var logoEl=$(".logo",b);
+    if(logo&&logoEl){logoEl.innerHTML='<img src="'+logo+'" alt="" style="width:100%;height:100%;object-fit:contain;border-radius:8px">';logoEl.style.background="#fff";}
+    if(name&&logoEl){var span=logoEl.nextElementSibling;if(span){var small=$("small",span);span.innerHTML=esc(name)+(small?small.outerHTML:"");}}
+  });
+}
+function resolvePartner(){
+  var sub=partnerSub();
+  function apply(pc){
+    PARTNER=pc||null;
+    var primary=((ADMIN_CFG.primaryColor||"").trim())||(pc&&pc.primaryColor)||"";
+    var accent=((ADMIN_CFG.accentColor||"").trim())||(pc&&pc.accentColor)||"";
+    if(primary&&accent)applyPartnerColors(primary,accent);
+    var adminName=(ADMIN_CFG.brandName&&ADMIN_CFG.brandName!=="LaunchPoint RISE\u2122")?ADMIN_CFG.brandName:"";
+    var name=adminName||(pc&&pc.name)||"";
+    var logo=(ADMIN_CFG.brandLogo||"")||(pc&&pc.logo)||"";
+    if(name||logo)applyPartnerBrand(name,logo);
+    if(Object.keys(LS_MODS).length)MOD_CFG=LS_MODS;else if(pc&&pc.modules)MOD_CFG=pc.modules;
+  }
+  if(!sub){apply(null);return Promise.resolve();}
+  return fetch("partners.json",{cache:"default"}).then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}).then(function(all){apply(all&&all[sub]);});
+}
 
 /* ==========================================================================
    CUSTOMER TYPES  (segment -> matched products + learning path)
@@ -1307,15 +1355,15 @@ var MILESTONES=[
   {e:"📅",age:"Age 62",title:"Preparing for Retirement",lesson:"Social Security Basics"},
   {e:"📜",age:"Age 65+",title:"Estate Planning",lesson:"Estate Documents"}
 ];
-(function(){
-  var tl=$("#timeline");
+function renderTimeline(){
+  var tl=$("#timeline");if(!tl)return;tl.innerHTML="";
   MILESTONES.filter(function(m){return modEnabled(m.lesson);}).forEach(function(m){
     var node=el("div","milestone");
     node.innerHTML='<button class="node" type="button" aria-label="Learn about '+esc(t(m.title))+'">'+m.e+'</button><div class="age">'+esc(t(m.age))+'</div><div class="m-title">'+esc(t(m.title))+'</div>';
     $(".node",node).addEventListener("click",function(){openLesson(m.lesson);});
     tl.appendChild(node);
   });
-})();
+}
 
 /* ==========================================================================
    RENDER: LEARNING LIBRARY (search + filter + progress)
@@ -1471,14 +1519,16 @@ TABS.push({id:"journey",label:"Life Journey",icon:"🗺️",panel:"journey"});
 TABS.push({id:"demos",label:"Interactive Tools",icon:"🧰",panel:"demos"});
 TABS.push({id:"quizzes",label:"Quizzes",icon:"❓",panel:"quizzes"});
 TABS.push({id:"institutions",label:"For Institutions",icon:"🏛️",panel:"institutions",inst:true});
-(function(){
-  var nav=$("#tabnav");if(!nav)return;
+var activeTabId=null;
+function buildTabs(){
+  var nav=$("#tabnav");if(!nav)return;nav.innerHTML="";
   var visible=TABS.filter(function(tb){
     if(tb.inst && MODE==="customer")return false;
     if(tb.cat){var c=CATEGORIES.filter(function(x){return x.name===tb.cat;})[0];if(c && !c.modules.some(modEnabled))return false;}
     return true;
   });
   function showTab(tb,skipScroll){
+    activeTabId=tb.id;
     $$(".tab-panel").forEach(function(p){p.classList.remove("active");});
     var panel=document.getElementById(tb.panel);if(panel)panel.classList.add("active");
     $$("#tabnav .tabbtn").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-tabid")===tb.id);});
@@ -1492,13 +1542,16 @@ TABS.push({id:"institutions",label:"For Institutions",icon:"🏛️",panel:"inst
     nav.appendChild(b);
   });
   window.__goTab=function(id){var tb=visible.filter(function(x){return x.id===id;})[0]||visible[0];showTab(tb);};
-  showTab(visible[0],true);
-  var hs=$("#heroStart");if(hs)hs.addEventListener("click",function(e){e.preventDefault();window.__goTab("customers");});
-  var ns=$("#navStart");if(ns)ns.addEventListener("click",function(e){e.preventDefault();window.__goTab("customers");});
-  var ht=$("#heroTopics");if(ht)ht.addEventListener("click",function(e){e.preventDefault();window.__goTab("cat-"+CATEGORIES[0].name);});
-})();
+  var keep=visible.filter(function(x){return x.id===activeTabId;})[0]||visible[0];
+  showTab(keep,true);
+  var hs=$("#heroStart");if(hs&&!hs.__w){hs.__w=1;hs.addEventListener("click",function(e){e.preventDefault();window.__goTab("customers");});}
+  var ns=$("#navStart");if(ns&&!ns.__w){ns.__w=1;ns.addEventListener("click",function(e){e.preventDefault();window.__goTab("customers");});}
+  var ht=$("#heroTopics");if(ht&&!ht.__w){ht.__w=1;ht.addEventListener("click",function(e){e.preventDefault();window.__goTab("cat-"+CATEGORIES[0].name);});}
+}
 
 applyStaticI18n();initLangToggle();
+renderTimeline();buildTabs();
+resolvePartner().then(function(){renderTimeline();buildTabs();});
 
 /* ===== Discreet admin access (footer link + Ctrl/Cmd+Shift+A). Password-gated. ===== */
 (function(){
