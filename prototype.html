@@ -726,6 +726,14 @@ function renderCalc(host,key){
   draw();host.appendChild(wrap);
 }
 
+/* Randomize answer order so the correct choice isn't always first (harder to game).
+   Returns a new question object with shuffled answers and the updated correct index. */
+function shuffleQ(item){
+  var order=item.a.map(function(_,i){return i;});
+  for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=order[i];order[i]=order[j];order[j]=tmp;}
+  return {q:item.q,a:order.map(function(i){return item.a[i];}),correct:order.indexOf(item.correct),fb:item.fb};
+}
+
 /* Render a mini quiz (one question at a time) into a container */
 function renderMiniQuiz(host,questions){
   var wrap=el("div","mini");wrap.appendChild(el("div","lsn-section-label",t("❓ Quick quiz")));
@@ -733,7 +741,7 @@ function renderMiniQuiz(host,questions){
   var idx=0,score=0;
   function step(){
     if(idx>=questions.length){body.innerHTML='<p style="font-weight:700;color:var(--indigo)">'+t("You scored")+' '+score+'/'+questions.length+'. '+(score===questions.length?t("Perfect! 🎉"):t("Nice — review and try again anytime."))+'</p>';return;}
-    var q=questions[idx],answered=false;
+    var q=shuffleQ(questions[idx]),answered=false;
     body.innerHTML='<div class="q-text" style="font-size:1rem">'+esc(q.q)+'</div><div class="q-options"></div><div class="quiz-feedback" data-fb></div>';
     var opts=$(".q-options",body);
     q.a.forEach(function(opt,i){
@@ -1414,7 +1422,7 @@ var QUIZZES={
   function render(){
     var quiz=QUIZZES[st.name],tot=quiz.length;
     if(st.idx>=tot){card.innerHTML='<div class="quiz-final"><div class="score-ring">'+st.score+'/'+tot+'</div><p>'+verdict(st.score,tot)+'</p><button class="btn btn-primary" id="qRetry" type="button">'+t("↻ Try again")+'</button> <a class="btn btn-light" href="#library">'+t("📚 Explore modules")+'</a></div>';$("#qRetry").addEventListener("click",function(){st.idx=0;st.score=0;render();});return;}
-    var item=quiz[st.idx],pct=st.idx/tot*100,answered=false;
+    var item=shuffleQ(quiz[st.idx]),pct=st.idx/tot*100,answered=false;
     card.innerHTML='<div class="quiz-bar"><span style="width:'+pct+'%"></span></div><div class="q-count">'+esc(t(st.name))+' · '+t("Question")+' '+(st.idx+1)+' '+t("of")+' '+tot+'</div><div class="q-text"></div><div class="q-options"></div><div class="quiz-feedback" id="qFb"></div>';
     $(".q-text",card).textContent=t(item.q);
     var opts=$(".q-options",card);
