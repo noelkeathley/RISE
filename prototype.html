@@ -367,7 +367,7 @@ input:focus,select:focus{border-color:var(--indigo);outline:none;box-shadow:var(
 <section class="hero" id="top">
   <div class="wrap hero-inner">
     <h1>Financial Wellness Made&nbsp;Simple</h1>
-    <p class="sub">An interactive, no-login platform that matches every banking customer to the right products — and teaches them with reading, quizzes, and hands-on tools. Built for banks and credit unions.</p>
+    <p class="sub" id="heroSub">An interactive, no-login platform that matches every banking customer to the right products — and teaches them with reading, quizzes, and hands-on tools. Built for banks and credit unions.</p>
     <div class="hero-actions">
       <a href="#customers" class="btn btn-light">🧭 Find Your Path</a>
       <a href="#library" class="btn btn-ghost">📚 See Modules</a>
@@ -375,8 +375,8 @@ input:focus,select:focus{border-color:var(--indigo);outline:none;box-shadow:var(
     <div class="badges" aria-label="Trust badges">
       <span class="badge">🔓 No Login Required</span>
       <span class="badge">🛡️ No Personal Data Captured</span>
-      <span class="badge">🔗 Easy Website Embed</span>
-      <span class="badge">🏦 Built for Banks &amp; Credit Unions</span>
+      <span class="badge js-inst-badge">🔗 Easy Website Embed</span>
+      <span class="badge js-inst-badge">🏦 Built for Banks &amp; Credit Unions</span>
     </div>
     <div class="hero-stats" id="heroStats"></div>
   </div>
@@ -586,6 +586,24 @@ var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelect
 var el=function(t,cl,h){var n=document.createElement(t);if(cl)n.className=cl;if(h!=null)n.innerHTML=h;return n};
 var money=function(n){return "$"+Math.round(n).toLocaleString("en-US")};
 var esc=function(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")};
+
+/* ==========================================================================
+   PRESENTATION MODE
+   Default ("demo") shows everything, including the institution sales pitch.
+   ?mode=customer  -> the member-facing experience a bank deploys on its site:
+   hides the "For Financial Institutions" value section, the white-label
+   preview, the "For Institutions" nav link, and swaps the hero copy so it
+   speaks to the end customer instead of the bank buyer.
+   ========================================================================== */
+var MODE=((new URLSearchParams(location.search).get("mode"))||"demo").toLowerCase();
+document.documentElement.setAttribute("data-mode",MODE);
+if(MODE==="customer"){
+  ["value","whitelabel"].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display="none";});
+  var instLink=document.querySelector('.nav-links a[href="#value"]');if(instLink)instLink.style.display="none";
+  var hs=document.getElementById("heroStats");if(hs)hs.style.display="none";
+  var sub=document.getElementById("heroSub");if(sub)sub.textContent="Free, no-login tools and lessons from your financial institution — budget, build credit, buy a car or home, plan for retirement, and stay safe from fraud.";
+  Array.prototype.slice.call(document.querySelectorAll(".js-inst-badge")).forEach(function(b){b.style.display="none";});
+}
 
 /* ==========================================================================
    SHARED CALCULATORS (reused by many module lessons)
