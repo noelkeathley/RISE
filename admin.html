@@ -194,6 +194,25 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
 .action-bar { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .4rem; }
 .save-flash { font-size: .78rem; font-weight: 700; color: var(--green); opacity: 0; transition: opacity .2s; align-self: center; }
 .save-flash.show { opacity: 1; }
+/* Module on/off manager */
+.mod-cat { margin-top: 1rem; }
+.mod-cat:first-child { margin-top: 0; }
+.mod-cat-head { display:flex; align-items:center; justify-content:space-between; gap:.5rem; border-bottom:1px dashed var(--rule); padding-bottom:.4rem; margin-bottom:.4rem; }
+.mod-cat-head .mc-name { font-weight:800; font-size:.8rem; color:var(--navy); display:flex; align-items:center; gap:.4rem; }
+.mod-cat-head .mc-toggle { font:inherit; font-size:.68rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid var(--rule); border-radius:3px; padding:.2rem .45rem; color:var(--muted); }
+.mod-cat-head .mc-toggle:hover { color:var(--navy); border-color:var(--navy); }
+.mod-row { display:flex; align-items:center; justify-content:space-between; gap:.6rem; padding:.38rem .1rem; font-size:.85rem; color:var(--ink); }
+.mod-row.off { opacity:.5; }
+.switch { position:relative; display:inline-block; width:38px; height:22px; flex:0 0 auto; }
+.switch input { opacity:0; width:0; height:0; }
+.switch .sl { position:absolute; cursor:pointer; inset:0; background:var(--rule); border-radius:22px; transition:.2s; }
+.switch .sl:before { content:""; position:absolute; height:16px; width:16px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:.2s; box-shadow:0 1px 2px rgba(0,0,0,.2); }
+.switch input:checked + .sl { background:var(--teal); }
+.switch input:checked + .sl:before { transform:translateX(16px); }
+.mod-bulk { display:flex; gap:.4rem; align-items:center; margin-bottom:.6rem; flex-wrap:wrap; }
+.mod-bulk button { font:inherit; font-size:.72rem; font-weight:700; cursor:pointer; background:var(--paper); border:1px solid var(--rule); border-radius:3px; padding:.35rem .6rem; color:var(--ink); }
+.mod-bulk button:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+.mod-count { font-size:.72rem; color:var(--muted); font-weight:700; margin-left:auto; }
 
 /* ============================================================
    PREVIEW COLUMN
@@ -376,6 +395,18 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
         <button class="btn ghost" id="resetBtn">↺ Reset to partner default</button>
         <span class="save-flash" id="saveFlash">✓ Saved — live on this device</span>
       </div>
+    </section>
+
+    <!-- Modules on/off -->
+    <section class="panel">
+      <h2>📚 Learning Modules</h2>
+      <p class="panel-sub">Turn individual lessons on or off for your members. Off modules are hidden everywhere in the wellness center. Saves to this device instantly.</p>
+      <div class="mod-bulk">
+        <button type="button" id="modAllOn">Enable all</button>
+        <button type="button" id="modAllOff">Disable all</button>
+        <span class="mod-count" id="modCount"></span>
+      </div>
+      <div id="moduleManager"></div>
     </section>
   </div>
 
@@ -842,6 +873,46 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
      ========================================================================== */
   buildSwatches('primSwatches', PRIMARY_SWATCHES, 'primary');
   buildSwatches('accSwatches', ACCENT_SWATCHES, 'accent');
+
+  /* ==========================================================================
+     LEARNING MODULES ON/OFF — writes lpn-rise-modules that the prototype reads
+     ========================================================================== */
+  var MODULES_KEY="lpn-rise-modules";
+  var MOD_CATALOG=[["Banking Basics", "🏦", ["Checking Accounts", "Savings Accounts", "Debit Cards", "Online Banking Safety", "Direct Deposit", "CDs and Money Market Accounts"]], ["Budgeting & Saving", "💰", ["Budget Builder", "Emergency Fund", "Needs vs Wants", "Saving Goals", "Compound Interest", "Net Worth Basics"]], ["Credit & Borrowing", "💳", ["Credit Score Simulator", "Credit Reports", "Credit Cards", "Personal Loans", "Debt Payoff", "Buy Now Pay Later", "Payday Loan Alternatives"]], ["Vehicles", "🚗", ["Buying a Car", "New vs Used", "Leasing vs Buying", "Auto Loan Calculator", "Insurance and Maintenance Costs"]], ["Homeownership", "🏡", ["Rent vs Buy", "First-Time Homebuyer", "Mortgage Basics", "Closing Costs", "Escrow and PMI", "Refinancing", "Home Equity"]], ["Fraud & Security", "🛡️", ["Phishing Game", "Text Message Scam Quiz", "AI Voice Scam Awareness", "Romance Scams", "Grandparent Scam", "Identity Theft", "Password Safety", "Multi-Factor Authentication"]], ["Retirement & Older Adults", "🌴", ["Social Security Basics", "Medicare Basics", "Retirement Income", "Required Minimum Distributions", "Long-Term Care", "Estate Documents", "Avoiding Elder Fraud"]], ["Small Business", "🏪", ["Starting a Business", "Business Banking", "Cash Flow", "Business Credit", "SBA Loans", "Accepting Payments", "Payroll Basics"]]];
+  var modState={};
+  function loadModState(){try{modState=JSON.parse(localStorage.getItem(MODULES_KEY)||"{}")||{};}catch(e){modState={};}}
+  function saveModState(){try{localStorage.setItem(MODULES_KEY,JSON.stringify(modState));}catch(e){}updateModCount();}
+  function modOn(name){return modState[name]!==false;}
+  function updateModCount(){var all=0,on=0;MOD_CATALOG.forEach(function(c){c[2].forEach(function(m){all++;if(modOn(m))on++;});});var e=$("modCount");if(e)e.textContent=on+" of "+all+" on";}
+  function buildModuleManager(){
+    loadModState();
+    var host=$("moduleManager");if(!host)return;host.innerHTML="";
+    MOD_CATALOG.forEach(function(cat){
+      var block=document.createElement("div");block.className="mod-cat";
+      var head=document.createElement("div");head.className="mod-cat-head";
+      head.innerHTML='<span class="mc-name">'+cat[1]+" "+cat[0]+'</span><button type="button" class="mc-toggle">Toggle all</button>';
+      block.appendChild(head);
+      cat[2].forEach(function(m){
+        var row=document.createElement("div");row.className="mod-row"+(modOn(m)?"":" off");
+        row.innerHTML='<span></span><label class="switch"><input type="checkbox"'+(modOn(m)?" checked":"")+'/><span class="sl"></span></label>';
+        row.querySelector("span").textContent=m;
+        var cb=row.querySelector("input");
+        cb.addEventListener("change",function(){modState[m]=cb.checked;row.classList.toggle("off",!cb.checked);saveModState();});
+        block.appendChild(row);
+      });
+      head.querySelector(".mc-toggle").addEventListener("click",function(){
+        var anyOn=cat[2].some(modOn);var target=!anyOn; // if any on -> turn all off; else all on
+        cat[2].forEach(function(m){modState[m]=target;});saveModState();buildModuleManager();
+      });
+      host.appendChild(block);
+    });
+    updateModCount();
+  }
+  function setAllModules(v){MOD_CATALOG.forEach(function(c){c[2].forEach(function(m){modState[m]=v;});});saveModState();buildModuleManager();}
+  $("modAllOn").addEventListener("click",function(){setAllModules(true);});
+  $("modAllOff").addEventListener("click",function(){setAllModules(false);});
+  buildModuleManager();
+
   buildPalettes();
 
   fetch('partners.json', { cache: 'default' })
