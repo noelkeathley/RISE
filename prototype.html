@@ -577,6 +577,7 @@ input:focus,select:focus{border-color:var(--indigo);outline:none;box-shadow:var(
     <a class="brand" href="#top"><span class="logo">📈</span><span>LaunchPoint RISE<small data-i18n="Financial Wellness Platform">Financial Wellness Platform</small></span></a>
     <div class="foot-badges"><span class="badge">🔓 No Login</span><span class="badge">🛡️ No Data Capture</span><span class="badge">🔗 Easy Embed</span><span class="badge">🏦 For Banks &amp; Credit Unions</span></div>
     <p class="fine">LaunchPoint RISE matches banking customers to the right products and teaches them with reading, quizzes, and interactive experiences — with no login, no data capture, no IT integration, and no sensitive customer information required.<br/>This page is an interactive prototype for demonstration. Figures are illustrative estimates, not financial advice.</p>
+    <p class="fine" style="margin-top:.9rem"><a id="adminLink" href="admin.html" style="color:rgba(255,255,255,.4);text-decoration:none;font-weight:700;letter-spacing:.05em">⚙︎ Admin</a></p>
   </div>
 </footer>
 
@@ -1498,6 +1499,17 @@ TABS.push({id:"institutions",label:"For Institutions",icon:"🏛️",panel:"inst
 })();
 
 applyStaticI18n();initLangToggle();
+
+/* ===== Discreet admin access (footer link + Ctrl/Cmd+Shift+A). Password-gated. ===== */
+(function(){
+  var partner=new URLSearchParams(location.search).get("partner");
+  var adminUrl="admin.html"+(partner?("?partner="+encodeURIComponent(partner)):"");
+  var link=document.getElementById("adminLink");
+  if(link){link.href=adminUrl; if(MODE==="customer"&&link.parentNode)link.parentNode.style.display="none";}
+  document.addEventListener("keydown",function(e){
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&(e.key==="A"||e.key==="a")){e.preventDefault();window.location.href=adminUrl;}
+  });
+})();
 
 if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15});$$(".reveal").forEach(function(r){io.observe(r);});}else{$$(".reveal").forEach(function(r){r.classList.add("in");});}
 
