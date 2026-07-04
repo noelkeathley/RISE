@@ -540,7 +540,8 @@ input:focus,select:focus{border-color:var(--indigo);outline:none;box-shadow:var(
         <div class="field"><label for="wlName">Bank / Credit Union name</label><input type="text" id="wlName" placeholder="e.g. Riverside Credit Union" value="Riverside Credit Union" maxlength="42"/></div>
         <div class="field"><label>Primary color</label><div class="swatch-row" id="wlSwatches"></div></div>
         <div class="field"><label for="wlCustom">Or a custom color</label><input type="color" id="wlCustom" value="#0a1f3d" style="width:64px;height:44px;padding:4px;cursor:pointer"/></div>
-        <div class="field" style="margin-bottom:0"><label for="wlLogo">Logo text (initials)</label><input type="text" id="wlLogo" placeholder="RCU" value="RCU" maxlength="4"/></div>
+        <div class="field"><label for="wlLogoFile">Upload logo (PNG, JPG, SVG, or WebP)</label><input type="file" id="wlLogoFile" accept="image/png,image/jpeg,image/svg+xml,image/webp"/><button type="button" class="btn btn-light btn-sm" id="wlLogoClear" style="margin-top:.5rem;display:none">Remove logo</button></div>
+        <div class="field" style="margin-bottom:0"><label for="wlLogo">Logo text (used only if no logo is uploaded)</label><input type="text" id="wlLogo" placeholder="RCU" value="RCU" maxlength="4"/></div>
       </div>
       <div>
         <div class="wl-preview" id="wlPreview">
@@ -1264,7 +1265,13 @@ var QUIZZES={
   var COLORS=["#0a1f3d","#0d7377","#c9922e","#1a2f4d","#2a9d8f","#2563eb","#7c3aed","#a8321e"];
   COLORS.forEach(function(c,i){var s=el("button","swatch"+(i===0?" active":""));s.type="button";s.style.background=c;s.setAttribute("aria-label","Use "+c);s.addEventListener("click",function(){$$(".swatch",sbox).forEach(function(x){x.classList.remove("active");});s.classList.add("active");setColor(c);custom.value=c;});sbox.appendChild(s);});
   function setColor(c){prev.style.setProperty("--wl-color",c);}
-  function upd(){var n=name.value.trim()||"Your Bank or Credit Union";$("#wlNameOut").textContent=n;$("#wlHeroTitle").textContent="Financial Wellness Center powered by "+n;var lg=(logo.value.trim()||n.split(/\s+/).map(function(w){return w[0];}).join("").slice(0,3)).toUpperCase();$("#wlLogoBox").textContent=lg;}
+  /* Logo upload: read the file as a data URL and show it in the preview at once */
+  var logoFile=$("#wlLogoFile"),logoClear=$("#wlLogoClear"),logoData="";
+  var OK_TYPES=["image/png","image/jpeg","image/svg+xml","image/webp"];
+  logoFile.addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;if(OK_TYPES.indexOf(f.type)===-1){alert("Please use a PNG, JPG, SVG, or WebP image.");logoFile.value="";return;}if(f.size>800*1024){alert("That image is "+Math.round(f.size/1024)+" KB — please use one under 800 KB.");logoFile.value="";return;}var r=new FileReader();r.onload=function(){logoData=String(r.result);renderLogo();};r.readAsDataURL(f);});
+  logoClear.addEventListener("click",function(){logoData="";logoFile.value="";renderLogo();});
+  function renderLogo(){var box=$("#wlLogoBox");if(logoData){box.innerHTML='<img src="'+logoData+'" alt="Institution logo" style="width:100%;height:100%;object-fit:contain;border-radius:8px">';logoClear.style.display="inline-flex";}else{logoClear.style.display="none";upd();}}
+  function upd(){var n=name.value.trim()||"Your Bank or Credit Union";$("#wlNameOut").textContent=n;$("#wlHeroTitle").textContent="Financial Wellness Center powered by "+n;var lg=(logo.value.trim()||n.split(/\s+/).map(function(w){return w[0];}).join("").slice(0,3)).toUpperCase();if(!logoData)$("#wlLogoBox").textContent=lg;}
   name.addEventListener("input",upd);logo.addEventListener("input",upd);custom.addEventListener("input",function(){$$(".swatch",sbox).forEach(function(x){x.classList.remove("active");});setColor(custom.value);});
   upd();
 })();
