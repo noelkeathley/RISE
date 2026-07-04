@@ -497,6 +497,25 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
         <button class="btn ghost sm" id="downloadJson">⬇ Download entry (.json)</button>
       </div>
     </section>
+
+    <!-- Deliver to the partner -->
+    <section class="panel">
+      <h2>✉️ Deliver to the Partner</h2>
+      <p class="panel-sub">Once the entry above is deployed and the subdomain is pointed, hand these to the bank. They can go live on their own website in minutes — link it or embed it.</p>
+      <div class="field">
+        <label for="liveLink">Their live link</label>
+        <div class="color-row"><input type="text" id="liveLink" readonly style="font-family:'JetBrains Mono',ui-monospace,monospace" /><button class="btn ghost sm" id="copyLink" type="button">Copy</button></div>
+      </div>
+      <div class="field">
+        <label>Embed snippet (paste into their website)</label>
+        <div class="code-box"><button class="btn ghost sm copy" id="copyEmbed" type="button">Copy</button><pre id="embedOut"></pre></div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label for="emailOut">Ready-to-send email</label>
+        <textarea id="emailOut" rows="13" style="width:100%;font:inherit;padding:.7rem .8rem;border:1px solid var(--rule);border-radius:3px;background:#fff;color:var(--ink);line-height:1.5"></textarea>
+        <div class="action-bar" style="margin-top:.5rem"><button class="btn teal sm" id="copyEmail" type="button">Copy email</button><button class="btn ghost sm" id="openMail" type="button">Open in email app</button></div>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -781,7 +800,9 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
       tagline: state.tagline || 'Financial Wellness Center',
       logo: state.logo ? '<<data-url — see note below>>' : null,
       primaryColor: state.primary,
-      accentColor: state.accent
+      accentColor: state.accent,
+      experience: 'hub',
+      modules: (function(){ var m={}; for(var k in modState){ if(modState[k]===false) m[k]=false; } return m; })()
     };
     return { sub: sub, obj: entry };
   }
@@ -790,6 +811,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
     var json = JSON.stringify(e.obj, null, 2);
     // Show a readable note in place of a huge logo data URL
     $('jsonOut').textContent = json;
+    if (typeof syncHandoff === 'function') syncHandoff();
   }
   $('copyJson').addEventListener('click', function () {
     // Copy the REAL entry (with full logo data URL if present)
@@ -848,8 +870,9 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
      PREVIEW TABS + LIVE IFRAME
      ========================================================================== */
   function productUrl() {
-    // Point the live preview at the real product with this partner's ?view override
-    return 'product.html?view=product&partner=' + encodeURIComponent((partnerKey && partnerKey !== '__new__') ? partnerKey : '');
+    // Point the live preview at the RISE product, branded from the admin's
+    // saved branding in localStorage (lpn-realmoney-config-v3).
+    return 'product.html';
   }
   function refreshLive() {
     var f = $('liveFrame');
@@ -912,6 +935,36 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
   $("modAllOn").addEventListener("click",function(){setAllModules(true);});
   $("modAllOff").addEventListener("click",function(){setAllModules(false);});
   buildModuleManager();
+
+  /* ==========================================================================
+     HANDOFF — live link, embed snippet, and a ready-to-send email
+     ========================================================================== */
+  function handoffSub(){ return (partnerKey && partnerKey !== "__new__") ? partnerKey : (slugify(state.name) || "yourbank"); }
+  function syncHandoff(){
+    var sub=handoffSub();
+    var name=state.name || "your institution";
+    var link="https://"+sub+".launchpointrise.com";
+    var embed='<iframe src="'+link+'" style="width:100%;height:900px;border:0" title="Financial Wellness Center"></iframe>';
+    var email="Subject: Your Financial Wellness Center is ready\n\n"+
+      "Hi [Name],\n\n"+
+      "Your branded Financial Wellness Center for "+name+" is live and ready for your members:\n\n"+
+      "  "+link+"\n\n"+
+      "It works instantly — no login, no data capture, and no IT setup. Two easy ways to add it to your website:\n\n"+
+      "1) Link to it — add a \"Financial Wellness\" button or menu item that opens the link above.\n\n"+
+      "2) Embed it — paste this into any page on your site:\n\n"+
+      embed+"\n\n"+
+      "That's it — you're live in a few minutes. Just reply if you'd like any changes to the branding or the modules included.\n\n"+
+      "Best,\n[Your name]";
+    var li=$("liveLink"); if(li)li.value=link;
+    var eo=$("embedOut"); if(eo)eo.textContent=embed;
+    var mo=$("emailOut"); if(mo)mo.value=email;
+    return {link:link,embed:embed,email:email};
+  }
+  function copyText(txt,btn){ if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){var o=btn.textContent;btn.textContent="Copied ✓";setTimeout(function(){btn.textContent=o;},1500);});} }
+  $("copyLink").addEventListener("click",function(){copyText(syncHandoff().link,this);});
+  $("copyEmbed").addEventListener("click",function(){copyText(syncHandoff().embed,this);});
+  $("copyEmail").addEventListener("click",function(){copyText(syncHandoff().email,this);});
+  $("openMail").addEventListener("click",function(){var h=syncHandoff();var body=h.email.replace(/^Subject:.*\n\n/,"");window.location.href="mailto:?subject="+encodeURIComponent("Your Financial Wellness Center is ready")+"&body="+encodeURIComponent(body);});
 
   buildPalettes();
 
