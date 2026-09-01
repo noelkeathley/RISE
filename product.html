@@ -2010,7 +2010,7 @@ const INST_WORDS = {
     es: { a: 'una cooperativa de cr\u00e9dito', the: 'la cooperativa de cr\u00e9dito', your: 'tu cooperativa de cr\u00e9dito', name: 'cooperativa de cr\u00e9dito', Name: 'Cooperativa de Cr\u00e9dito' }
   }
 };
-function instType() { return (typeof CONFIG !== 'undefined' && CONFIG && CONFIG.institutionType) || (DEFAULT_CONFIG && DEFAULT_CONFIG.institutionType) || 'creditUnion'; }
+function instType() { return (typeof CONFIG !== 'undefined' && CONFIG && CONFIG.institutionType) || (typeof PARTNER_CONFIG !== 'undefined' && PARTNER_CONFIG && PARTNER_CONFIG.institutionType) || (DEFAULT_CONFIG && DEFAULT_CONFIG.institutionType) || 'creditUnion'; }
 // inst('your'|'the'|'a'|'name'|'Name') -> institution-appropriate, language-appropriate phrase.
 function inst(key) {
   const w = INST_WORDS[instType()] || INST_WORDS.creditUnion;
@@ -2041,7 +2041,7 @@ const DEFAULT_CONFIG = {
   accessCode: '',
   accessCodeRequired: false,
   adminPasswordOverride: '',
-  institutionType: 'creditUnion', // 'bank' | 'creditUnion' — controls unavoidable possessive references
+  institutionType: '', // '' = inherit from partners.json (else credit union); 'bank' | 'creditUnion' to force. Controls unavoidable possessive references.
 };
 
 const PRESETS = {

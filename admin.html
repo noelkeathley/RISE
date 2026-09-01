@@ -334,6 +334,14 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
         <label for="fTag">Tagline</label>
         <input type="text" id="fTag" maxlength="80" placeholder="Financial Wellness Center" />
       </div>
+      <div class="field">
+        <label for="fInst">Institution type</label>
+        <select id="fInst">
+          <option value="creditUnion">Credit Union</option>
+          <option value="bank">Bank</option>
+        </select>
+        <div class="help">Keeps the lessons product-first; only swaps unavoidable references like &ldquo;your bank&rdquo; vs &ldquo;your credit union.&rdquo;</div>
+      </div>
     </section>
 
     <!-- Logo -->
@@ -539,7 +547,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
   var LOGO_ACCEPT        = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp'];
 
   /* ---- Defaults (mirror product.html DEFAULT_CONFIG branding) ---- */
-  var BUILTIN = { name: 'LaunchPoint RISE™', tagline: 'Real-world Income & Skills Education', primary: '#0a1f3d', accent: '#0d7377', logo: '' };
+  var BUILTIN = { name: 'LaunchPoint RISE™', tagline: 'Real-world Income & Skills Education', primary: '#0a1f3d', accent: '#0d7377', logo: '', institutionType: 'creditUnion' };
 
   /* ---- Curated color choices ---- */
   var PRIMARY_SWATCHES = ['#0a1f3d', '#06283d', '#12235b', '#1e1b4b', '#14342b', '#1f2937', '#7c2d12', '#3b0764'];
@@ -633,7 +641,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
   function loadPartnerIntoState(key) {
     var base;
     if (key === '__new__' || !partners[key]) {
-      base = Object.assign({}, BUILTIN, { name: '', tagline: 'Financial Wellness Center' });
+      base = Object.assign({}, BUILTIN, { name: '', tagline: 'Financial Wellness Center', institutionType: 'creditUnion' });
     } else {
       var p = partners[key];
       base = {
@@ -641,7 +649,8 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
         tagline: p.tagline || 'Financial Wellness Center',
         primary: normHex(p.primaryColor) || BUILTIN.primary,
         accent: normHex(p.accentColor) || BUILTIN.accent,
-        logo: p.logo || ''
+        logo: p.logo || '',
+        institutionType: p.institutionType === 'bank' ? 'bank' : 'creditUnion'
       };
     }
     // Overlay any saved draft for this partner (last edits on this device)
@@ -718,6 +727,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
      ========================================================================== */
   $('fName').addEventListener('input', function () { state.name = this.value; syncPreview(); syncExport(); });
   $('fTag').addEventListener('input', function () { state.tagline = this.value; syncPreview(); syncExport(); });
+  $('fInst').addEventListener('change', function () { state.institutionType = this.value === 'bank' ? 'bank' : 'creditUnion'; syncExport(); });
 
   function bindColor(pickerId, hexId, which) {
     $(pickerId).addEventListener('input', function () {
@@ -739,6 +749,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
     // Inputs
     $('fName').value = state.name;
     $('fTag').value = state.tagline;
+    if ($('fInst')) $('fInst').value = state.institutionType || 'creditUnion';
     $('primColor').value = state.primary;
     $('primHex').value = state.primary.toUpperCase();
     $('accColor').value = state.accent;
@@ -801,6 +812,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
       logo: state.logo ? '<<data-url — see note below>>' : null,
       primaryColor: state.primary,
       accentColor: state.accent,
+      institutionType: state.institutionType || 'creditUnion',
       experience: 'hub',
       modules: (function(){ var m={}; for(var k in modState){ if(modState[k]===false) m[k]=false; } return m; })()
     };
@@ -846,6 +858,7 @@ input[type=text]:focus, select:focus, textarea:focus { border-color: var(--teal)
     cfg.brandLogo    = state.logo || '';
     cfg.primaryColor = state.primary;
     cfg.accentColor  = state.accent;
+    cfg.institutionType = state.institutionType || 'creditUnion';
     try { localStorage.setItem(PRODUCT_CONFIG_KEY, JSON.stringify(cfg)); } catch (e) {
       $('logoErr').textContent = 'Could not save (storage full — try a smaller logo).';
       return;

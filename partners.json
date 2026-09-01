@@ -4,13 +4,15 @@
     "tagline": "Real-world Income & Skills Education",
     "logo": null,
     "primaryColor": null,
-    "accentColor": null
+    "accentColor": null,
+    "institutionType": "creditUnion"
   },
   "velocitycu": {
     "name": "Velocity Credit Union",
     "tagline": "Real-world Income & Skills Education",
     "logo": null,
     "primaryColor": null,
-    "accentColor": null
+    "accentColor": null,
+    "institutionType": "creditUnion"
   }
 }
