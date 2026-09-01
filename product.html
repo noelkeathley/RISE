@@ -544,6 +544,120 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
   .hero-stat { padding: 1rem 0.5rem 1rem 1rem; }
   .hero-stat:first-child, .hero-stat:nth-child(3) { padding-left: 0; }
 }
+
+/* ===================== Credit Cards + Scenarios modules ===================== */
+.cc-ltcd { display:flex; flex-wrap:wrap; gap:0.4rem; margin:0 0 1rem; }
+.cc-badge { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--navy); background:rgba(0,0,0,0.04); border:1px solid var(--rule); border-radius:999px; padding:0.28rem 0.7rem; }
+.cc-badge .n { display:inline-flex; align-items:center; justify-content:center; width:1.05rem; height:1.05rem; border-radius:50%; background:var(--gold); color:#fff; font-size:0.62rem; }
+.cc-sec { margin-top:1.6rem; }
+.cc-sec-head { display:flex; align-items:baseline; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.5rem; }
+.cc-sec-ico { font-size:1.3rem; }
+.cc-intro-box { background:var(--paper-light); border:1px solid var(--rule); border-left:3px solid var(--gold); border-radius:3px; padding:1rem 1.15rem; margin-bottom:1.1rem; }
+.cc-intro-box p { margin:0.3rem 0; line-height:1.6; }
+/* Glossary */
+.cc-terms { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0.55rem; }
+.cc-term { background:var(--paper-light); border:1px solid var(--rule); border-radius:3px; padding:0.7rem 0.9rem; }
+.cc-term > summary { cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:0.6rem; font-weight:600; color:var(--navy); }
+.cc-term > summary::-webkit-details-marker { display:none; }
+.cc-term .cc-whats { font-size:0.64rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); border:1px solid var(--gold); border-radius:999px; padding:0.14rem 0.5rem; white-space:nowrap; }
+.cc-term[open] .cc-whats { opacity:0.5; }
+.cc-term p { margin:0.6rem 0 0; font-size:0.9rem; line-height:1.55; color:var(--ink); }
+/* Interest Lab */
+.cc-lab-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:720px){ .cc-lab-grid { grid-template-columns:1fr 1fr; } }
+.cc-results { display:flex; flex-direction:column; gap:0; }
+.cc-res-row { display:flex; align-items:center; justify-content:space-between; gap:0.8rem; padding:0.5rem 0; border-bottom:1px dashed var(--rule); font-size:0.92rem; }
+.cc-res-row:last-child { border-bottom:0; }
+.cc-res-row .lbl { color:var(--muted); }
+.cc-res-row .val { font-weight:700; font-variant-numeric:tabular-nums; color:var(--navy); }
+.cc-res-row.hi .val { color:var(--gold); font-size:1.05rem; }
+.cc-bigcompare { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; margin:1rem 0 0.4rem; }
+.cc-big { text-align:center; border-radius:4px; padding:1.1rem 0.6rem; border:1px solid var(--rule); }
+.cc-big.bought { background:var(--paper-light); }
+.cc-big.paid { background:var(--navy); border-color:var(--navy); }
+.cc-big .cap { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700; opacity:0.8; }
+.cc-big.bought .cap { color:var(--muted); }
+.cc-big.paid .cap { color:var(--gold); }
+.cc-big .num { font-family:'Fraunces',serif; font-size:clamp(1.7rem,7vw,2.5rem); font-weight:700; line-height:1.1; margin-top:0.2rem; }
+.cc-big.bought .num { color:var(--navy); }
+.cc-big.paid .num { color:#fff; }
+.cc-because { text-align:center; font-size:0.85rem; color:var(--muted); margin:0.3rem 0 0; }
+.cc-warn { display:none; background:#fff6e6; border:1px solid #f0d8a0; border-left:3px solid #c9971f; border-radius:3px; padding:0.8rem 1rem; margin-top:0.9rem; font-size:0.88rem; line-height:1.55; color:#6b4e12; }
+.cc-wi { font-size:0.8rem; font-weight:600; color:var(--navy); background:#fff; border:1px solid var(--navy); border-radius:999px; padding:0.35rem 0.8rem; cursor:pointer; transition:all 0.15s; }
+.cc-wi:hover { background:var(--navy); color:#fff; }
+.cc-wi.reset { border-color:var(--muted); color:var(--muted); }
+.cc-wi.reset:hover { background:var(--muted); color:#fff; }
+.cc-wi-row { display:flex; flex-wrap:wrap; gap:0.45rem; align-items:center; margin-top:0.8rem; }
+.cc-wi-row .wi-lbl { font-size:0.8rem; font-weight:700; color:var(--muted); margin-right:0.2rem; }
+/* Trap table */
+.cc-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.cc-trap-table { width:100%; border-collapse:collapse; min-width:420px; }
+.cc-trap-table th, .cc-trap-table td { padding:0.7rem 0.8rem; text-align:left; border-bottom:1px solid var(--rule); font-variant-numeric:tabular-nums; }
+.cc-trap-table th { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); font-weight:700; }
+.cc-trap-table td.pay { font-weight:700; color:var(--navy); }
+.cc-trap-table tr.best td { background:rgba(46,125,91,0.08); }
+.cc-trap-table tr.worst td { background:rgba(179,64,47,0.07); }
+.cc-trap-table td.int { color:var(--gold); font-weight:700; }
+/* Payoff list */
+.cc-payoff { display:flex; flex-direction:column; gap:0.55rem; margin-top:0.4rem; }
+.cc-po { display:flex; gap:0.8rem; align-items:flex-start; background:var(--paper-light); border:1px solid var(--rule); border-radius:3px; padding:0.75rem 0.9rem; }
+.cc-po .dot { flex:0 0 auto; width:0.85rem; height:0.85rem; border-radius:50%; margin-top:0.25rem; }
+.cc-po.good .dot { background:#2e7d5b; } .cc-po.ok .dot { background:#c9971f; } .cc-po.bad .dot { background:#b3402f; }
+.cc-po .po-name { font-weight:700; color:var(--navy); }
+.cc-po .po-res { font-size:0.9rem; line-height:1.55; color:var(--ink); margin-top:0.15rem; }
+/* Utilization */
+.cc-util-bar { position:relative; height:1.5rem; background:var(--paper-light); border:1px solid var(--rule); border-radius:999px; overflow:hidden; margin:0.5rem 0; }
+.cc-util-fill { position:absolute; left:0; top:0; bottom:0; width:30%; background:#2e7d5b; transition:width 0.15s, background 0.15s; border-radius:999px 0 0 999px; }
+.cc-util-marks { display:flex; justify-content:space-between; font-size:0.72rem; color:var(--muted); }
+.cc-util-read { text-align:center; margin:0.7rem 0; }
+.cc-util-read .pct { font-family:'Fraunces',serif; font-size:2rem; font-weight:700; color:var(--navy); }
+.cc-range { width:100%; }
+/* Scenario preset grid */
+.cc-scn-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:0.55rem; }
+.cc-scn { display:flex; flex-direction:column; align-items:center; gap:0.35rem; text-align:center; background:var(--paper-light); border:1px solid var(--rule); border-radius:4px; padding:0.9rem 0.6rem; cursor:pointer; transition:all 0.15s; font:inherit; }
+.cc-scn:hover { border-color:var(--navy); transform:translateY(-2px); box-shadow:var(--shadow); }
+.cc-scn .ico { font-size:1.5rem; }
+.cc-scn .nm { font-size:0.82rem; font-weight:600; color:var(--navy); line-height:1.25; }
+.cc-scn .amt { font-size:0.72rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+/* Debit vs credit */
+.cc-dvc { width:100%; border-collapse:collapse; min-width:480px; }
+.cc-dvc th, .cc-dvc td { padding:0.7rem 0.85rem; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; font-size:0.9rem; line-height:1.5; }
+.cc-dvc thead th { font-size:0.95rem; }
+.cc-dvc thead .d { color:#2e7d5b; } .cc-dvc thead .c { color:var(--navy); }
+.cc-dvc thead .sub { display:block; font-size:0.72rem; font-weight:500; color:var(--muted); margin-top:0.1rem; }
+.cc-dvc td.rowlbl { font-weight:700; color:var(--muted); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap; }
+.cc-note { background:var(--paper-light); border:1px solid var(--rule); border-left:3px solid var(--navy); border-radius:3px; padding:0.85rem 1.05rem; margin-top:1rem; font-size:0.9rem; line-height:1.6; }
+
+
+/* ===== Scenario Explorer ===== */
+.scn-controls { background:var(--paper-light); border:1px solid var(--rule); border-radius:4px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+.scn-ctl-lbl { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin:0 0 0.45rem; }
+.scn-chiprow { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.9rem; }
+.scn-chip { font:inherit; font-size:0.82rem; font-weight:600; color:var(--navy); background:#fff; border:1px solid var(--rule); border-radius:999px; padding:0.34rem 0.75rem; cursor:pointer; transition:all 0.15s; display:inline-flex; align-items:center; gap:0.3rem; }
+.scn-chip:hover { border-color:var(--navy); }
+.scn-chip.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+.scn-row2 { display:flex; flex-wrap:wrap; gap:1.2rem; align-items:flex-end; }
+.scn-row2 .scn-sel { flex:1; min-width:160px; }
+.scn-sel select { width:100%; }
+.scn-count { font-size:0.8rem; color:var(--muted); margin:0.2rem 0 0.8rem; font-weight:600; }
+.scn-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:0.7rem; }
+.scn-card { font:inherit; text-align:left; display:flex; flex-direction:column; gap:0; background:var(--paper-light); border:1px solid var(--rule); border-radius:5px; padding:1rem 1.05rem; cursor:pointer; transition:all 0.15s; }
+.scn-card:hover { border-color:var(--navy); transform:translateY(-2px); box-shadow:var(--shadow); }
+.scn-card .scn-ic { font-size:1.7rem; margin-bottom:0.5rem; }
+.scn-card .scn-tt { font-family:'Fraunces',serif; font-size:1.08rem; font-weight:600; color:var(--navy); line-height:1.25; }
+.scn-card .scn-hook { font-size:0.86rem; color:var(--ink); line-height:1.5; margin-top:0.3rem; }
+.scn-card .scn-foot { display:flex; align-items:center; justify-content:space-between; margin-top:0.8rem; padding-top:0.7rem; border-top:1px dashed var(--rule); }
+.scn-card .scn-time { font-size:0.76rem; color:var(--muted); }
+.scn-card .scn-go { font-size:0.8rem; font-weight:700; color:var(--gold); }
+.scn-empty { text-align:center; color:var(--muted); padding:2rem 1rem; font-size:0.95rem; }
+.scn-back { font:inherit; font-size:0.85rem; font-weight:600; color:var(--navy); background:#fff; border:1px solid var(--rule); border-radius:999px; padding:0.35rem 0.9rem; cursor:pointer; }
+.scn-back:hover { border-color:var(--navy); }
+.scn-run { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:720px){ .scn-run { grid-template-columns:1fr 1fr; } }
+.scn-field { margin-bottom:0.9rem; }
+.scn-field label { display:block; font-size:0.86rem; font-weight:600; color:var(--navy); margin-bottom:0.35rem; }
+.scn-field .scn-fval { color:var(--gold); font-variant-numeric:tabular-nums; }
+
 </style>
 </head>
 <body>
@@ -838,6 +952,334 @@ function $(id) { return document.getElementById(id); }
 // ============= I18N DICTIONARY =============
 const I18N = {
   en: {
+    // ---- Scenario Explorer module ----
+    'mod.scenarios.name': 'Scenarios',
+    'mod.scenarios.desc': 'Explore real-life money decisions — by life stage and topic',
+    'scn.tag': 'Explore',
+    'scn.title': 'Explore Real-Life Money Decisions',
+    'scn.lede': 'Pick where you are in life, or a topic you\'re curious about. Every scenario lets you change the numbers and see what happens — there are no right answers, just real math.',
+    'scn.where': 'Where are you in life?',
+    'scn.topicfilter': 'Topic',
+    'scn.timefilter': 'Time',
+    'scn.all': 'All',
+    'scn.start': 'Start scenario',
+    'scn.try': 'Try it',
+    'scn.compare': 'Compare',
+    'scn.find': 'Find out',
+    'scn.open': 'Open',
+    'scn.back': '← All scenarios',
+    'scn.learn': 'Learn',
+    'scn.decide': 'Ask yourself',
+    'scn.results': 'What happens',
+    'scn.mins': '{n} min',
+    'scn.none': 'No scenarios match those filters yet. Try clearing one.',
+    'scn.opens': 'Opens the {tool} tool with these numbers loaded.',
+    'scn.count': '{n} scenarios',
+    'scn.time.short': 'Quick (≤5 min)',
+    'scn.time.med': '5–10 min',
+    'scn.time.long': '10+ min',
+    'scn.stage.school': 'Middle / High School',
+    'scn.stage.college': 'College / Training',
+    'scn.stage.firstjob': 'First Job',
+    'scn.stage.ownplace': 'Living on My Own',
+    'scn.stage.household': 'Building a Household',
+    'scn.stage.family': 'Growing Family',
+    'scn.stage.homeowner': 'Homeowner',
+    'scn.stage.midcareer': 'Mid-Career',
+    'scn.stage.preretire': 'Preparing for Retirement',
+    'scn.stage.retire': 'Retirement',
+    'scn.topic.income': 'Income',
+    'scn.topic.budgeting': 'Budgeting',
+    'scn.topic.banking': 'Banking Products',
+    'scn.topic.credit': 'Credit',
+    'scn.topic.debt': 'Debt',
+    'scn.topic.cars': 'Cars',
+    'scn.topic.housing': 'Housing',
+    'scn.topic.education': 'Education',
+    'scn.topic.insurance': 'Insurance',
+    'scn.topic.saving': 'Saving',
+    'scn.topic.investing': 'Investing',
+    'scn.topic.family': 'Family',
+    'scn.topic.retirement': 'Retirement',
+    'scn.r.monthly': 'Monthly payment',
+    'scn.r.peryear': 'Per year',
+    'scn.r.total': 'Total',
+    'scn.r.interest': 'Total interest',
+    'scn.r.months': 'Months',
+    'scn.f.permonth': 'How much per month',
+    'scn.phone.title': 'The New Phone',
+    'scn.phone.hook': '$1,200 phone today — or $50/month. What\'s the real difference?',
+    'scn.mincard.title': 'The $1,200 Minimum-Payment Trap',
+    'scn.mincard.hook': 'See what happens when you only make small payments on a laptop.',
+    'scn.car19500.title': 'Your First Car',
+    'scn.car19500.hook': 'You found a $19,500 car. Can you actually afford it?',
+    'scn.rentbuy.title': 'Rent or Buy?',
+    'scn.rentbuy.hook': 'You make $65,000. Does buying a home make sense yet?',
+    'scn.refi.title': 'Should You Refinance?',
+    'scn.refi.hook': 'Can a new loan actually save you money — or just reset the clock?',
+    'scn.firstpay.title': 'Your First Paycheck',
+    'scn.firstpay.hook': 'Why is the number smaller than your hourly rate times your hours?',
+    'scn.medical.title': 'A Surprise Medical Bill',
+    'scn.medical.hook': 'A $2,000 bill hits. What does putting it on a card really cost?',
+    'scn.house.title': 'Buying a Home',
+    'scn.house.hook': 'Down payment, mortgage, taxes, upkeep — what will it really cost each month?',
+    'scn.startsaving.title': 'Start at 17 or 27?',
+    'scn.startsaving.hook': 'What if you start saving 10 years earlier? The difference is bigger than you think.',
+    'scn.startsaving.learn': 'Money grows faster the longer it sits, because you earn growth on your growth (compound interest). Starting early beats saving more later.',
+    'scn.startsaving.f.monthly': 'You save each month',
+    'scn.startsaving.f.age': 'Age you start',
+    'scn.startsaving.r.total': 'Value at 65',
+    'scn.startsaving.r.contrib': 'Money you put in',
+    'scn.startsaving.r.growth': 'Growth (money you didn\'t work for)',
+    'scn.startsaving.r.at17': 'If you\'d started at 17',
+    'scn.startsaving.decide': 'How much could you set aside now, even a little? Where could it live so you don\'t touch it? Assumes about 6% average growth per year — real returns vary.',
+    'scn.firstcar.title': 'Can You Afford This Car?',
+    'scn.firstcar.hook': 'Dealers sell you a monthly payment. Let\'s check if it fits your real budget.',
+    'scn.firstcar.learn': 'A common guideline: your total car costs (payment, gas, insurance, upkeep) stay under about 15% of take-home pay. The payment alone should be well under that.',
+    'scn.firstcar.f.income': 'Your take-home pay',
+    'scn.firstcar.f.price': 'Car price',
+    'scn.firstcar.f.down': 'Down payment',
+    'scn.firstcar.f.apr': 'Loan APR',
+    'scn.firstcar.f.term': 'Loan length',
+    'scn.firstcar.mo': 'mo',
+    'scn.firstcar.r.pay': 'Monthly car payment',
+    'scn.firstcar.r.pct': 'Share of your take-home pay',
+    'scn.firstcar.v.good': 'Comfortable — the payment leaves room for gas, insurance and upkeep.',
+    'scn.firstcar.v.ok': 'Tight. Add gas, insurance and repairs before you decide.',
+    'scn.firstcar.v.high': 'This payment is large for your income. A cheaper car or bigger down payment helps a lot.',
+    'scn.firstcar.decide': 'Can this payment survive a month where your hours get cut? What do gas, insurance and repairs add on top?',
+    'scn.extra100.title': 'What if I Pay an Extra $100?',
+    'scn.extra100.hook': 'A little more each month can knock years off a balance. See how much.',
+    'scn.extra100.learn': 'Extra payments go straight at the balance, so less of it collects interest next month. The effect snowballs.',
+    'scn.extra100.f.balance': 'What you owe',
+    'scn.extra100.f.apr': 'APR',
+    'scn.extra100.f.pay': 'Your current monthly payment',
+    'scn.extra100.r.base': 'Paying as you are now',
+    'scn.extra100.r.more': 'Paying $100 more',
+    'scn.extra100.r.saved': 'Interest you\'d save',
+    'scn.extra100.r.sooner': 'Paid off sooner by',
+    'scn.extra100.mo': '{n} months',
+    'scn.extra100.decide': 'Where could an extra $100 come from — one subscription, a few meals out? Is this debt costing you more than saving would earn?',
+    'scn.emergency.title': 'Build an Emergency Fund',
+    'scn.emergency.hook': 'A flat tire or a sick day shouldn\'t become a crisis. How fast can you get a cushion?',
+    'scn.emergency.learn': 'Even a small cushion keeps a surprise expense from turning into debt. Start with a first goal like $500, then build toward one month of expenses.',
+    'scn.emergency.f.goal': 'Your goal',
+    'scn.emergency.f.permonth': 'You can set aside',
+    'scn.emergency.r.months': 'Months to reach it',
+    'scn.emergency.r.first': 'You\'d hit $500 in',
+    'scn.emergency.decide': 'Where could this money live so it\'s there when you need it, but not too easy to spend? Could you automate it on payday?',
+    'scn.roommate.title': 'Get a Roommate?',
+    'scn.roommate.hook': 'Splitting a place changes the math fast. See what sharing really saves.',
+    'scn.roommate.learn': 'Rent and utilities are usually your biggest costs. Splitting them can free up hundreds a month — money that can go to savings or debt.',
+    'scn.roommate.f.rent': 'Monthly rent',
+    'scn.roommate.f.util': 'Monthly utilities',
+    'scn.roommate.f.people': 'People sharing',
+    'scn.roommate.r.alone': 'Your cost living alone',
+    'scn.roommate.r.shared': 'Your share when split',
+    'scn.roommate.r.save': 'You\'d save each month',
+    'scn.roommate.r.year': 'That\'s per year',
+    'scn.roommate.decide': 'Is the privacy worth the extra cost to you? Could a roommate help you save for a deposit or pay down debt faster?',
+    'scn.match401k.title': 'Free Money at Work',
+    'scn.match401k.hook': 'Many jobs match what you save for retirement. Are you leaving money on the table?',
+    'scn.match401k.learn': 'A 401(k) match means your employer adds money when you save. If they match up to a percent of your pay, not saving that much is turning down a raise.',
+    'scn.match401k.f.salary': 'Your yearly pay',
+    'scn.match401k.f.yourpct': 'You save (% of pay)',
+    'scn.match401k.f.matchpct': 'Employer matches up to',
+    'scn.match401k.r.you': 'You put in per year',
+    'scn.match401k.r.match': 'Employer adds',
+    'scn.match401k.r.total': 'Total saved per year',
+    'scn.match401k.r.left': 'Match you\'re leaving behind',
+    'scn.match401k.decide': 'Are you saving at least enough to get the full match? If not, could you raise it by even 1% next paycheck?',
+    'scn.raise.title': 'What if I Get a Raise?',
+    'scn.raise.hook': 'A raise can vanish into everyday spending — or quietly build your future.',
+    'scn.raise.learn': 'When pay goes up, expenses often creep up to match. Saving part of each raise builds wealth without feeling like a cut.',
+    'scn.raise.f.salary': 'Your current yearly pay',
+    'scn.raise.f.raise': 'Raise',
+    'scn.raise.f.save': 'Share of the raise you save',
+    'scn.raise.r.extra': 'Extra pay per month',
+    'scn.raise.r.saving': 'Of that, you\'d save',
+    'scn.raise.r.tenyr': 'Invested 10 years, that could be',
+    'scn.raise.decide': 'Could you save the raise before you get used to spending it? What would 10 years of that habit do?',
+    'scn.socialsecurity.title': 'When to Claim Social Security',
+    'scn.socialsecurity.hook': 'Claim at 62, 67, or 70? The age you start changes your monthly check for life.',
+    'scn.socialsecurity.learn': 'Claiming before your full retirement age (about 67) permanently lowers each check; waiting past it raises it. This is a general estimate, not advice.',
+    'scn.socialsecurity.f.full': 'Your benefit at full age (67)',
+    'scn.socialsecurity.f.age': 'Age you claim',
+    'scn.socialsecurity.r.monthly': 'Estimated monthly check',
+    'scn.socialsecurity.r.year': 'Per year',
+    'scn.socialsecurity.r.vs67': 'Compared with claiming at 67',
+    'scn.socialsecurity.decide': 'Do you expect to keep working? How\'s your health and savings? Waiting pays more monthly, but you collect for fewer years.',
+    'scn.college529.title': 'Saving for College',
+    'scn.college529.hook': 'Small monthly savings, started early, can grow into real tuition help.',
+    'scn.college529.learn': 'The earlier you start saving for a child, the more time growth has to work. Even modest amounts add up over 18 years.',
+    'scn.college529.f.age': 'Child\'s age now',
+    'scn.college529.f.permonth': 'You save each month',
+    'scn.college529.r.total': 'Saved by age 18',
+    'scn.college529.r.contrib': 'You put in',
+    'scn.college529.r.growth': 'Growth',
+    'scn.college529.decide': 'What amount fits your budget without straining it? Assumes ~6% average yearly growth — real returns vary.',
+    'scn.fixedincome.title': 'Living on a Fixed Income',
+    'scn.fixedincome.hook': 'When income doesn\'t change, every expense matters. See what\'s left after the essentials.',
+    'scn.fixedincome.learn': 'On a fixed income, the goal is knowing your essentials fit — with a little room for surprises. Small changes to big categories help the most.',
+    'scn.fixedincome.f.income': 'Monthly income',
+    'scn.fixedincome.f.housing': 'Housing',
+    'scn.fixedincome.f.food': 'Food',
+    'scn.fixedincome.f.meds': 'Health / medicine',
+    'scn.fixedincome.f.other': 'Everything else',
+    'scn.fixedincome.r.spent': 'Total spending',
+    'scn.fixedincome.r.left': 'Left over each month',
+    'scn.fixedincome.v.good': 'You have breathing room. Consider setting a little aside for surprises.',
+    'scn.fixedincome.v.tight': 'It\'s tight. Look at your largest category first — small cuts there help most.',
+    'scn.fixedincome.v.over': 'You\'re spending more than comes in. Focus on the biggest categories and look for help programs.',
+    'scn.fixedincome.decide': 'Which one category, trimmed a little, would help most? Are there benefits or discounts you qualify for?',
+    // ---- Credit Cards module ----
+    'mod.creditcards.name': 'Credit Cards',
+    'mod.creditcards.desc': 'How credit cards work — and what interest really costs',
+    'cc.tag': 'Money Skills',
+    'cc.title': 'Credit Cards',
+    'cc.subtitle': 'Borrowing money in your pocket',
+    'cc.intro1': 'A credit card can be useful, but every time you use one you are borrowing money.',
+    'cc.intro2': 'If you pay the full statement balance by the due date, you can often avoid paying interest on purchases.',
+    'cc.intro3': 'If you carry a balance, the card company can charge interest.',
+    'cc.intro4': 'The longer you carry the balance, the more the purchase can end up costing.',
+    'cc.ltcd.learn': 'Learn',
+    'cc.ltcd.try': 'Try it',
+    'cc.ltcd.compare': 'Compare',
+    'cc.ltcd.decide': 'Decide',
+    'cc.a.title': 'How a credit card works',
+    'cc.a.intro': 'New to this? Tap any term below to see a plain-language explanation. Assume nothing — everyone starts here. Your card and statements come from {{your}}, but the way credit cards work is the same everywhere.',
+    'cc.a.whats': 'What\'s this?',
+    'cc.term.creditLimit': 'Credit limit',
+    'cc.def.creditLimit': 'The most the card company will let you borrow on the card at one time.',
+    'cc.term.balance': 'Current balance',
+    'cc.def.balance': 'How much you currently owe on the card right now, including recent purchases.',
+    'cc.term.available': 'Available credit',
+    'cc.def.available': 'Your credit limit minus your current balance — what you still have room to spend.',
+    'cc.term.statement': 'Statement balance',
+    'cc.def.statement': 'The total you owed at the end of your billing cycle. Pay this in full by the due date to avoid interest on purchases.',
+    'cc.term.minpay': 'Minimum payment',
+    'cc.def.minpay': 'The smallest amount you can pay to keep the account in good standing. Paying only this makes the purchase cost much more over time.',
+    'cc.term.duedate': 'Payment due date',
+    'cc.def.duedate': 'The day your payment must arrive. Miss it and you can be charged a late fee and lose your grace period.',
+    'cc.term.apr': 'APR',
+    'cc.def.apr': 'Annual Percentage Rate — the yearly cost of borrowing on the card, shown as a percent. A card with a 24.99% APR charges about 2.08% of your balance in interest each month.',
+    'cc.term.interest': 'Interest',
+    'cc.def.interest': 'The extra money the card company charges you for carrying a balance. It is added to what you owe.',
+    'cc.term.late': 'Late payment',
+    'cc.def.late': 'A payment that arrives after the due date. It usually triggers a fee and can hurt your credit if it is 30+ days late.',
+    'cc.term.utilization': 'Utilization',
+    'cc.def.utilization': 'How much of your available credit you are using, as a percent. Using a smaller share is generally healthier for your credit.',
+    'cc.term.grace': 'Grace period',
+    'cc.def.grace': 'The time between the end of your billing cycle and the due date. Pay the statement in full and new purchases usually get this interest-free window.',
+    'cc.term.cashadv': 'Cash advance',
+    'cc.def.cashadv': 'Using the card to get cash. It usually has a fee and starts charging interest immediately — no grace period. Expensive.',
+    'cc.term.baltransfer': 'Balance transfer',
+    'cc.def.baltransfer': 'Moving debt from one card to another, sometimes at a low intro rate. Watch for a transfer fee and when the low rate ends.',
+    'cc.term.annualfee': 'Annual fee',
+    'cc.def.annualfee': 'A yearly charge some cards have just for having the card. Many good cards have no annual fee.',
+    'cc.b.title': 'Credit Card Interest Lab',
+    'cc.b.learn': 'See what a purchase really costs once interest is added.',
+    'cc.b.try': 'Enter your own numbers below and calculate.',
+    'cc.b.l.purchase': 'Purchase amount',
+    'cc.b.l.balance': 'Current card balance',
+    'cc.b.l.apr': 'APR (interest rate)',
+    'cc.b.l.limit': 'Credit limit',
+    'cc.b.l.payment': 'Monthly payment',
+    'cc.b.l.addl': 'Extra monthly purchases (optional)',
+    'cc.b.l.fee': 'Annual fee (optional)',
+    'cc.b.calc': 'Calculate',
+    'cc.b.r.start': 'Starting balance',
+    'cc.b.r.monthint': 'Estimated first-month interest',
+    'cc.b.r.months': 'Months to pay off',
+    'cc.b.r.totalpaid': 'Total amount paid',
+    'cc.b.r.interest': 'Total interest paid',
+    'cc.b.r.fees': 'Total fees',
+    'cc.b.r.final': 'Final cost of the purchase',
+    'cc.b.r.util': 'Credit utilization',
+    'cc.b.bought': 'You bought',
+    'cc.b.reallypaid': 'You really paid',
+    'cc.b.because': '…because of interest.',
+    'cc.b.never': 'With this payment, the balance barely shrinks — the interest is almost as big as your payment. Try a larger monthly payment to see it actually get paid off.',
+    'cc.b.months_val': '{n} months (about {y})',
+    'cc.b.wi': 'What if…',
+    'cc.b.wi.pay50': 'I pay $50 more each month',
+    'cc.b.wi.full': 'I pay it off in a year',
+    'cc.b.wi.apr': 'the APR jumps to 29.99%',
+    'cc.b.wi.reset': 'Reset',
+    'cc.b.yr': '{y} yr',
+    'cc.c.title': 'The minimum-payment trap',
+    'cc.c.learn': 'A smaller payment feels easier — but see what it does to the same purchase.',
+    'cc.c.setup': 'Laptop: $1,200 · APR: 29.99%',
+    'cc.c.col.pay': 'If you pay',
+    'cc.c.col.months': 'Months to pay off',
+    'cc.c.col.interest': 'Total interest',
+    'cc.c.col.total': 'Total paid',
+    'cc.c.permonth': '/month',
+    'cc.c.note': 'A smaller payment feels easier today, but it can make the purchase much more expensive. The bigger the monthly payment, the less you hand over in interest.',
+    'cc.d.title': 'What if I pay it off… or don\u2019t?',
+    'cc.d.learn': 'The same balance can cost nothing — or a lot — depending on how you pay it.',
+    'cc.d.l.balance': 'Statement balance',
+    'cc.d.l.apr': 'APR',
+    'cc.d.opt.full': 'Pay the full statement balance',
+    'cc.d.res.full': '$0 in interest on purchases. Your grace period stays intact. This is the goal.',
+    'cc.d.opt.half': 'Pay half',
+    'cc.d.res.half': 'You lose the grace period. Interest starts on the ~{amt} you carry — about {int} the first month, and it keeps going until it\u2019s paid.',
+    'cc.d.opt.min': 'Pay only the minimum',
+    'cc.d.res.min': 'About {months} months to clear it and roughly {int} in interest — for a purchase you already made.',
+    'cc.d.opt.miss': 'Miss the payment',
+    'cc.d.res.miss': 'A late fee (often up to about $40), interest keeps growing, and once it\u2019s 30+ days late it can be reported and hurt your credit.',
+    'cc.d.opt.late': 'Pay a few days late',
+    'cc.d.res.late': 'You may be charged a late fee and lose your grace period, so even new purchases can start collecting interest right away.',
+    'cc.d.decide': 'Before you swipe, ask: can I pay this off in full when the statement comes? If not, how long will I really carry it — and what will that cost?',
+    'cc.e.title': 'Credit utilization',
+    'cc.e.learn': 'Utilization is how much of your available credit you\u2019re using. Move the slider and watch it change.',
+    'cc.e.limit': 'Credit limit: $2,000',
+    'cc.e.charged': 'Charged',
+    'cc.e.using': 'You\u2019re using {pct} of your available credit.',
+    'cc.e.low': 'That\u2019s on the lower side — generally healthier for your credit.',
+    'cc.e.mid': 'That\u2019s a moderate amount. Paying it down over time is a good habit.',
+    'cc.e.high': 'That\u2019s a high share of your credit. Carrying this month after month can weigh on your credit.',
+    'cc.e.note': 'There\u2019s no magic cutoff number. In general, regularly using a smaller share of your available credit tends to be healthier than carrying high balances month after month.',
+    'cc.f.title': 'Try a real scenario',
+    'cc.f.intro': 'Tap a purchase to load realistic numbers into the Interest Lab above. Then change anything and watch what happens.',
+    'cc.scn.gaming': 'Gaming system',
+    'cc.scn.phone': 'New phone',
+    'cc.scn.laptop': 'Laptop',
+    'cc.scn.vacation': 'Vacation',
+    'cc.scn.clothes': 'Clothes',
+    'cc.scn.carrepair': 'Car repair',
+    'cc.scn.medical': 'Medical expense',
+    'cc.scn.furniture': 'Furniture',
+    'cc.scn.holiday': 'Holiday gifts',
+    'cc.scn.books': 'School books',
+    'cc.scn.wedding': 'Wedding expense',
+    'cc.scn.homerepair': 'Home repair',
+    'cc.f.loaded': 'Loaded into the Interest Lab — scroll up to change the numbers.',
+    'cc.g.title': 'Debit vs. credit card',
+    'cc.g.learn': 'They look alike, but they work in opposite ways.',
+    'cc.g.debit': 'Debit card',
+    'cc.g.debit.sub': 'Uses your own money.',
+    'cc.g.credit': 'Credit card',
+    'cc.g.credit.sub': 'Borrows money you must pay back.',
+    'cc.g.row.money': 'Whose money',
+    'cc.g.row.money.d': 'Yours, right now',
+    'cc.g.row.money.c': 'A loan from the card company',
+    'cc.g.row.fraud': 'Fraud protection',
+    'cc.g.row.fraud.d': 'Good, but a thief can drain your cash while you dispute it',
+    'cc.g.row.fraud.c': 'Strong — it\u2019s the card company\u2019s money at risk while you dispute',
+    'cc.g.row.overdraft': 'Overdraft',
+    'cc.g.row.overdraft.d': 'Possible if you spend more than you have',
+    'cc.g.row.overdraft.c': 'No overdraft, but you can run up debt',
+    'cc.g.row.building': 'Builds credit',
+    'cc.g.row.building.d': 'No',
+    'cc.g.row.building.c': 'Yes, if you pay on time',
+    'cc.g.row.interest': 'Interest',
+    'cc.g.row.interest.d': 'None',
+    'cc.g.row.interest.c': 'Charged if you carry a balance',
+    'cc.g.row.when': 'When it can make sense',
+    'cc.g.row.when.d': 'Everyday spending you don\u2019t want to borrow for',
+    'cc.g.row.when.c': 'Building credit and earning protections — when you can pay the statement in full',
+    'cc.g.note': 'Neither is \u201cgood\u201d or \u201cbad.\u201d They\u2019re tools. A debit card spends money you already have; a credit card borrows money you\u2019ll owe back.',
     // Auth
     'auth.title': 'Administrator Access',
     'auth.sub': 'Enter the password to manage modules, branding, and language settings.',
@@ -1027,6 +1469,334 @@ const I18N = {
   },
 
   es: {
+    // ---- Scenario Explorer module ----
+    'mod.scenarios.name': 'Escenarios',
+    'mod.scenarios.desc': 'Explora decisiones de dinero de la vida real, por etapa y tema',
+    'scn.tag': 'Explora',
+    'scn.title': 'Explora decisiones de dinero de la vida real',
+    'scn.lede': 'Elige en qué etapa de la vida estás o un tema que te interese. Cada escenario te deja cambiar los números y ver qué pasa — no hay respuestas correctas, solo matemáticas reales.',
+    'scn.where': '¿En qué etapa de la vida estás?',
+    'scn.topicfilter': 'Tema',
+    'scn.timefilter': 'Tiempo',
+    'scn.all': 'Todas',
+    'scn.start': 'Comenzar',
+    'scn.try': 'Pruébalo',
+    'scn.compare': 'Compara',
+    'scn.find': 'Descúbrelo',
+    'scn.open': 'Abrir',
+    'scn.back': '← Todos los escenarios',
+    'scn.learn': 'Aprende',
+    'scn.decide': 'Pregúntate',
+    'scn.results': 'Qué pasa',
+    'scn.mins': '{n} min',
+    'scn.none': 'Ningún escenario coincide con esos filtros todavía. Prueba quitar uno.',
+    'scn.opens': 'Abre la herramienta {tool} con estos números cargados.',
+    'scn.count': '{n} escenarios',
+    'scn.time.short': 'Rápido (≤5 min)',
+    'scn.time.med': '5–10 min',
+    'scn.time.long': '10+ min',
+    'scn.stage.school': 'Escuela secundaria / preparatoria',
+    'scn.stage.college': 'Universidad / Capacitación',
+    'scn.stage.firstjob': 'Primer empleo',
+    'scn.stage.ownplace': 'Viviendo por mi cuenta',
+    'scn.stage.household': 'Formando un hogar',
+    'scn.stage.family': 'Familia en crecimiento',
+    'scn.stage.homeowner': 'Propietario de vivienda',
+    'scn.stage.midcareer': 'Mitad de carrera',
+    'scn.stage.preretire': 'Preparando la jubilación',
+    'scn.stage.retire': 'Jubilación',
+    'scn.topic.income': 'Ingresos',
+    'scn.topic.budgeting': 'Presupuesto',
+    'scn.topic.banking': 'Productos financieros',
+    'scn.topic.credit': 'Crédito',
+    'scn.topic.debt': 'Deuda',
+    'scn.topic.cars': 'Autos',
+    'scn.topic.housing': 'Vivienda',
+    'scn.topic.education': 'Educación',
+    'scn.topic.insurance': 'Seguros',
+    'scn.topic.saving': 'Ahorro',
+    'scn.topic.investing': 'Inversión',
+    'scn.topic.family': 'Familia',
+    'scn.topic.retirement': 'Jubilación',
+    'scn.r.monthly': 'Pago mensual',
+    'scn.r.peryear': 'Por año',
+    'scn.r.total': 'Total',
+    'scn.r.interest': 'Interés total',
+    'scn.r.months': 'Meses',
+    'scn.f.permonth': 'Cuánto por mes',
+    'scn.phone.title': 'El teléfono nuevo',
+    'scn.phone.hook': 'Un teléfono de $1,200 hoy — o $50 al mes. ¿Cuál es la diferencia real?',
+    'scn.mincard.title': 'La trampa del pago mínimo de $1,200',
+    'scn.mincard.hook': 'Mira qué pasa cuando solo haces pagos pequeños de una laptop.',
+    'scn.car19500.title': 'Tu primer auto',
+    'scn.car19500.hook': 'Encontraste un auto de $19,500. ¿De verdad lo puedes pagar?',
+    'scn.rentbuy.title': '¿Alquilar o comprar?',
+    'scn.rentbuy.hook': 'Ganas $65,000. ¿Ya tiene sentido comprar una casa?',
+    'scn.refi.title': '¿Deberías refinanciar?',
+    'scn.refi.hook': '¿Un nuevo préstamo de verdad te ahorra dinero — o solo reinicia el reloj?',
+    'scn.firstpay.title': 'Tu primer cheque de pago',
+    'scn.firstpay.hook': '¿Por qué el número es más pequeño que tu tarifa por hora por tus horas?',
+    'scn.medical.title': 'Una factura médica inesperada',
+    'scn.medical.hook': 'Llega una factura de $2,000. ¿Cuánto cuesta de verdad ponerla en una tarjeta?',
+    'scn.house.title': 'Comprar una casa',
+    'scn.house.hook': 'Enganche, hipoteca, impuestos, mantenimiento — ¿cuánto costará de verdad cada mes?',
+    'scn.startsaving.title': '¿Empezar a los 17 o a los 27?',
+    'scn.startsaving.hook': '¿Y si empiezas a ahorrar 10 años antes? La diferencia es mayor de lo que crees.',
+    'scn.startsaving.learn': 'El dinero crece más rápido mientras más tiempo pasa, porque ganas crecimiento sobre tu crecimiento (interés compuesto). Empezar temprano le gana a ahorrar más tarde.',
+    'scn.startsaving.f.monthly': 'Ahorras cada mes',
+    'scn.startsaving.f.age': 'Edad a la que empiezas',
+    'scn.startsaving.r.total': 'Valor a los 65',
+    'scn.startsaving.r.contrib': 'Dinero que aportaste',
+    'scn.startsaving.r.growth': 'Crecimiento (dinero por el que no trabajaste)',
+    'scn.startsaving.r.at17': 'Si hubieras empezado a los 17',
+    'scn.startsaving.decide': '¿Cuánto podrías apartar ahora, aunque sea poco? ¿Dónde podría estar para no tocarlo? Supone un crecimiento promedio de ~6% al año; los rendimientos reales varían.',
+    'scn.firstcar.title': '¿Puedes pagar este auto?',
+    'scn.firstcar.hook': 'Los concesionarios te venden un pago mensual. Veamos si cabe en tu presupuesto real.',
+    'scn.firstcar.learn': 'Una guía común: el costo total del auto (pago, gasolina, seguro, mantenimiento) se mantiene bajo ~15% de tu pago neto. El pago solo debería estar bien por debajo de eso.',
+    'scn.firstcar.f.income': 'Tu pago neto',
+    'scn.firstcar.f.price': 'Precio del auto',
+    'scn.firstcar.f.down': 'Enganche',
+    'scn.firstcar.f.apr': 'APR del préstamo',
+    'scn.firstcar.f.term': 'Duración del préstamo',
+    'scn.firstcar.mo': 'meses',
+    'scn.firstcar.r.pay': 'Pago mensual del auto',
+    'scn.firstcar.r.pct': 'Parte de tu pago neto',
+    'scn.firstcar.v.good': 'Cómodo — el pago deja espacio para gasolina, seguro y mantenimiento.',
+    'scn.firstcar.v.ok': 'Ajustado. Suma gasolina, seguro y reparaciones antes de decidir.',
+    'scn.firstcar.v.high': 'Este pago es grande para tu ingreso. Un auto más barato o un enganche mayor ayuda mucho.',
+    'scn.firstcar.decide': '¿Este pago sobrevive un mes en que te recorten horas? ¿Cuánto suman encima la gasolina, el seguro y las reparaciones?',
+    'scn.extra100.title': '¿Y si pago $100 extra?',
+    'scn.extra100.hook': 'Un poco más cada mes puede quitarle años a un saldo. Mira cuánto.',
+    'scn.extra100.learn': 'Los pagos extra van directo al saldo, así que menos de él acumula interés el próximo mes. El efecto se acumula.',
+    'scn.extra100.f.balance': 'Lo que debes',
+    'scn.extra100.f.apr': 'APR',
+    'scn.extra100.f.pay': 'Tu pago mensual actual',
+    'scn.extra100.r.base': 'Pagando como ahora',
+    'scn.extra100.r.more': 'Pagando $100 más',
+    'scn.extra100.r.saved': 'Interés que ahorrarías',
+    'scn.extra100.r.sooner': 'Liquidado antes en',
+    'scn.extra100.mo': '{n} meses',
+    'scn.extra100.decide': '¿De dónde podrían salir $100 extra — una suscripción, unas comidas fuera? ¿Esta deuda te cuesta más de lo que ganaría ahorrar?',
+    'scn.emergency.title': 'Crea un fondo de emergencia',
+    'scn.emergency.hook': 'Una llanta ponchada o un día de enfermedad no deberían ser una crisis. ¿Qué tan rápido puedes tener un colchón?',
+    'scn.emergency.learn': 'Incluso un colchón pequeño evita que un gasto sorpresa se vuelva deuda. Empieza con una meta como $500 y luego construye hacia un mes de gastos.',
+    'scn.emergency.f.goal': 'Tu meta',
+    'scn.emergency.f.permonth': 'Puedes apartar',
+    'scn.emergency.r.months': 'Meses para lograrlo',
+    'scn.emergency.r.first': 'Llegarías a $500 en',
+    'scn.emergency.decide': '¿Dónde podría estar este dinero para que esté cuando lo necesites, pero no sea tan fácil de gastar? ¿Podrías automatizarlo el día de pago?',
+    'scn.roommate.title': '¿Buscar compañero de cuarto?',
+    'scn.roommate.hook': 'Compartir un lugar cambia las cuentas rápido. Mira cuánto ahorra de verdad.',
+    'scn.roommate.learn': 'El alquiler y los servicios suelen ser tus mayores gastos. Dividirlos puede liberar cientos al mes — dinero que puede ir al ahorro o a la deuda.',
+    'scn.roommate.f.rent': 'Alquiler mensual',
+    'scn.roommate.f.util': 'Servicios mensuales',
+    'scn.roommate.f.people': 'Personas compartiendo',
+    'scn.roommate.r.alone': 'Tu costo viviendo solo',
+    'scn.roommate.r.shared': 'Tu parte al dividir',
+    'scn.roommate.r.save': 'Ahorrarías cada mes',
+    'scn.roommate.r.year': 'Eso es por año',
+    'scn.roommate.decide': '¿La privacidad vale el costo extra para ti? ¿Un compañero podría ayudarte a ahorrar para un depósito o pagar deuda más rápido?',
+    'scn.match401k.title': 'Dinero gratis en el trabajo',
+    'scn.match401k.hook': 'Muchos empleos igualan lo que ahorras para la jubilación. ¿Estás dejando dinero sobre la mesa?',
+    'scn.match401k.learn': 'Un aporte igualado de 401(k) significa que tu empleador agrega dinero cuando ahorras. Si igualan hasta un porcentaje de tu pago, no ahorrar esa cantidad es rechazar un aumento.',
+    'scn.match401k.f.salary': 'Tu pago anual',
+    'scn.match401k.f.yourpct': 'Ahorras (% del pago)',
+    'scn.match401k.f.matchpct': 'El empleador iguala hasta',
+    'scn.match401k.r.you': 'Aportas por año',
+    'scn.match401k.r.match': 'El empleador agrega',
+    'scn.match401k.r.total': 'Total ahorrado por año',
+    'scn.match401k.r.left': 'Aporte que estás dejando',
+    'scn.match401k.decide': '¿Estás ahorrando al menos lo suficiente para recibir todo el aporte? Si no, ¿podrías subirlo aunque sea 1% el próximo cheque?',
+    'scn.raise.title': '¿Y si me dan un aumento?',
+    'scn.raise.hook': 'Un aumento puede desaparecer en gastos diarios — o construir tu futuro sin que lo notes.',
+    'scn.raise.learn': 'Cuando sube el pago, los gastos suelen subir para igualarlo. Ahorrar parte de cada aumento crea riqueza sin sentirse como un recorte.',
+    'scn.raise.f.salary': 'Tu pago anual actual',
+    'scn.raise.f.raise': 'Aumento',
+    'scn.raise.f.save': 'Parte del aumento que ahorras',
+    'scn.raise.r.extra': 'Pago extra por mes',
+    'scn.raise.r.saving': 'De eso, ahorrarías',
+    'scn.raise.r.tenyr': 'Invertido 10 años, podría ser',
+    'scn.raise.decide': '¿Podrías ahorrar el aumento antes de acostumbrarte a gastarlo? ¿Qué haría 10 años de ese hábito?',
+    'scn.socialsecurity.title': 'Cuándo reclamar el Seguro Social',
+    'scn.socialsecurity.hook': '¿Reclamar a los 62, 67 o 70? La edad en que empiezas cambia tu cheque mensual de por vida.',
+    'scn.socialsecurity.learn': 'Reclamar antes de tu edad plena de jubilación (~67) reduce cada cheque de forma permanente; esperar más lo aumenta. Es un estimado general, no un consejo.',
+    'scn.socialsecurity.f.full': 'Tu beneficio a la edad plena (67)',
+    'scn.socialsecurity.f.age': 'Edad a la que reclamas',
+    'scn.socialsecurity.r.monthly': 'Cheque mensual estimado',
+    'scn.socialsecurity.r.year': 'Por año',
+    'scn.socialsecurity.r.vs67': 'Comparado con reclamar a los 67',
+    'scn.socialsecurity.decide': '¿Esperas seguir trabajando? ¿Cómo están tu salud y tus ahorros? Esperar paga más al mes, pero cobras menos años.',
+    'scn.college529.title': 'Ahorrar para la universidad',
+    'scn.college529.hook': 'Pequeños ahorros mensuales, empezados temprano, pueden crecer en ayuda real para la matrícula.',
+    'scn.college529.learn': 'Mientras antes empieces a ahorrar para un hijo, más tiempo tiene el crecimiento para trabajar. Incluso cantidades modestas suman en 18 años.',
+    'scn.college529.f.age': 'Edad del niño ahora',
+    'scn.college529.f.permonth': 'Ahorras cada mes',
+    'scn.college529.r.total': 'Ahorrado a los 18',
+    'scn.college529.r.contrib': 'Aportaste',
+    'scn.college529.r.growth': 'Crecimiento',
+    'scn.college529.decide': '¿Qué cantidad cabe en tu presupuesto sin forzarlo? Supone ~6% de crecimiento anual promedio; los rendimientos reales varían.',
+    'scn.fixedincome.title': 'Vivir con un ingreso fijo',
+    'scn.fixedincome.hook': 'Cuando el ingreso no cambia, cada gasto importa. Mira qué queda después de lo esencial.',
+    'scn.fixedincome.learn': 'Con un ingreso fijo, la meta es saber que lo esencial cabe — con un poco de espacio para sorpresas. Los pequeños cambios en categorías grandes ayudan más.',
+    'scn.fixedincome.f.income': 'Ingreso mensual',
+    'scn.fixedincome.f.housing': 'Vivienda',
+    'scn.fixedincome.f.food': 'Comida',
+    'scn.fixedincome.f.meds': 'Salud / medicina',
+    'scn.fixedincome.f.other': 'Todo lo demás',
+    'scn.fixedincome.r.spent': 'Gasto total',
+    'scn.fixedincome.r.left': 'Sobra cada mes',
+    'scn.fixedincome.v.good': 'Tienes margen. Considera apartar un poco para sorpresas.',
+    'scn.fixedincome.v.tight': 'Está ajustado. Mira primero tu categoría más grande — los pequeños recortes ahí ayudan más.',
+    'scn.fixedincome.v.over': 'Estás gastando más de lo que entra. Enfócate en las categorías más grandes y busca programas de ayuda.',
+    'scn.fixedincome.decide': '¿Qué categoría, recortada un poco, ayudaría más? ¿Hay beneficios o descuentos para los que califiques?',
+    // ---- Credit Cards module ----
+    'mod.creditcards.name': 'Tarjetas de crédito',
+    'mod.creditcards.desc': 'Cómo funcionan las tarjetas de crédito y cuánto cuestan de verdad los intereses',
+    'cc.tag': 'Habilidades de dinero',
+    'cc.title': 'Tarjetas de crédito',
+    'cc.subtitle': 'Dinero prestado en tu bolsillo',
+    'cc.intro1': 'Una tarjeta de crédito puede ser útil, pero cada vez que la usas estás pidiendo dinero prestado.',
+    'cc.intro2': 'Si pagas el saldo completo del estado de cuenta antes de la fecha límite, muchas veces puedes evitar pagar intereses sobre las compras.',
+    'cc.intro3': 'Si dejas un saldo pendiente, la compañía de la tarjeta puede cobrarte intereses.',
+    'cc.intro4': 'Mientras más tiempo dejes el saldo sin pagar, más te puede terminar costando la compra.',
+    'cc.ltcd.learn': 'Aprende',
+    'cc.ltcd.try': 'Pruébalo',
+    'cc.ltcd.compare': 'Compara',
+    'cc.ltcd.decide': 'Decide',
+    'cc.a.title': 'Cómo funciona una tarjeta de crédito',
+    'cc.a.intro': '¿Es nuevo para ti? Toca cualquier término abajo para ver una explicación en palabras sencillas. No des nada por hecho: todos empezamos aquí. Tu tarjeta y tus estados de cuenta vienen de {{your}}, pero la forma en que funcionan las tarjetas de crédito es la misma en todos lados.',
+    'cc.a.whats': '¿Qué es esto?',
+    'cc.term.creditLimit': 'Límite de crédito',
+    'cc.def.creditLimit': 'Lo máximo que la compañía de la tarjeta te deja pedir prestado en la tarjeta a la vez.',
+    'cc.term.balance': 'Saldo actual',
+    'cc.def.balance': 'Cuánto debes en la tarjeta en este momento, incluyendo las compras recientes.',
+    'cc.term.available': 'Crédito disponible',
+    'cc.def.available': 'Tu límite de crédito menos tu saldo actual: lo que todavía puedes gastar.',
+    'cc.term.statement': 'Saldo del estado de cuenta',
+    'cc.def.statement': 'El total que debías al final de tu ciclo de facturación. Págalo completo antes de la fecha límite para evitar intereses sobre las compras.',
+    'cc.term.minpay': 'Pago mínimo',
+    'cc.def.minpay': 'La cantidad más pequeña que puedes pagar para mantener la cuenta al día. Pagar solo esto hace que la compra cueste mucho más con el tiempo.',
+    'cc.term.duedate': 'Fecha de pago',
+    'cc.def.duedate': 'El día en que tu pago debe llegar. Si no lo cumples, te pueden cobrar un cargo por retraso y perder tu período de gracia.',
+    'cc.term.apr': 'APR (Tasa anual)',
+    'cc.def.apr': 'Tasa de Porcentaje Anual: el costo anual de pedir prestado con la tarjeta, mostrado como porcentaje. Una tarjeta con 24.99% de APR cobra alrededor del 2.08% de tu saldo en intereses cada mes.',
+    'cc.term.interest': 'Interés',
+    'cc.def.interest': 'El dinero extra que la compañía de la tarjeta te cobra por dejar un saldo pendiente. Se suma a lo que debes.',
+    'cc.term.late': 'Pago tardío',
+    'cc.def.late': 'Un pago que llega después de la fecha límite. Normalmente genera un cargo y puede dañar tu crédito si se retrasa 30 días o más.',
+    'cc.term.utilization': 'Utilización',
+    'cc.def.utilization': 'Qué parte de tu crédito disponible estás usando, en porcentaje. Usar una parte más pequeña suele ser más saludable para tu crédito.',
+    'cc.term.grace': 'Período de gracia',
+    'cc.def.grace': 'El tiempo entre el final de tu ciclo de facturación y la fecha límite. Si pagas el estado de cuenta completo, las compras nuevas normalmente reciben este período sin intereses.',
+    'cc.term.cashadv': 'Adelanto en efectivo',
+    'cc.def.cashadv': 'Usar la tarjeta para obtener efectivo. Normalmente tiene un cargo y empieza a cobrar intereses de inmediato, sin período de gracia. Es caro.',
+    'cc.term.baltransfer': 'Transferencia de saldo',
+    'cc.def.baltransfer': 'Mover una deuda de una tarjeta a otra, a veces con una tasa introductoria baja. Cuidado con el cargo por transferencia y con cuándo termina la tasa baja.',
+    'cc.term.annualfee': 'Cuota anual',
+    'cc.def.annualfee': 'Un cargo anual que algunas tarjetas cobran solo por tenerla. Muchas buenas tarjetas no tienen cuota anual.',
+    'cc.b.title': 'Laboratorio de intereses de tarjeta',
+    'cc.b.learn': 'Descubre lo que de verdad cuesta una compra una vez que se suman los intereses.',
+    'cc.b.try': 'Ingresa tus propios números abajo y calcula.',
+    'cc.b.l.purchase': 'Monto de la compra',
+    'cc.b.l.balance': 'Saldo actual de la tarjeta',
+    'cc.b.l.apr': 'APR (tasa de interés)',
+    'cc.b.l.limit': 'Límite de crédito',
+    'cc.b.l.payment': 'Pago mensual',
+    'cc.b.l.addl': 'Compras mensuales adicionales (opcional)',
+    'cc.b.l.fee': 'Cuota anual (opcional)',
+    'cc.b.calc': 'Calcular',
+    'cc.b.r.start': 'Saldo inicial',
+    'cc.b.r.monthint': 'Interés estimado del primer mes',
+    'cc.b.r.months': 'Meses para liquidar',
+    'cc.b.r.totalpaid': 'Total pagado',
+    'cc.b.r.interest': 'Interés total pagado',
+    'cc.b.r.fees': 'Cargos totales',
+    'cc.b.r.final': 'Costo final de la compra',
+    'cc.b.r.util': 'Utilización de crédito',
+    'cc.b.bought': 'Compraste',
+    'cc.b.reallypaid': 'En realidad pagaste',
+    'cc.b.because': '…por los intereses.',
+    'cc.b.never': 'Con este pago, el saldo casi no baja: el interés es casi tan grande como tu pago. Prueba un pago mensual más alto para ver que de verdad se liquide.',
+    'cc.b.months_val': '{n} meses (unos {y})',
+    'cc.b.wi': '¿Qué pasa si…',
+    'cc.b.wi.pay50': 'pago $50 más cada mes',
+    'cc.b.wi.full': 'lo pago en un año',
+    'cc.b.wi.apr': 'el APR sube a 29.99%',
+    'cc.b.wi.reset': 'Reiniciar',
+    'cc.b.yr': '{y} año(s)',
+    'cc.c.title': 'La trampa del pago mínimo',
+    'cc.c.learn': 'Un pago más pequeño se siente más fácil, pero mira lo que le hace a la misma compra.',
+    'cc.c.setup': 'Laptop: $1,200 · APR: 29.99%',
+    'cc.c.col.pay': 'Si pagas',
+    'cc.c.col.months': 'Meses para liquidar',
+    'cc.c.col.interest': 'Interés total',
+    'cc.c.col.total': 'Total pagado',
+    'cc.c.permonth': '/mes',
+    'cc.c.note': 'Un pago más pequeño se siente más fácil hoy, pero puede hacer que la compra sea mucho más cara. Mientras más grande sea el pago mensual, menos entregas en intereses.',
+    'cc.d.title': '¿Qué pasa si lo pago… o no?',
+    'cc.d.learn': 'El mismo saldo puede costar nada o mucho, según cómo lo pagues.',
+    'cc.d.l.balance': 'Saldo del estado de cuenta',
+    'cc.d.l.apr': 'APR',
+    'cc.d.opt.full': 'Pagar el saldo completo',
+    'cc.d.res.full': '$0 de interés sobre las compras. Tu período de gracia queda intacto. Esta es la meta.',
+    'cc.d.opt.half': 'Pagar la mitad',
+    'cc.d.res.half': 'Pierdes el período de gracia. El interés empieza sobre los ~{amt} que dejas pendiente: unos {int} el primer mes, y sigue hasta que lo pagues.',
+    'cc.d.opt.min': 'Pagar solo el mínimo',
+    'cc.d.res.min': 'Unos {months} meses para liquidarlo y aproximadamente {int} en intereses, por una compra que ya hiciste.',
+    'cc.d.opt.miss': 'No hacer el pago',
+    'cc.d.res.miss': 'Un cargo por retraso (a menudo hasta unos $40), el interés sigue creciendo y, una vez que se retrasa 30 días o más, puede reportarse y dañar tu crédito.',
+    'cc.d.opt.late': 'Pagar unos días tarde',
+    'cc.d.res.late': 'Te pueden cobrar un cargo por retraso y perder tu período de gracia, así que incluso las compras nuevas pueden empezar a acumular intereses de inmediato.',
+    'cc.d.decide': 'Antes de pasar la tarjeta, pregúntate: ¿puedo pagar esto completo cuando llegue el estado de cuenta? Si no, ¿cuánto tiempo lo voy a cargar de verdad y cuánto costará?',
+    'cc.e.title': 'Utilización de crédito',
+    'cc.e.learn': 'La utilización es qué parte de tu crédito disponible estás usando. Mueve el control y observa cómo cambia.',
+    'cc.e.limit': 'Límite de crédito: $2,000',
+    'cc.e.charged': 'Cargado',
+    'cc.e.using': 'Estás usando el {pct} de tu crédito disponible.',
+    'cc.e.low': 'Eso está en el lado bajo: en general, más saludable para tu crédito.',
+    'cc.e.mid': 'Es una cantidad moderada. Bajarlo con el tiempo es un buen hábito.',
+    'cc.e.high': 'Es una parte alta de tu crédito. Cargar esto mes tras mes puede afectar tu crédito.',
+    'cc.e.note': 'No hay un número mágico. En general, usar de forma habitual una parte más pequeña de tu crédito disponible tiende a ser más saludable que cargar saldos altos mes tras mes.',
+    'cc.f.title': 'Prueba un caso real',
+    'cc.f.intro': 'Toca una compra para cargar números realistas en el Laboratorio de intereses de arriba. Luego cambia lo que quieras y observa qué pasa.',
+    'cc.scn.gaming': 'Consola de videojuegos',
+    'cc.scn.phone': 'Teléfono nuevo',
+    'cc.scn.laptop': 'Laptop',
+    'cc.scn.vacation': 'Vacaciones',
+    'cc.scn.clothes': 'Ropa',
+    'cc.scn.carrepair': 'Reparación del auto',
+    'cc.scn.medical': 'Gasto médico',
+    'cc.scn.furniture': 'Muebles',
+    'cc.scn.holiday': 'Regalos de fin de año',
+    'cc.scn.books': 'Libros escolares',
+    'cc.scn.wedding': 'Gasto de boda',
+    'cc.scn.homerepair': 'Reparación del hogar',
+    'cc.f.loaded': 'Cargado en el Laboratorio de intereses: sube para cambiar los números.',
+    'cc.g.title': 'Tarjeta de débito vs. de crédito',
+    'cc.g.learn': 'Se parecen, pero funcionan de maneras opuestas.',
+    'cc.g.debit': 'Tarjeta de débito',
+    'cc.g.debit.sub': 'Usa tu propio dinero.',
+    'cc.g.credit': 'Tarjeta de crédito',
+    'cc.g.credit.sub': 'Pide prestado dinero que debes devolver.',
+    'cc.g.row.money': 'De quién es el dinero',
+    'cc.g.row.money.d': 'Tuyo, ahora mismo',
+    'cc.g.row.money.c': 'Un préstamo de la compañía de la tarjeta',
+    'cc.g.row.fraud': 'Protección contra fraude',
+    'cc.g.row.fraud.d': 'Buena, pero un ladrón puede vaciar tu efectivo mientras reclamas',
+    'cc.g.row.fraud.c': 'Fuerte: es el dinero de la compañía el que está en riesgo mientras reclamas',
+    'cc.g.row.overdraft': 'Sobregiro',
+    'cc.g.row.overdraft.d': 'Posible si gastas más de lo que tienes',
+    'cc.g.row.overdraft.c': 'Sin sobregiro, pero puedes acumular deuda',
+    'cc.g.row.building': 'Construye crédito',
+    'cc.g.row.building.d': 'No',
+    'cc.g.row.building.c': 'Sí, si pagas a tiempo',
+    'cc.g.row.interest': 'Interés',
+    'cc.g.row.interest.d': 'Ninguno',
+    'cc.g.row.interest.c': 'Se cobra si dejas un saldo pendiente',
+    'cc.g.row.when': 'Cuándo puede tener sentido',
+    'cc.g.row.when.d': 'Gastos diarios para los que no quieres pedir prestado',
+    'cc.g.row.when.c': 'Construir crédito y ganar protecciones, cuando puedes pagar el estado de cuenta completo',
+    'cc.g.note': 'Ninguna es \u201cbuena\u201d ni \u201cmala\u201d. Son herramientas. Una tarjeta de débito gasta dinero que ya tienes; una de crédito pide prestado dinero que deberás devolver.',
     // Auth
     'auth.title': 'Acceso de Administrador',
     'auth.sub': 'Ingrese la contraseña para administrar módulos, marca y configuración de idioma.',
@@ -1218,9 +1988,36 @@ const I18N = {
 let LANG = 'en';
 function t(key, vars) {
   let s = (I18N[LANG] && I18N[LANG][key]) || I18N.en[key] || key;
-  if (vars) Object.keys(vars).forEach(k => { s = s.replace('{' + k + '}', vars[k]); });
+  if (vars) Object.keys(vars).forEach(k => { s = s.replace(new RegExp('\\{' + k + '\\}', 'g'), vars[k]); });
+  if (s.indexOf('{{') !== -1) {
+    s = s.replace(/\{\{your\}\}/g, inst('your')).replace(/\{\{the\}\}/g, inst('the'))
+         .replace(/\{\{a\}\}/g, inst('a')).replace(/\{\{Inst\}\}/g, inst('Name')).replace(/\{\{inst\}\}/g, inst('name'));
+  }
   return s;
 }
+
+// ============= INSTITUTION TERMINOLOGY (white-label bank / credit union) =============
+// RISE is sold to BOTH banks AND credit unions. Educational content stays product-first
+// ("checking account", "auto loan"...) and uses "financial institution" for generic refs.
+// Only unavoidable possessive references vary by institution type, via inst().
+const INST_WORDS = {
+  bank: {
+    en: { a: 'a bank', the: 'the bank', your: 'your bank', name: 'bank', Name: 'Bank' },
+    es: { a: 'un banco', the: 'el banco', your: 'tu banco', name: 'banco', Name: 'Banco' }
+  },
+  creditUnion: {
+    en: { a: 'a credit union', the: 'the credit union', your: 'your credit union', name: 'credit union', Name: 'Credit Union' },
+    es: { a: 'una cooperativa de cr\u00e9dito', the: 'la cooperativa de cr\u00e9dito', your: 'tu cooperativa de cr\u00e9dito', name: 'cooperativa de cr\u00e9dito', Name: 'Cooperativa de Cr\u00e9dito' }
+  }
+};
+function instType() { return (typeof CONFIG !== 'undefined' && CONFIG && CONFIG.institutionType) || (DEFAULT_CONFIG && DEFAULT_CONFIG.institutionType) || 'creditUnion'; }
+// inst('your'|'the'|'a'|'name'|'Name') -> institution-appropriate, language-appropriate phrase.
+function inst(key) {
+  const w = INST_WORDS[instType()] || INST_WORDS.creditUnion;
+  return (w[LANG] && w[LANG][key]) || w.en[key] || '';
+}
+// Generic, institution-neutral term for educational copy. Prefer this over inst() everywhere possible.
+function instGeneric() { return LANG === 'es' ? 'instituci\u00f3n financiera' : 'financial institution'; }
 
 // ============= CONFIG =============
 const DEFAULT_CONFIG = {
@@ -1229,6 +2026,7 @@ const DEFAULT_CONFIG = {
     jobmatch: true, applysmart: true, benefits: true, taxtime: true,
     banking: true, bigdec: true, goaltracker: true, library: true,
     reentry: true, parent: true, veteran: true, bigpurchases: true,
+    creditcards: true, scenarios: true,
     profile: true, admin: true
   },
   defaultLang: 'en',
@@ -1243,37 +2041,38 @@ const DEFAULT_CONFIG = {
   accessCode: '',
   accessCodeRequired: false,
   adminPasswordOverride: '',
+  institutionType: 'creditUnion', // 'bank' | 'creditUnion' — controls unavoidable possessive references
 };
 
 const PRESETS = {
   default: {
     icon: '📦', name: 'Default Setup', desc: 'All 16 modules enabled. Full RISE platform.',
-    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: true, goaltracker: true, library: true, reentry: true, parent: true, veteran: true, profile: true, admin: true },
+    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: true, goaltracker: true, library: true, reentry: true, parent: true, veteran: true, creditcards: true, scenarios: true, profile: true, admin: true },
     defaultLang: 'en', allowLangSwitch: true, brandName: 'LaunchPoint RISE™', brandTag: 'Real-world Income & Skills Education'
   },
   workforce: {
     icon: '🛠️', name: 'Workforce Board', desc: 'Job-readiness focus for WIOA participants. Career + foundational tools.',
-    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: false, parent: false, veteran: false, profile: true, admin: true },
+    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: false, parent: false, veteran: false, creditcards: true, scenarios: true, profile: true, admin: true },
     defaultLang: 'en', allowLangSwitch: true, brandName: 'RISE', brandTag: 'Real-world Income & Skills Education'
   },
   adultEd: {
     icon: '📚', name: 'Adult Education / GED', desc: 'Curriculum-friendly setup for community college and GED programs.',
-    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: true, goaltracker: true, library: true, reentry: false, parent: false, veteran: false, profile: true, admin: true },
+    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: true, goaltracker: true, library: true, reentry: false, parent: false, veteran: false, creditcards: true, scenarios: true, profile: true, admin: true },
     defaultLang: 'en', allowLangSwitch: true, brandName: 'LaunchPoint RISE™', brandTag: 'Real-world money skills'
   },
   reentry: {
     icon: '🔓', name: 'Reentry Programs', desc: 'For people leaving incarceration. Includes reentry-specific resources.',
-    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: true, parent: false, veteran: false, profile: true, admin: true },
+    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: true, parent: false, veteran: false, creditcards: true, scenarios: true, profile: true, admin: true },
     defaultLang: 'en', allowLangSwitch: true, brandName: 'Second Chance Pathways', brandTag: 'Building forward from here'
   },
   latino: {
     icon: '🌎', name: 'Latino Community', desc: 'Spanish-default with full toolkit for immigrant and Latino-focused programs.',
-    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: false, parent: false, veteran: false, profile: true, admin: true },
+    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: true, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: false, parent: false, veteran: false, creditcards: true, scenarios: true, profile: true, admin: true },
     defaultLang: 'es', allowLangSwitch: true, brandName: 'Dinero Real', brandTag: 'Herramientas que funcionan para ti'
   },
   veterans: {
     icon: '🎖️', name: 'Veterans Services', desc: 'For VSOs, transition assistance, and veteran-focused organizations.',
-    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: false, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: false, parent: false, veteran: true, profile: true, admin: true },
+    enabled: { paycheck: true, budget: true, trap: true, credit: true, jobmatch: true, applysmart: true, benefits: false, taxtime: true, banking: true, bigdec: false, goaltracker: true, library: false, reentry: false, parent: false, veteran: true, creditcards: true, scenarios: true, profile: true, admin: true },
     defaultLang: 'en', allowLangSwitch: true, brandName: 'Veterans Money Toolkit', brandTag: 'Earned tools for your next chapter'
   }
 };
@@ -1576,7 +2375,7 @@ MODULES.trap = {
           </div>
           <div class="tip">
             <span class="tip-head">Heads up</span>
-            <strong>If you really need cash fast,</strong> some better options to ask about first: a paycheck advance from your employer (free), borrowing from a credit union (single-digit APR), a payment plan with the bill you can't pay (usually free), or community programs like LIHEAP (utilities) or food banks. None of these are perfect — but all of them beat 391% APR.
+            <strong>If you really need cash fast,</strong> some better options to ask about first: a paycheck advance from your employer (free), a small personal loan from a financial institution (single-digit APR), a payment plan with the bill you can't pay (usually free), or community programs like LIHEAP (utilities) or food banks. None of these are perfect — but all of them beat 391% APR.
           </div>
         </div>
       </section>
@@ -1602,7 +2401,7 @@ function checkLoan(type) {
     const apr = (fee / amt) * (365 / days) * 100;
     const verdict = apr > 200 ? 'bad' : apr > 50 ? 'warn' : 'good';
     const label = verdict === 'bad' ? '🚨 Predatory loan' : verdict === 'warn' ? '⚠️ Expensive' : '✓ Reasonable';
-    html = `<div class="verdict verdict-${verdict}"><h4>${label}</h4><div class="apr-callout ${verdict === 'bad' ? 'bad' : ''} mono">${apr.toFixed(0)}% APR</div><p>You'd pay <strong>${fmt$(fee)} to borrow ${fmt$(amt)}</strong> for ${days} days. That's a <strong>${apr.toFixed(0)}% annual interest rate</strong>. For comparison: a normal credit card is around 22%. A car loan is around 7%.</p><p>Most people can't pay back a payday loan in time and roll it over — paying the fee again. Many people pay <strong>more in fees than the original loan</strong> within a few months.</p><p style="margin-top:0.8rem;"><strong>Better options to ask about first:</strong></p><ul><li><strong>Paycheck advance</strong> through your employer (most have one — free or very low fee)</li><li><strong>Small loan from a credit union</strong> — many have "PAL" loans (max 28% APR)</li><li><strong>Talk to the bill you can't pay</strong> — utility companies, landlords, hospitals all have payment plans</li><li><strong>Earnin or Dave apps</strong> — get paid early for tip-based or low fees</li></ul></div>`;
+    html = `<div class="verdict verdict-${verdict}"><h4>${label}</h4><div class="apr-callout ${verdict === 'bad' ? 'bad' : ''} mono">${apr.toFixed(0)}% APR</div><p>You'd pay <strong>${fmt$(fee)} to borrow ${fmt$(amt)}</strong> for ${days} days. That's a <strong>${apr.toFixed(0)}% annual interest rate</strong>. For comparison: a normal credit card is around 22%. A car loan is around 7%.</p><p>Most people can't pay back a payday loan in time and roll it over — paying the fee again. Many people pay <strong>more in fees than the original loan</strong> within a few months.</p><p style="margin-top:0.8rem;"><strong>Better options to ask about first:</strong></p><ul><li><strong>Paycheck advance</strong> through your employer (most have one — free or very low fee)</li><li><strong>A small-dollar loan</strong> — many credit unions offer low-rate "PAL" loans (max 28% APR)</li><li><strong>Talk to the bill you can't pay</strong> — utility companies, landlords, hospitals all have payment plans</li><li><strong>Earnin or Dave apps</strong> — get paid early for tip-based or low fees</li></ul></div>`;
   } else if (type === 'title') {
     const amt = parseFloat($('title-amount').value) || 0;
     const monthly = parseFloat($('title-monthly').value) || 0;
@@ -1610,7 +2409,7 @@ function checkLoan(type) {
     if (amt <= 0 || monthly <= 0) return;
     const totalInterest = monthly * term;
     const apr = (monthly / amt) * 12 * 100;
-    html = `<div class="verdict verdict-bad"><h4>🚨 Title loan — high risk</h4><div class="apr-callout bad mono">${apr.toFixed(0)}% APR</div><p>You'd pay <strong>${fmt$(monthly)}/month for ${term} month${term > 1 ? 's' : ''}</strong> on a ${fmt$(amt)} loan. Total fees: <strong>${fmt$(totalInterest)}</strong>. That's a <strong>${apr.toFixed(0)}% annual rate</strong>.</p><p><strong>The bigger problem:</strong> title loans use your car as collateral. About <strong>1 in 5 title loan borrowers has their vehicle repossessed</strong>. No car often means no job — which makes everything worse.</p><p style="margin-top:0.8rem;"><strong>Before signing:</strong></p><ul><li>Try a credit union "PAL" loan or unsecured personal loan first</li><li>Sell something you don't need, even temporarily</li><li>Ask family for a documented short-term loan</li><li>Local nonprofits and churches often have emergency aid funds</li></ul></div>`;
+    html = `<div class="verdict verdict-bad"><h4>🚨 Title loan — high risk</h4><div class="apr-callout bad mono">${apr.toFixed(0)}% APR</div><p>You'd pay <strong>${fmt$(monthly)}/month for ${term} month${term > 1 ? 's' : ''}</strong> on a ${fmt$(amt)} loan. Total fees: <strong>${fmt$(totalInterest)}</strong>. That's a <strong>${apr.toFixed(0)}% annual rate</strong>.</p><p><strong>The bigger problem:</strong> title loans use your car as collateral. About <strong>1 in 5 title loan borrowers has their vehicle repossessed</strong>. No car often means no job — which makes everything worse.</p><p style="margin-top:0.8rem;"><strong>Before signing:</strong></p><ul><li>Try a small-dollar or unsecured personal loan first — credit unions often offer low-rate "PAL" loans</li><li>Sell something you don't need, even temporarily</li><li>Ask family for a documented short-term loan</li><li>Local nonprofits and churches often have emergency aid funds</li></ul></div>`;
   } else if (type === 'rto') {
     const cash = parseFloat($('rto-cash').value) || 0;
     const payment = parseFloat($('rto-payment').value) || 0;
@@ -1664,7 +2463,7 @@ MODULES.credit = {
             <p class="sub">Do these in order. Don't skip steps.</p>
             <div class="roadmap">
               <div class="roadmap-step"><div><div class="meta">Month 1 · Free</div><h4>Check your starting point</h4><p>You can pull your credit report for free at <strong>AnnualCreditReport.com</strong> — the only one actually authorized by the federal government. Look for errors, accounts that aren't yours, or old debts you forgot about.</p><div class="actions"><strong>Also free:</strong> Credit Karma app shows your score, but use AnnualCreditReport.com for the actual report.</div></div></div>
-              <div class="roadmap-step"><div><div class="meta">Month 1-2 · ~$200 deposit</div><h4>Open a secured credit card</h4><p>A "secured" card means you put down a deposit (usually $200) and that becomes your credit limit. The bank reports your payments to credit bureaus, which builds your score. After 6-12 months of on-time payments, you can usually upgrade to a regular card and get your deposit back.</p><div class="actions"><strong>What to look for:</strong> A card with no annual fee (or one under $35), a deposit you can afford, and a clear path to upgrade to a regular unsecured card after 6-12 months of on-time payments. Ask your bank or credit union — many offer secured cards built exactly for this.</div></div></div>
+              <div class="roadmap-step"><div><div class="meta">Month 1-2 · ~$200 deposit</div><h4>Open a secured credit card</h4><p>A "secured" card means you put down a deposit (usually $200) and that becomes your credit limit. The bank reports your payments to credit bureaus, which builds your score. After 6-12 months of on-time payments, you can usually upgrade to a regular card and get your deposit back.</p><div class="actions"><strong>What to look for:</strong> A card with no annual fee (or one under $35), a deposit you can afford, and a clear path to upgrade to a regular unsecured card after 6-12 months of on-time payments. Ask your financial institution — many offer secured cards built exactly for this.</div></div></div>
               <div class="roadmap-step"><div><div class="meta">Ongoing · Free</div><h4>Use it. Pay it off. Every month.</h4><p>Put one small recurring bill on the card — like your phone or a streaming subscription. Set up auto-pay for the FULL balance. This builds your score without any interest charges.</p><div class="actions"><strong>Magic number:</strong> Keep your balance under 30% of your limit. On a $200 card, that's $60 max at any time.</div></div></div>
               <div class="roadmap-step"><div><div class="meta">Month 3-6 · ~$25/mo</div><h4>Add a credit-builder loan</h4><p>A credit-builder loan is backwards: you make payments first, then get the money at the end. Self (joinself.com) is the most popular — about $25/month for a year, you get most of it back.</p><div class="actions"><strong>Why it matters:</strong> 10% of your score is "credit mix." A card + a loan looks better than just a card.</div></div></div>
               <div class="roadmap-step"><div><div class="meta">Anytime · Free or ~$10/mo</div><h4>Get credit for paying rent</h4><p>Rent isn't normally on your credit report — but services like <strong>Experian Boost</strong> (free), <strong>Rental Kharma</strong>, or <strong>Self's rent reporting</strong> can add it.</p><div class="actions"><strong>Best free option:</strong> Experian Boost also adds your phone, utility, and streaming bills to your Experian credit report.</div></div></div>
@@ -1707,6 +2506,459 @@ const JOB_DATA = [
   { id:'dental_assist', title:'Dental Assistant', wage:'$17-$24/hr', wageNum:20, cluster:'healthcare', training:'9-12 months', training_num:11, ftlevel:'fulltime', desc:'Help dentists during procedures, prep patients, take X-rays, manage records. Steady hours, often weekday only.', traincost:'$1,500-$5,000', programs:['Community college dental assistant programs','Online programs (Penn Foster, Allen School)','Some dental offices train on the job'], year5:'$22-$28/hr; pathway to dental hygienist ($35-$45/hr) with more schooling' },
   { id:'ec_teacher', title:'Early Childhood / Daycare Teacher', wage:'$13-$19/hr', wageNum:16, cluster:'education', training:'CDA or 1-2 years', training_num:12, ftlevel:'fulltime', desc:'Care for and teach kids age 0-5 at daycares and preschools. CDA credential ($425) is the standard entry credential.', traincost:'$425-$3,000', programs:['Child Development Associate (CDA) credential','Community college early childhood education programs','State T.E.A.C.H. scholarships (often free)'], year5:'$18-$25/hr; pathway to lead teacher, director ($30-$45K) with associate\'s' }
 ];
+
+
+// ============= MODULE: CREDIT CARDS =============
+// Fully bilingual via t(). Teaches first (glossary + intro), then lets users
+// experiment: Interest Lab, minimum-payment trap, pay-it-off comparison,
+// utilization slider, real scenarios, and debit-vs-credit.
+const CC_TERMS = ['creditLimit','balance','available','statement','minpay','duedate','apr','interest','late','utilization','grace','cashadv','baltransfer','annualfee'];
+const CC_SCN = [
+  { k:'gaming',    ic:'🎮', p:600,  apr:26.99, pay:40,  limit:1500 },
+  { k:'phone',     ic:'📱', p:1200, apr:24.99, pay:50,  limit:2000 },
+  { k:'laptop',    ic:'💻', p:1200, apr:29.99, pay:60,  limit:2000 },
+  { k:'vacation',  ic:'✈️', p:2500, apr:22.99, pay:120, limit:5000 },
+  { k:'clothes',   ic:'👗', p:400,  apr:27.99, pay:35,  limit:1500 },
+  { k:'carrepair', ic:'🚗', p:1500, apr:25.99, pay:90,  limit:3000 },
+  { k:'medical',   ic:'🏥', p:2000, apr:23.99, pay:100, limit:4000 },
+  { k:'furniture', ic:'🛋️', p:1800, apr:26.99, pay:90, limit:3500 },
+  { k:'holiday',   ic:'🎄', p:900,  apr:28.99, pay:50,  limit:2500 },
+  { k:'books',     ic:'📚', p:700,  apr:24.99, pay:45,  limit:2000 },
+  { k:'wedding',   ic:'💍', p:5000, apr:21.99, pay:200, limit:8000 },
+  { k:'homerepair',ic:'🏠', p:3000, apr:24.99, pay:150, limit:6000 }
+];
+const CC_DVC_ROWS = ['money','fraud','overdraft','building','interest','when'];
+
+// ---- shared math ----
+function ccGet(id){ var el=document.getElementById(id); return el ? (parseFloat(el.value)||0) : 0; }
+function ccSetVal(id,v){ var el=document.getElementById(id); if(el) el.value=v; }
+function ccSet(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+function ccYearsPhrase(m){ var y=Math.round(m/12*10)/10; return t('cc.b.yr',{y:y}); }
+function ccPayoffPayment(bal,apr,months){ var r=(apr/100)/12; if(r<=0) return bal/months; return bal*(r*Math.pow(1+r,months))/(Math.pow(1+r,months)-1); }
+// Amortize a flat monthly payment. Returns {paidOff, months, totalInterest, totalFees, totalPaid}.
+function ccAmortize(startBal, aprPct, payment, addlMonthly, annualFee){
+  var r=(aprPct/100)/12, bal=startBal, months=0, ti=0, tf=0, tp=0, cap=600, prev=Infinity;
+  if(payment<=0) return {paidOff:false, months:cap, totalInterest:0, totalFees:0, totalPaid:0};
+  while(bal>0.005 && months<cap){
+    if(annualFee>0 && months%12===0){ bal+=annualFee; tf+=annualFee; }
+    var interest=bal*r; bal+=interest; ti+=interest;
+    var pay=Math.min(payment,bal); bal-=pay; tp+=pay;
+    if(addlMonthly>0) bal+=addlMonthly;
+    months++;
+    if(bal>=prev-0.001 && bal>0.5){ return {paidOff:false, months:cap, totalInterest:ti, totalFees:tf, totalPaid:tp}; }
+    prev=bal;
+  }
+  return {paidOff: bal<=0.5, months:months, totalInterest:ti, totalFees:tf, totalPaid:tp};
+}
+// Declining minimum payment: greater of $25 or 2% of balance.
+function ccAmortizeMin(startBal, aprPct){
+  var r=(aprPct/100)/12, bal=startBal, months=0, ti=0, cap=600;
+  while(bal>0.5 && months<cap){
+    var interest=bal*r; bal+=interest; ti+=interest;
+    var minpay=Math.max(25, bal*0.02); minpay=Math.min(minpay,bal);
+    bal-=minpay; months++;
+  }
+  return {months:months, totalInterest:ti};
+}
+
+// ---- Interest Lab ----
+function ccRunLab(){
+  var purchase=ccGet('cc-purchase'), bal0=ccGet('cc-balance'), apr=ccGet('cc-apr'),
+      limit=ccGet('cc-limit'), pay=ccGet('cc-payment'), addl=ccGet('cc-addl'), fee=ccGet('cc-fee');
+  var start=purchase+bal0, r=(apr/100)/12, firstInt=start*r;
+  var res=ccAmortize(start, apr, pay, addl, fee);
+  var util=limit>0 ? Math.round((start/limit)*100) : 0;
+  ccSet('cc-out-start', fmt$(start));
+  ccSet('cc-out-monthint', fmt$d(firstInt));
+  ccSet('cc-out-months', res.paidOff ? t('cc.b.months_val',{n:res.months, y:ccYearsPhrase(res.months)}) : '—');
+  ccSet('cc-out-totalpaid', fmt$(res.totalPaid));
+  ccSet('cc-out-interest', fmt$(res.totalInterest));
+  ccSet('cc-out-fees', fmt$(res.totalFees));
+  var finalCost = purchase + res.totalInterest + res.totalFees;
+  ccSet('cc-out-final', fmt$(finalCost));
+  ccSet('cc-out-util', util+'%');
+  ccSet('cc-big-bought', fmt$(purchase));
+  ccSet('cc-big-paid', fmt$(finalCost));
+  var warn=document.getElementById('cc-warn'); if(warn) warn.style.display = res.paidOff ? 'none' : 'block';
+}
+function ccResetLab(){ var s=CC_SCN[1]; ccSetVal('cc-purchase',s.p); ccSetVal('cc-balance',0); ccSetVal('cc-apr',s.apr); ccSetVal('cc-limit',s.limit); ccSetVal('cc-payment',s.pay); ccSetVal('cc-addl',0); ccSetVal('cc-fee',0); }
+function ccLoadScenario(k){
+  var s=CC_SCN.filter(function(x){return x.k===k;})[0]; if(!s) return;
+  ccSetVal('cc-purchase',s.p); ccSetVal('cc-balance',0); ccSetVal('cc-apr',s.apr); ccSetVal('cc-limit',s.limit); ccSetVal('cc-payment',s.pay); ccSetVal('cc-addl',0); ccSetVal('cc-fee',0);
+  ccRunLab();
+  var lab=document.getElementById('cc-lab'); if(lab) lab.scrollIntoView({behavior:'smooth', block:'start'});
+  if(typeof showToast==='function') showToast(t('cc.f.loaded'),'success');
+}
+window.ccLoadScenario = ccLoadScenario;
+
+// ---- Pay-it-off comparison ----
+function ccRunPayoff(){
+  var bal=ccGet('cc-po-balance'), apr=ccGet('cc-po-apr'), r=(apr/100)/12;
+  var half=bal/2, halfInt=half*r;
+  ccSet('cc-po-half', t('cc.d.res.half',{amt:fmt$(half), int:fmt$d(halfInt)}));
+  var m=ccAmortizeMin(bal, apr);
+  ccSet('cc-po-min', t('cc.d.res.min',{months:m.months, int:fmt$(m.totalInterest)}));
+}
+
+// ---- Utilization ----
+function ccUtil(){
+  var slider=document.getElementById('cc-util-slider'); if(!slider) return;
+  var amt=parseFloat(slider.value)||0, limit=2000, pct=Math.round(amt/limit*100);
+  ccSet('cc-util-amt', fmt$(amt));
+  ccSet('cc-util-pct', pct+'%');
+  var fill=document.getElementById('cc-util-fill');
+  if(fill){ fill.style.width=Math.min(100,pct)+'%'; fill.style.background = pct<=30 ? '#2e7d5b' : (pct<=60 ? '#c9971f' : '#b3402f'); }
+  ccSet('cc-util-using', t('cc.e.using',{pct:pct+'%'}));
+  ccSet('cc-util-msg', pct<=30 ? t('cc.e.low') : (pct<=60 ? t('cc.e.mid') : t('cc.e.high')));
+}
+
+MODULES.creditcards = {
+  id:'creditcards', icon:'💳', category:'foundational', phase:1,
+  render(){
+    var terms = CC_TERMS.map(function(k){
+      return '<details class="cc-term"><summary><span>'+t('cc.term.'+k)+'</span><span class="cc-whats">'+t('cc.a.whats')+'</span></summary><p>'+t('cc.def.'+k)+'</p></details>';
+    }).join('');
+    var scn = CC_SCN.map(function(s){
+      return '<button type="button" class="cc-scn" data-scn="'+s.k+'"><span class="ico">'+s.ic+'</span><span class="nm">'+t('cc.scn.'+s.k)+'</span><span class="amt">'+fmt$(s.p)+'</span></button>';
+    }).join('');
+    var dvc = CC_DVC_ROWS.map(function(rk){
+      return '<tr><td class="rowlbl">'+t('cc.g.row.'+rk)+'</td><td>'+t('cc.g.row.'+rk+'.d')+'</td><td>'+t('cc.g.row.'+rk+'.c')+'</td></tr>';
+    }).join('');
+    function ltcd(stages){
+      // stages: array of {n,key}
+      return '<div class="cc-ltcd">'+stages.map(function(s){return '<span class="cc-badge"><span class="n">'+s.n+'</span>'+t('cc.ltcd.'+s.key)+'</span>';}).join('')+'</div>';
+    }
+    return ''+
+    '<section class="tool active" id="tool-creditcards" role="tabpanel">'+
+      '<div class="container-narrow">'+
+        '<div class="tool-head">'+
+          '<div class="eyebrow">'+t('cc.tag')+'</div>'+
+          '<hr class="rule-gold" />'+
+          '<h2 class="serif">'+t('cc.title')+'</h2>'+
+          '<p class="lede">'+t('cc.subtitle')+'</p>'+
+        '</div>'+
+        '<div class="cc-intro-box">'+
+          '<p>'+t('cc.intro1')+'</p><p>'+t('cc.intro2')+'</p><p>'+t('cc.intro3')+'</p><p>'+t('cc.intro4')+'</p>'+
+        '</div>'+
+
+        /* A. How it works */
+        '<div class="cc-sec"><div class="cc-sec-head"><span class="cc-sec-ico">📖</span><h3 class="serif">'+t('cc.a.title')+'</h3></div>'+
+          '<p class="sub">'+t('cc.a.intro')+'</p>'+
+          '<div class="cc-terms">'+terms+'</div>'+
+        '</div>'+
+
+        /* B. Interest Lab */
+        '<div class="cc-sec" id="cc-lab"><div class="cc-sec-head"><span class="cc-sec-ico">🧪</span><h3 class="serif">'+t('cc.b.title')+'</h3></div>'+
+          ltcd([{n:1,key:'learn'},{n:2,key:'try'}])+
+          '<div class="card"><p class="sub">'+t('cc.b.learn')+' '+t('cc.b.try')+'</p>'+
+            '<div class="cc-lab-grid">'+
+              '<div>'+
+                '<div class="field"><label for="cc-purchase">'+t('cc.b.l.purchase')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-purchase" inputmode="decimal" value="1200" min="0" step="10" /></div></div>'+
+                '<div class="field-row">'+
+                  '<div class="field"><label for="cc-apr">'+t('cc.b.l.apr')+'</label><div class="input-suffix"><input type="number" id="cc-apr" inputmode="decimal" value="24.99" min="0" step="0.01" /><span class="sfx">%</span></div></div>'+
+                  '<div class="field"><label for="cc-payment">'+t('cc.b.l.payment')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-payment" inputmode="decimal" value="50" min="0" step="5" /></div></div>'+
+                '</div>'+
+                '<div class="field-row">'+
+                  '<div class="field"><label for="cc-balance">'+t('cc.b.l.balance')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-balance" inputmode="decimal" value="0" min="0" step="10" /></div></div>'+
+                  '<div class="field"><label for="cc-limit">'+t('cc.b.l.limit')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-limit" inputmode="decimal" value="2000" min="0" step="100" /></div></div>'+
+                '</div>'+
+                '<div class="field-row">'+
+                  '<div class="field"><label for="cc-addl">'+t('cc.b.l.addl')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-addl" inputmode="decimal" value="0" min="0" step="10" /></div></div>'+
+                  '<div class="field"><label for="cc-fee">'+t('cc.b.l.fee')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-fee" inputmode="decimal" value="0" min="0" step="5" /></div></div>'+
+                '</div>'+
+                '<button type="button" class="btn btn-primary" id="cc-calc-btn" style="margin-top:0.4rem;">'+t('cc.b.calc')+'</button>'+
+                '<div class="cc-wi-row"><span class="wi-lbl">'+t('cc.b.wi')+'</span>'+
+                  '<button type="button" class="cc-wi" data-wi="pay50">'+t('cc.b.wi.pay50')+'</button>'+
+                  '<button type="button" class="cc-wi" data-wi="full">'+t('cc.b.wi.full')+'</button>'+
+                  '<button type="button" class="cc-wi" data-wi="apr">'+t('cc.b.wi.apr')+'</button>'+
+                  '<button type="button" class="cc-wi reset" data-wi="reset">'+t('cc.b.wi.reset')+'</button>'+
+                '</div>'+
+              '</div>'+
+              '<div>'+
+                '<div class="cc-results">'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.start')+'</span><span class="val" id="cc-out-start">$0</span></div>'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.monthint')+'</span><span class="val" id="cc-out-monthint">$0</span></div>'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.months')+'</span><span class="val" id="cc-out-months">—</span></div>'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.totalpaid')+'</span><span class="val" id="cc-out-totalpaid">$0</span></div>'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.interest')+'</span><span class="val" id="cc-out-interest">$0</span></div>'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.fees')+'</span><span class="val" id="cc-out-fees">$0</span></div>'+
+                  '<div class="cc-res-row"><span class="lbl">'+t('cc.b.r.util')+'</span><span class="val" id="cc-out-util">0%</span></div>'+
+                  '<div class="cc-res-row hi"><span class="lbl">'+t('cc.b.r.final')+'</span><span class="val" id="cc-out-final">$0</span></div>'+
+                '</div>'+
+                '<div class="cc-bigcompare">'+
+                  '<div class="cc-big bought"><div class="cap">'+t('cc.b.bought')+'</div><div class="num" id="cc-big-bought">$0</div></div>'+
+                  '<div class="cc-big paid"><div class="cap">'+t('cc.b.reallypaid')+'</div><div class="num" id="cc-big-paid">$0</div></div>'+
+                '</div>'+
+                '<p class="cc-because">'+t('cc.b.because')+'</p>'+
+                '<div class="cc-warn" id="cc-warn">'+t('cc.b.never')+'</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+
+        /* F. Scenarios (right after the lab so it feeds it) */
+        '<div class="cc-sec"><div class="cc-sec-head"><span class="cc-sec-ico">🎯</span><h3 class="serif">'+t('cc.f.title')+'</h3></div>'+
+          '<p class="sub">'+t('cc.f.intro')+'</p>'+
+          '<div class="cc-scn-grid">'+scn+'</div>'+
+        '</div>'+
+
+        /* C. Minimum payment trap */
+        '<div class="cc-sec"><div class="cc-sec-head"><span class="cc-sec-ico">⚠️</span><h3 class="serif">'+t('cc.c.title')+'</h3></div>'+
+          '<p class="sub">'+t('cc.c.learn')+'</p>'+
+          '<div class="card"><p style="font-weight:700;color:var(--navy);margin-bottom:0.6rem;">'+t('cc.c.setup')+'</p>'+
+            '<div class="cc-scroll"><table class="cc-trap-table"><thead><tr><th>'+t('cc.c.col.pay')+'</th><th>'+t('cc.c.col.months')+'</th><th>'+t('cc.c.col.interest')+'</th><th>'+t('cc.c.col.total')+'</th></tr></thead><tbody>'+
+              '<tr class="worst"><td class="pay">$50'+t('cc.c.permonth')+'</td><td id="cc-trap-50-m"></td><td class="int" id="cc-trap-50-i"></td><td id="cc-trap-50-t"></td></tr>'+
+              '<tr><td class="pay">$100'+t('cc.c.permonth')+'</td><td id="cc-trap-100-m"></td><td class="int" id="cc-trap-100-i"></td><td id="cc-trap-100-t"></td></tr>'+
+              '<tr class="best"><td class="pay">$200'+t('cc.c.permonth')+'</td><td id="cc-trap-200-m"></td><td class="int" id="cc-trap-200-i"></td><td id="cc-trap-200-t"></td></tr>'+
+            '</tbody></table></div>'+
+            '<div class="cc-note">'+t('cc.c.note')+'</div>'+
+          '</div>'+
+        '</div>'+
+
+        /* D. Pay it off? */
+        '<div class="cc-sec"><div class="cc-sec-head"><span class="cc-sec-ico">🧾</span><h3 class="serif">'+t('cc.d.title')+'</h3></div>'+
+          ltcd([{n:3,key:'compare'},{n:4,key:'decide'}])+
+          '<div class="card"><p class="sub">'+t('cc.d.learn')+'</p>'+
+            '<div class="field-row">'+
+              '<div class="field"><label for="cc-po-balance">'+t('cc.d.l.balance')+'</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="cc-po-balance" inputmode="decimal" value="1000" min="0" step="10" /></div></div>'+
+              '<div class="field"><label for="cc-po-apr">'+t('cc.d.l.apr')+'</label><div class="input-suffix"><input type="number" id="cc-po-apr" inputmode="decimal" value="24.99" min="0" step="0.01" /><span class="sfx">%</span></div></div>'+
+            '</div>'+
+            '<div class="cc-payoff">'+
+              '<div class="cc-po good"><span class="dot"></span><div><div class="po-name">'+t('cc.d.opt.full')+'</div><div class="po-res">'+t('cc.d.res.full')+'</div></div></div>'+
+              '<div class="cc-po ok"><span class="dot"></span><div><div class="po-name">'+t('cc.d.opt.half')+'</div><div class="po-res" id="cc-po-half"></div></div></div>'+
+              '<div class="cc-po ok"><span class="dot"></span><div><div class="po-name">'+t('cc.d.opt.min')+'</div><div class="po-res" id="cc-po-min"></div></div></div>'+
+              '<div class="cc-po bad"><span class="dot"></span><div><div class="po-name">'+t('cc.d.opt.late')+'</div><div class="po-res">'+t('cc.d.res.late')+'</div></div></div>'+
+              '<div class="cc-po bad"><span class="dot"></span><div><div class="po-name">'+t('cc.d.opt.miss')+'</div><div class="po-res">'+t('cc.d.res.miss')+'</div></div></div>'+
+            '</div>'+
+            '<div class="cc-note">'+t('cc.d.decide')+'</div>'+
+          '</div>'+
+        '</div>'+
+
+        /* E. Utilization */
+        '<div class="cc-sec"><div class="cc-sec-head"><span class="cc-sec-ico">📊</span><h3 class="serif">'+t('cc.e.title')+'</h3></div>'+
+          '<div class="card"><p class="sub">'+t('cc.e.learn')+'</p>'+
+            '<label style="font-weight:600;color:var(--navy);">'+t('cc.e.limit')+'</label>'+
+            '<div class="cc-util-read"><span class="pct" id="cc-util-pct">30%</span></div>'+
+            '<div class="cc-util-bar"><div class="cc-util-fill" id="cc-util-fill"></div></div>'+
+            '<input type="range" id="cc-util-slider" class="cc-range" min="0" max="2000" step="50" value="600" />'+
+            '<div class="cc-util-marks"><span>$0</span><span>'+t('cc.e.charged')+': <b id="cc-util-amt">$600</b></span><span>$2,000</span></div>'+
+            '<p style="margin-top:0.7rem;font-weight:600;" id="cc-util-using"></p>'+
+            '<p style="font-size:0.9rem;color:var(--muted);" id="cc-util-msg"></p>'+
+            '<div class="cc-note">'+t('cc.e.note')+'</div>'+
+          '</div>'+
+        '</div>'+
+
+        /* G. Debit vs credit */
+        '<div class="cc-sec"><div class="cc-sec-head"><span class="cc-sec-ico">🔁</span><h3 class="serif">'+t('cc.g.title')+'</h3></div>'+
+          '<p class="sub">'+t('cc.g.learn')+'</p>'+
+          '<div class="card"><div class="cc-scroll"><table class="cc-dvc"><thead><tr><th></th><th class="d">'+t('cc.g.debit')+'<span class="sub">'+t('cc.g.debit.sub')+'</span></th><th class="c">'+t('cc.g.credit')+'<span class="sub">'+t('cc.g.credit.sub')+'</span></th></tr></thead><tbody>'+dvc+'</tbody></table></div>'+
+            '<div class="cc-note">'+t('cc.g.note')+'</div>'+
+          '</div>'+
+        '</div>'+
+
+      '</div>'+
+    '</section>';
+  },
+  init(){
+    ccRunLab();
+    [50,100,200].forEach(function(p){ var res=ccAmortize(1200,29.99,p,0,0); ccSet('cc-trap-'+p+'-m', res.months); ccSet('cc-trap-'+p+'-i', fmt$(res.totalInterest)); ccSet('cc-trap-'+p+'-t', fmt$(res.totalPaid)); });
+    ccRunPayoff();
+    ccUtil();
+    var btn=document.getElementById('cc-calc-btn'); if(btn) btn.addEventListener('click', ccRunLab);
+    ['cc-purchase','cc-balance','cc-apr','cc-limit','cc-payment','cc-addl','cc-fee'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', ccRunLab); });
+    ['cc-po-balance','cc-po-apr'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', ccRunPayoff); });
+    var sl=document.getElementById('cc-util-slider'); if(sl) sl.addEventListener('input', ccUtil);
+    document.querySelectorAll('#tool-creditcards .cc-wi').forEach(function(b){ b.addEventListener('click', function(){
+      var wi=b.dataset.wi;
+      if(wi==='pay50') ccSetVal('cc-payment', ccGet('cc-payment')+50);
+      else if(wi==='full'){ var start=ccGet('cc-purchase')+ccGet('cc-balance'); ccSetVal('cc-payment', Math.ceil(ccPayoffPayment(start, ccGet('cc-apr'), 12))); }
+      else if(wi==='apr') ccSetVal('cc-apr', 29.99);
+      else if(wi==='reset') ccResetLab();
+      ccRunLab();
+    }); });
+    document.querySelectorAll('#tool-creditcards .cc-scn').forEach(function(b){ b.addEventListener('click', function(){ ccLoadScenario(b.dataset.scn); }); });
+  }
+};
+
+
+// ============= MODULE: SCENARIO EXPLORER (Life Scenarios) =============
+const SCN_STAGES = [
+  {k:'school',ic:'🎒'},{k:'college',ic:'🎓'},{k:'firstjob',ic:'💼'},{k:'ownplace',ic:'🏙️'},
+  {k:'household',ic:'💍'},{k:'family',ic:'👶'},{k:'homeowner',ic:'🏠'},{k:'midcareer',ic:'📈'},
+  {k:'preretire',ic:'🌅'},{k:'retire',ic:'🏖️'}
+];
+const SCN_TOPICS = ['income','budgeting','banking','credit','debt','cars','housing','education','insurance','saving','investing','family','retirement'];
+let SCN_FILTER = { stage:'all', topic:'all', time:'all' };
+
+function scnBigPurchase(view){
+  switchTool('bigpurchases');
+  setTimeout(function(){ var fr=document.getElementById('bp-iframe'); if(fr&&fr.contentWindow){ try{ fr.contentWindow.postMessage({type:'rise-tab', module:view}, '*'); }catch(e){} } }, 450);
+}
+
+// range field helpers
+function scnFmt(fld,val){
+  if(fld.fmt==='money') return fmt$(val);
+  if(fld.fmt==='pct') return val+'%';
+  if(fld.fmt==='mo') return val+' '+t('scn.firstcar.mo');
+  return ''+val;
+}
+function scnFieldHTML(fld){
+  return '<div class="scn-field"><label>'+t(fld.labelKey)+' <span class="scn-fval" id="fv-'+fld.id+'">'+scnFmt(fld,fld.val)+'</span></label>'+
+    '<input type="range" class="cc-range" id="'+fld.id+'" min="'+fld.min+'" max="'+fld.max+'" step="'+fld.step+'" value="'+fld.val+'"></div>';
+}
+
+const SCN_LIB = [
+  { id:'phone', ic:'📱', type:'link', stages:['school','college','firstjob'], topics:['credit','debt'], time:3, go:function(){ switchTool('creditcards'); ccLoadScenario('phone'); } },
+  { id:'startsaving', ic:'🌱', type:'calc', stages:['school','college'], topics:['saving','investing'], time:4,
+    fields:[ {id:'ss-m',key:'monthly',labelKey:'scn.startsaving.f.monthly',min:10,max:500,step:10,val:100,fmt:'money'},
+             {id:'ss-age',key:'age',labelKey:'scn.startsaving.f.age',min:15,max:45,step:1,val:27,fmt:'int'} ],
+    compute:function(v){ var m=v['ss-m'],start=v['ss-age'],end=65,r=0.06/12; function fv(months){return months>0? m*((Math.pow(1+r,months)-1)/r):0;} var months=Math.max(0,(end-start)*12); var total=fv(months),contrib=m*months;
+      return {rows:[ {label:t('scn.startsaving.r.total'),val:fmt$(total),hi:true},{label:t('scn.startsaving.r.contrib'),val:fmt$(contrib)},{label:t('scn.startsaving.r.growth'),val:fmt$(total-contrib)},{label:t('scn.startsaving.r.at17'),val:fmt$(fv((end-17)*12))} ]}; } },
+  { id:'firstpay', ic:'🧾', type:'link', stages:['school','firstjob'], topics:['income','budgeting'], time:5, go:function(){ switchTool('paycheck'); } },
+  { id:'firstcar', ic:'🚙', type:'calc', stages:['college','firstjob','ownplace'], topics:['cars','budgeting'], time:5,
+    fields:[ {id:'fc-inc',key:'income',labelKey:'scn.firstcar.f.income',min:1000,max:8000,step:100,val:2800,fmt:'money'},
+             {id:'fc-price',key:'price',labelKey:'scn.firstcar.f.price',min:3000,max:60000,step:500,val:19500,fmt:'money'},
+             {id:'fc-down',key:'down',labelKey:'scn.firstcar.f.down',min:0,max:20000,step:250,val:2000,fmt:'money'},
+             {id:'fc-apr',key:'apr',labelKey:'scn.firstcar.f.apr',min:0,max:24,step:0.5,val:9,fmt:'pct'},
+             {id:'fc-term',key:'term',labelKey:'scn.firstcar.f.term',min:24,max:84,step:12,val:60,fmt:'mo'} ],
+    compute:function(v){ var loan=Math.max(0,v['fc-price']-v['fc-down']),r=(v['fc-apr']/100)/12,term=v['fc-term']; var pay= r>0? loan*(r*Math.pow(1+r,term))/(Math.pow(1+r,term)-1):(term>0?loan/term:0); var pct=v['fc-inc']>0?Math.round(pay/v['fc-inc']*100):0; var note=pct<=10?t('scn.firstcar.v.good'):(pct<=15?t('scn.firstcar.v.ok'):t('scn.firstcar.v.high'));
+      return {rows:[ {label:t('scn.firstcar.r.pay'),val:fmt$d(pay),hi:true},{label:t('scn.firstcar.r.pct'),val:pct+'%'} ], note:note}; } },
+  { id:'car19500', ic:'🚗', type:'link', stages:['firstjob','ownplace'], topics:['cars'], time:8, go:function(){ scnBigPurchase('car'); } },
+  { id:'mincard', ic:'💳', type:'link', stages:['college','firstjob'], topics:['debt','credit'], time:5, go:function(){ switchTool('creditcards'); ccLoadScenario('laptop'); } },
+  { id:'roommate', ic:'🛏️', type:'calc', stages:['college','ownplace'], topics:['housing','budgeting'], time:3,
+    fields:[ {id:'rm-rent',key:'rent',labelKey:'scn.roommate.f.rent',min:500,max:4000,step:50,val:1500,fmt:'money'},
+             {id:'rm-util',key:'util',labelKey:'scn.roommate.f.util',min:50,max:600,step:25,val:200,fmt:'money'},
+             {id:'rm-ppl',key:'people',labelKey:'scn.roommate.f.people',min:1,max:4,step:1,val:2,fmt:'int'} ],
+    compute:function(v){ var alone=v['rm-rent']+v['rm-util']; var share=v['rm-ppl']>0?alone/v['rm-ppl']:alone; var save=alone-share;
+      return {rows:[ {label:t('scn.roommate.r.alone'),val:fmt$(alone)},{label:t('scn.roommate.r.shared'),val:fmt$(share),hi:true},{label:t('scn.roommate.r.save'),val:fmt$(save)},{label:t('scn.roommate.r.year'),val:fmt$(save*12)} ]}; } },
+  { id:'emergency', ic:'🛟', type:'calc', stages:['firstjob','ownplace','household','midcareer'], topics:['saving','budgeting'], time:3,
+    fields:[ {id:'em-goal',key:'goal',labelKey:'scn.emergency.f.goal',min:100,max:5000,step:100,val:1000,fmt:'money'},
+             {id:'em-pm',key:'permonth',labelKey:'scn.emergency.f.permonth',min:10,max:1000,step:10,val:100,fmt:'money'} ],
+    compute:function(v){ var months=v['em-pm']>0?Math.ceil(v['em-goal']/v['em-pm']):0; var first=v['em-pm']>0?Math.ceil(500/v['em-pm']):0;
+      return {rows:[ {label:t('scn.emergency.r.months'),val:t('scn.extra100.mo',{n:months}),hi:true},{label:t('scn.emergency.r.first'),val:t('scn.extra100.mo',{n:first})} ]}; } },
+  { id:'extra100', ic:'💸', type:'calc', stages:['firstjob','household','midcareer'], topics:['debt'], time:4,
+    fields:[ {id:'ex-bal',key:'balance',labelKey:'scn.extra100.f.balance',min:500,max:20000,step:100,val:4000,fmt:'money'},
+             {id:'ex-apr',key:'apr',labelKey:'scn.extra100.f.apr',min:5,max:30,step:0.5,val:22,fmt:'pct'},
+             {id:'ex-pay',key:'pay',labelKey:'scn.extra100.f.pay',min:25,max:1000,step:25,val:150,fmt:'money'} ],
+    compute:function(v){ var base=ccAmortize(v['ex-bal'],v['ex-apr'],v['ex-pay'],0,0); var more=ccAmortize(v['ex-bal'],v['ex-apr'],v['ex-pay']+100,0,0); function mo(res){return res.paidOff?t('scn.extra100.mo',{n:res.months}):'600+';}
+      return {rows:[ {label:t('scn.extra100.r.base'),val:mo(base)+' · '+fmt$(base.totalInterest)},{label:t('scn.extra100.r.more'),val:mo(more)+' · '+fmt$(more.totalInterest),hi:true},{label:t('scn.extra100.r.saved'),val:fmt$(Math.max(0,base.totalInterest-more.totalInterest))},{label:t('scn.extra100.r.sooner'),val:(base.paidOff&&more.paidOff)?t('scn.extra100.mo',{n:Math.max(0,base.months-more.months)}):'—'} ]}; } },
+  { id:'medical', ic:'🏥', type:'link', stages:['ownplace','family'], topics:['debt'], time:4, go:function(){ switchTool('creditcards'); ccLoadScenario('medical'); } },
+  { id:'match401k', ic:'🏦', type:'calc', stages:['firstjob','midcareer'], topics:['retirement','investing'], time:4,
+    fields:[ {id:'mt-sal',key:'salary',labelKey:'scn.match401k.f.salary',min:20000,max:150000,step:1000,val:45000,fmt:'money'},
+             {id:'mt-you',key:'yourpct',labelKey:'scn.match401k.f.yourpct',min:0,max:15,step:1,val:3,fmt:'pct'},
+             {id:'mt-match',key:'matchpct',labelKey:'scn.match401k.f.matchpct',min:0,max:10,step:1,val:5,fmt:'pct'} ],
+    compute:function(v){ var you=v['mt-sal']*v['mt-you']/100; var cap=v['mt-sal']*v['mt-match']/100; var match=Math.min(you,cap); var left=Math.max(0,cap-match);
+      return {rows:[ {label:t('scn.match401k.r.you'),val:fmt$(you)},{label:t('scn.match401k.r.match'),val:fmt$(match),hi:true},{label:t('scn.match401k.r.total'),val:fmt$(you+match)},{label:t('scn.match401k.r.left'),val:fmt$(left)} ]}; } },
+  { id:'raise', ic:'📈', type:'calc', stages:['midcareer'], topics:['income','saving'], time:3,
+    fields:[ {id:'rs-sal',key:'salary',labelKey:'scn.raise.f.salary',min:20000,max:150000,step:1000,val:50000,fmt:'money'},
+             {id:'rs-raise',key:'raise',labelKey:'scn.raise.f.raise',min:1,max:15,step:1,val:4,fmt:'pct'},
+             {id:'rs-save',key:'save',labelKey:'scn.raise.f.save',min:0,max:100,step:10,val:50,fmt:'pct'} ],
+    compute:function(v){ var extraMo=(v['rs-sal']*v['rs-raise']/100)/12; var saveMo=extraMo*v['rs-save']/100; var r=0.06/12,months=120; var fv=saveMo*((Math.pow(1+r,months)-1)/r);
+      return {rows:[ {label:t('scn.raise.r.extra'),val:fmt$d(extraMo)},{label:t('scn.raise.r.saving'),val:fmt$d(saveMo)},{label:t('scn.raise.r.tenyr'),val:fmt$(fv),hi:true} ]}; } },
+  { id:'rentbuy', ic:'🔑', type:'link', stages:['household','midcareer'], topics:['housing'], time:10, go:function(){ scnBigPurchase('rent'); } },
+  { id:'house', ic:'🏡', type:'link', stages:['household','homeowner'], topics:['housing'], time:10, go:function(){ scnBigPurchase('house'); } },
+  { id:'refi', ic:'🔄', type:'link', stages:['homeowner','midcareer'], topics:['housing','debt'], time:6, go:function(){ scnBigPurchase('refi'); } },
+  { id:'college529', ic:'🎓', type:'calc', stages:['family','household'], topics:['education','saving'], time:5,
+    fields:[ {id:'cl-age',key:'age',labelKey:'scn.college529.f.age',min:0,max:17,step:1,val:3,fmt:'int'},
+             {id:'cl-pm',key:'permonth',labelKey:'scn.college529.f.permonth',min:10,max:1000,step:10,val:100,fmt:'money'} ],
+    compute:function(v){ var months=Math.max(0,(18-v['cl-age'])*12); var r=0.06/12; var total=months>0?v['cl-pm']*((Math.pow(1+r,months)-1)/r):0; var contrib=v['cl-pm']*months;
+      return {rows:[ {label:t('scn.college529.r.total'),val:fmt$(total),hi:true},{label:t('scn.college529.r.contrib'),val:fmt$(contrib)},{label:t('scn.college529.r.growth'),val:fmt$(total-contrib)} ]}; } },
+  { id:'socialsecurity', ic:'📅', type:'calc', stages:['preretire','retire'], topics:['retirement'], time:6,
+    fields:[ {id:'ssq-full',key:'full',labelKey:'scn.socialsecurity.f.full',min:800,max:4000,step:50,val:2000,fmt:'money'},
+             {id:'ssq-age',key:'age',labelKey:'scn.socialsecurity.f.age',min:62,max:70,step:1,val:67,fmt:'int'} ],
+    compute:function(v){ var age=v['ssq-age'],full=v['ssq-full'],factor; if(age<67){var me=(67-age)*12; var red=Math.min(36,me)*(5/9)/100+Math.max(0,me-36)*(5/12)/100; factor=1-red;} else if(age>67){factor=1+(age-67)*0.08;} else factor=1; var monthly=full*factor; var diff=monthly-full;
+      return {rows:[ {label:t('scn.socialsecurity.r.monthly'),val:fmt$d(monthly),hi:true},{label:t('scn.socialsecurity.r.year'),val:fmt$(monthly*12)},{label:t('scn.socialsecurity.r.vs67'),val:(diff>=0?'+':'')+fmt$d(diff)+'/mo'} ]}; } },
+  { id:'fixedincome', ic:'🧮', type:'calc', stages:['preretire','retire'], topics:['budgeting'], time:5,
+    fields:[ {id:'fi-inc',key:'income',labelKey:'scn.fixedincome.f.income',min:800,max:6000,step:50,val:2200,fmt:'money'},
+             {id:'fi-house',key:'housing',labelKey:'scn.fixedincome.f.housing',min:0,max:3000,step:50,val:900,fmt:'money'},
+             {id:'fi-food',key:'food',labelKey:'scn.fixedincome.f.food',min:0,max:1500,step:25,val:500,fmt:'money'},
+             {id:'fi-meds',key:'meds',labelKey:'scn.fixedincome.f.meds',min:0,max:1500,step:25,val:300,fmt:'money'},
+             {id:'fi-other',key:'other',labelKey:'scn.fixedincome.f.other',min:0,max:2000,step:25,val:350,fmt:'money'} ],
+    compute:function(v){ var spent=v['fi-house']+v['fi-food']+v['fi-meds']+v['fi-other']; var left=v['fi-inc']-spent; var note=left>=200?t('scn.fixedincome.v.good'):(left>=0?t('scn.fixedincome.v.tight'):t('scn.fixedincome.v.over'));
+      return {rows:[ {label:t('scn.fixedincome.r.spent'),val:fmt$(spent)},{label:t('scn.fixedincome.r.left'),val:fmt$(left),hi:true} ], note:note}; } }
+];
+
+function scnById(id){ for(var i=0;i<SCN_LIB.length;i++){ if(SCN_LIB[i].id===id) return SCN_LIB[i]; } return null; }
+function scnTimeBucket(m){ return m<=5?'short':(m<=10?'med':'long'); }
+function scnMatch(sc){
+  if(SCN_FILTER.stage!=='all' && sc.stages.indexOf(SCN_FILTER.stage)===-1) return false;
+  if(SCN_FILTER.topic!=='all' && sc.topics.indexOf(SCN_FILTER.topic)===-1) return false;
+  if(SCN_FILTER.time!=='all' && scnTimeBucket(sc.time)!==SCN_FILTER.time) return false;
+  return true;
+}
+function scnRun(sc){
+  var v={}; sc.fields.forEach(function(f){ var el=document.getElementById(f.id); v[f.id]=el?(parseFloat(el.value)||0):f.val; var d=document.getElementById('fv-'+f.id); if(d) d.textContent=scnFmt(f,v[f.id]); });
+  var out=sc.compute(v);
+  var res=document.getElementById('scn-results'); if(res) res.innerHTML=out.rows.map(function(r){ return '<div class="cc-res-row'+(r.hi?' hi':'')+'"><span class="lbl">'+r.label+'</span><span class="val">'+r.val+'</span></div>'; }).join('');
+  var note=document.getElementById('scn-note'); if(note){ if(out.note){ note.style.display='block'; note.textContent=out.note; } else note.style.display='none'; }
+}
+function scnOpen(sc){
+  var panel=document.getElementById('scn-panel'), browse=document.getElementById('scn-browse'); if(!panel) return;
+  var fields=sc.fields.map(scnFieldHTML).join('');
+  panel.innerHTML =
+    '<button type="button" class="scn-back" id="scn-back">'+t('scn.back')+'</button>'+
+    '<div class="tool-head" style="margin-top:0.7rem"><div class="eyebrow">'+sc.ic+'&nbsp; '+t('scn.'+sc.id+'.title')+'</div><hr class="rule-gold"/><p class="lede">'+t('scn.'+sc.id+'.hook')+'</p></div>'+
+    '<div class="cc-intro-box"><span class="cc-badge"><span class="n">1</span>'+t('scn.learn')+'</span><p style="margin-top:0.5rem">'+t('scn.'+sc.id+'.learn')+'</p></div>'+
+    '<div class="card"><div class="scn-run"><div class="scn-fields">'+fields+'</div>'+
+      '<div><div class="cc-results" id="scn-results"></div><div class="cc-note" id="scn-note" style="display:none;margin-top:0.9rem"></div></div></div></div>'+
+    '<div class="cc-note" style="border-left-color:var(--gold);margin-top:1rem"><b>'+t('scn.decide')+':</b> '+t('scn.'+sc.id+'.decide')+'</div>';
+  browse.style.display='none'; panel.style.display='block';
+  sc.fields.forEach(function(f){ var el=document.getElementById(f.id); if(el) el.addEventListener('input',function(){ scnRun(sc); }); });
+  var bk=document.getElementById('scn-back'); if(bk) bk.addEventListener('click', scnBack);
+  scnRun(sc);
+  var tn=document.querySelector('.toolnav'); window.scrollTo({ top: tn?tn.offsetTop-40:0, behavior:'smooth' });
+}
+function scnBack(){ var p=document.getElementById('scn-panel'),b=document.getElementById('scn-browse'); if(p)p.style.display='none'; if(b)b.style.display='block'; }
+function scnRenderGrid(){
+  var grid=document.getElementById('scn-grid'); if(!grid) return;
+  var list=SCN_LIB.filter(scnMatch);
+  var cnt=document.getElementById('scn-count'); if(cnt) cnt.textContent=t('scn.count',{n:list.length});
+  if(!list.length){ grid.innerHTML='<p class="scn-empty">'+t('scn.none')+'</p>'; return; }
+  grid.innerHTML=list.map(function(sc){
+    var act = sc.type==='link' ? t('scn.open') : t('scn.start');
+    return '<button type="button" class="scn-card" data-id="'+sc.id+'"><div class="scn-ic">'+sc.ic+'</div>'+
+      '<div class="scn-tt">'+t('scn.'+sc.id+'.title')+'</div><div class="scn-hook">'+t('scn.'+sc.id+'.hook')+'</div>'+
+      '<div class="scn-foot"><span class="scn-time">&#9201; '+t('scn.mins',{n:sc.time})+'</span><span class="scn-go">'+act+' &rarr;</span></div></button>';
+  }).join('');
+  grid.querySelectorAll('.scn-card').forEach(function(b){ b.addEventListener('click',function(){ var sc=scnById(b.dataset.id); if(!sc)return; if(sc.type==='link') sc.go(); else scnOpen(sc); }); });
+}
+
+MODULES.scenarios = {
+  id:'scenarios', icon:'🧭', category:'life', phase:1,
+  render(){
+    var stageChips = '<button type="button" class="scn-chip active" data-stage="all">'+t('scn.all')+'</button>'+
+      SCN_STAGES.map(function(s){ return '<button type="button" class="scn-chip" data-stage="'+s.k+'"><span>'+s.ic+'</span>'+t('scn.stage.'+s.k)+'</button>'; }).join('');
+    var timeChips = '<button type="button" class="scn-chip active" data-time="all">'+t('scn.all')+'</button>'+
+      ['short','med','long'].map(function(k){ return '<button type="button" class="scn-chip" data-time="'+k+'">'+t('scn.time.'+k)+'</button>'; }).join('');
+    var topicOpts = '<option value="all">'+t('scn.all')+'</option>'+SCN_TOPICS.map(function(tp){ return '<option value="'+tp+'">'+t('scn.topic.'+tp)+'</option>'; }).join('');
+    return ''+
+    '<section class="tool active" id="tool-scenarios" role="tabpanel">'+
+      '<div class="container-narrow">'+
+        '<div class="tool-head"><div class="eyebrow">'+t('scn.tag')+'</div><hr class="rule-gold"/><h2 class="serif">'+t('scn.title')+'</h2><p class="lede">'+t('scn.lede')+'</p></div>'+
+        '<div id="scn-browse">'+
+          '<div class="scn-controls">'+
+            '<p class="scn-ctl-lbl">'+t('scn.where')+'</p>'+
+            '<div class="scn-chiprow" id="scn-stagechips">'+stageChips+'</div>'+
+            '<div class="scn-row2">'+
+              '<div class="scn-sel"><p class="scn-ctl-lbl">'+t('scn.topicfilter')+'</p><select id="scn-topic">'+topicOpts+'</select></div>'+
+              '<div class="scn-sel"><p class="scn-ctl-lbl">'+t('scn.timefilter')+'</p><div class="scn-chiprow" id="scn-timechips" style="margin-bottom:0">'+timeChips+'</div></div>'+
+            '</div>'+
+          '</div>'+
+          '<p class="scn-count" id="scn-count"></p>'+
+          '<div class="scn-grid" id="scn-grid"></div>'+
+        '</div>'+
+        '<div id="scn-panel" style="display:none"></div>'+
+      '</div>'+
+    '</section>';
+  },
+  init(){
+    SCN_FILTER = { stage:'all', topic:'all', time:'all' };
+    scnRenderGrid();
+    document.querySelectorAll('#tool-scenarios .scn-chip[data-stage]').forEach(function(c){ c.addEventListener('click',function(){ SCN_FILTER.stage=c.dataset.stage; document.querySelectorAll('#tool-scenarios .scn-chip[data-stage]').forEach(function(x){ x.classList.toggle('active', x===c); }); scnRenderGrid(); }); });
+    document.querySelectorAll('#tool-scenarios .scn-chip[data-time]').forEach(function(c){ c.addEventListener('click',function(){ SCN_FILTER.time=c.dataset.time; document.querySelectorAll('#tool-scenarios .scn-chip[data-time]').forEach(function(x){ x.classList.toggle('active', x===c); }); scnRenderGrid(); }); });
+    var ts=document.getElementById('scn-topic'); if(ts) ts.addEventListener('change',function(){ SCN_FILTER.topic=ts.value; scnRenderGrid(); });
+  }
+};
 
 MODULES.jobmatch = {
   id: 'jobmatch', icon: '🔍', category: 'career', phase: 1,
@@ -2178,8 +3430,10 @@ function buildPresets() {
 function loadPreset(key) {
   const p = PRESETS[key];
   if (!p) return;
+  const prevInst = CONFIG && CONFIG.institutionType;
   CONFIG = JSON.parse(JSON.stringify(p));
   delete CONFIG.icon; delete CONFIG.name; delete CONFIG.desc;
+  CONFIG.institutionType = prevInst || DEFAULT_CONFIG.institutionType;
   saveConfig();
   syncCCInputs();
   buildModuleControls();
@@ -2857,7 +4111,7 @@ MODULES.goaltracker = {
 
           <div class="tip">
             <span class="tip-head">Pro tip — make it automatic</span>
-            <strong>The single most reliable savings trick:</strong> set up auto-transfer from checking to a separate savings account on payday. If you never see the money, you don't spend it. Most banks let you set this up in 2 minutes online.
+            <strong>The single most reliable savings trick:</strong> set up auto-transfer from checking to a separate savings account on payday. If you never see the money, you don't spend it. Most financial institutions let you set this up in 2 minutes online.
           </div>
         </div>
       </section>
@@ -3153,7 +4407,7 @@ MODULES.banking = {
             <div class="eyebrow">Tool 09</div>
             <hr class="rule-gold" />
             <h2 class="serif">Banking 101</h2>
-            <p class="lede">If you're paying to cash checks or constantly hit with overdraft fees, the bank is robbing you. This is how banking actually works — what to open, what to avoid, and how to get an account even if you've been turned down before.</p>
+            <p class="lede">If you're paying to cash checks or constantly hit with overdraft fees, you are losing money to fees. This is how banking actually works — what to open, what to avoid, and how to get an account even if you've been turned down before.</p>
           </div>
 
           <div class="card">
@@ -3168,12 +4422,12 @@ MODULES.banking = {
 
           <div class="card">
             <h3 class="serif">Account types — ranked best to worst</h3>
-            <p class="sub">For most people, a credit union or online bank wins. Here's the comparison.</p>
+            <p class="sub">For most people, a low-fee checking account wins. Here's the comparison.</p>
             <div style="display:grid;gap:0.7rem;">
               ${[
-                {icon:'🥇',name:'Local Credit Union',pros:'Lowest fees, best customer service, often forgive small mistakes, offer "PAL" small loans (max 28% APR), often have second-chance accounts.',cons:'Have to be a member (most accept anyone in your area).',best:'Best for: most people. Search "credit union near me" + your city.'},
-                {icon:'🥈',name:'Online bank or fintech account',pros:'Often no monthly fees, no minimum balance, may pay you 1-2 days early, mobile-first app.',cons:'No physical branch (do everything via app or by mail).',best:'Best for: comfortable with phones, don\'t need cash deposits often.'},
-                {icon:'🥉',name:'Peer-to-peer payment app with debit card',pros:'Quick to set up, no minimum, easy peer-to-peer.',cons:'Limited consumer protections, scams targeting users, can\'t replace a real bank for paychecks.',best:'Best for: secondary account for friends/family transfers, NOT for direct deposit of your only paycheck.'},
+                {icon:'🥇',name:'Community institution',pros:'Lowest fees, best customer service, often forgive small mistakes, offer "PAL" small loans (max 28% APR), often have second-chance accounts.',cons:'Have to be a member (most accept anyone in your area).',best:'Best for: most people. Compare low-fee checking accounts available in your area.'},
+                {icon:'🥈',name:'Online-only checking account or fintech account',pros:'Often no monthly fees, no minimum balance, may pay you 1-2 days early, mobile-first app.',cons:'No physical branch (do everything via app or by mail).',best:'Best for: comfortable with phones, don\'t need cash deposits often.'},
+                {icon:'🥉',name:'Peer-to-peer payment app with debit card',pros:'Quick to set up, no minimum, easy peer-to-peer.',cons:'Limited consumer protections, scams targeting users, can\'t replace a primary checking account for paychecks.',best:'Best for: secondary account for friends/family transfers, NOT for direct deposit of your only paycheck.'},
                 {icon:'❌',name:'High-fee checking account',pros:'May offer lots of branches and ATMs.',cons:'$5-$15/month fees if balance is low, $35 overdraft fees, less forgiving on mistakes.',best:'Avoid unless: you\'ll always keep the minimum balance to waive the monthly fee.'}
               ].map(t => `<div style="background:var(--paper-light);border:1px solid var(--rule);border-radius:2px;padding:1rem 1.2rem;"><div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.5rem;"><span style="font-size:1.5rem;">${t.icon}</span><strong style="color:var(--navy);font-size:1.05rem;">${t.name}</strong></div><div style="font-size:0.88rem;line-height:1.55;color:var(--ink);"><strong style="color:var(--green);">Pros:</strong> ${t.pros}<br/><strong style="color:var(--red);">Cons:</strong> ${t.cons}<br/><em style="color:var(--gold);font-weight:600;">${t.best}</em></div></div>`).join('')}
             </div>
@@ -3183,20 +4437,20 @@ MODULES.banking = {
             <h3 class="serif">Been turned down? Get a "Second Chance" account</h3>
             <p class="sub">If a bank turned you down, it's probably ChexSystems — a database that tracks closed accounts, overdrafts, and bounced checks. It stays on your record for 5 years. But several banks ignore it.</p>
             <div class="resources">
-              ${[['✅','Account that blocks overdrafts','Some banks and credit unions offer accounts that simply decline transactions if there\'s no money — no $35 fees. Often $0-$5/month, waivable. Ask your bank about second-chance or "checkless" options.'],['✅','Online bank with no ChexSystems check','Several online banks open checking accounts without running ChexSystems. No monthly fees, no minimums. Open online in minutes.'],['✅','Fintech account with no credit or ChexSystems check','Some fintech accounts open for anyone, free, with no credit check. Often pay you 1-2 days early. Online only.'],['✅','Local credit union','Many credit unions don\'t use ChexSystems for membership. Always ask.'],['📞','Get your ChexSystems report','Free once a year at chexsystems.com. Dispute errors.']].map(([i,n,d])=>`<div class="resource"><span class="ico">${i}</span><div><div class="name">${n}</div><div class="desc">${d}</div></div></div>`).join('')}
+              ${[['✅','Account that blocks overdrafts','Some financial institutions offer accounts that simply decline transactions if there\'s no money — no $35 fees. Often $0-$5/month, waivable. Ask your financial institution about second-chance or "checkless" options.'],['✅','Online bank with no ChexSystems check','Several online banks open checking accounts without running ChexSystems. No monthly fees, no minimums. Open online in minutes.'],['✅','Fintech account with no credit or ChexSystems check','Some fintech accounts open for anyone, free, with no credit check. Often pay you 1-2 days early. Online only.'],['✅','Community institution','Many community institutions don\'t use ChexSystems for membership. Always ask.'],['📞','Get your ChexSystems report','Free once a year at chexsystems.com. Dispute errors.']].map(([i,n,d])=>`<div class="resource"><span class="ico">${i}</span><div><div class="name">${n}</div><div class="desc">${d}</div></div></div>`).join('')}
             </div>
           </div>
 
           <div class="card">
             <h3 class="serif">Avoiding overdraft fees</h3>
             <ul style="list-style:none;padding:0;">
-              ${[['Turn OFF overdraft "protection."','Sounds protective. Actually means the bank lets you spend money you don\'t have, then charges you $35. Call your bank and turn it off — purchases will just get declined instead. Way better than a $35 fee on a $4 coffee.'],['Set low-balance alerts.','Most banks let you set free text alerts when balance drops below $X. Free, easy, prevents most overdrafts.'],['Switch to an account that doesn\'t allow overdrafts at all.','Many credit unions, online banks, and fintech accounts just decline transactions if there\'s no money. No fee, just no purchase. Ask your bank or credit union which of their accounts blocks overdrafts.'],['If you do get hit, call and ask for a refund.','Banks will often waive the first overdraft fee per year if you call and ask politely. "I noticed an overdraft charge — could you waive it as a one-time courtesy?" Works ~70% of the time.']].map(([t,d])=>`<li style="padding:0.7rem 0;border-top:1px solid var(--rule-soft);display:flex;gap:0.7rem;"><span style="color:var(--gold);font-size:1.2rem;">▶</span><div><strong>${t}</strong> ${d}</div></li>`).join('')}
+              ${[['Turn OFF overdraft "protection."','Sounds protective. Actually means the bank lets you spend money you don\'t have, then charges you $35. Call your financial institution and turn it off — purchases will just get declined instead. Way better than a $35 fee on a $4 coffee.'],['Set low-balance alerts.','Most banks let you set free text alerts when balance drops below $X. Free, easy, prevents most overdrafts.'],['Switch to an account that doesn\'t allow overdrafts at all.','Many financial institutions offer accounts that just decline transactions if there\'s no money. No fee, just no purchase. Ask your financial institution which of their accounts blocks overdrafts.'],['If you do get hit, call and ask for a refund.','Banks will often waive the first overdraft fee per year if you call and ask politely. "I noticed an overdraft charge — could you waive it as a one-time courtesy?" Works ~70% of the time.']].map(([t,d])=>`<li style="padding:0.7rem 0;border-top:1px solid var(--rule-soft);display:flex;gap:0.7rem;"><span style="color:var(--gold);font-size:1.2rem;">▶</span><div><strong>${t}</strong> ${d}</div></li>`).join('')}
             </ul>
           </div>
 
           <div class="tip">
             <span class="tip-head">First step</span>
-            <strong>If you don't have a checking account right now,</strong> open one online today — your local credit union, an online bank, or a fintech account. Takes 10 minutes. Then start direct deposit on your next paycheck. That alone saves most people $300-$1,000/year vs. cashing checks.
+            <strong>If you don't have a checking account right now,</strong> open one online today — a checking account from a credit union, an online-only account, or a fintech account. Takes 10 minutes. Then start direct deposit on your next paycheck. That alone saves most people $300-$1,000/year vs. cashing checks.
           </div>
         </div>
       </section>
@@ -3217,7 +4471,7 @@ function calcUnbanked() {
     <div class="result-light" style="margin-top:1.4rem;">
       <h4 class="serif">What check cashing actually costs you</h4>
       <div class="big-num warn mono">${fmt$(annualFee)}/yr</div>
-      <div class="small" style="color:var(--muted);font-size:0.9rem;">paid to check cashing places — for a service that\'s free at any bank or credit union</div>
+      <div class="small" style="color:var(--muted);font-size:0.9rem;">paid to check cashing places — for a service that\'s free at almost any financial institution</div>
       <p style="margin-top:1rem;font-size:0.92rem;line-height:1.55;"><strong>That\'s ${fmt$(monthlyFee)}/month.</strong> Over 5 years, that\'s ${fmt$(annualFee * 5)} you could have kept. Or — saving that into an account at modest interest, ${fmt$(annualFee * 5.3)}+ after compounding. Same paycheck. No different work. Just where you cash it.</p>
     </div>
   `;
@@ -3281,7 +4535,7 @@ const BIGDEC_SCENARIOS = [
     setup: "Transmission. Mechanic says $1,800. Your car is worth $4,500. You have $740 in savings (plus whatever you\'ve added). You need the car for work.",
     choices: [
       { label: 'Pay cash + payment plan with the shop', cash: -740, credit: 0, stress: -1, feedback: "Most shops will do this if you ask. Half down, rest over 60-90 days, often interest-free. ALWAYS ask before assuming you can\'t afford the fix." },
-      { label: 'Take a personal loan from a credit union ($1,800)', cash: 0, credit: -2, stress: 0, feedback: "Often 9-15% APR, far better than credit cards. Get pre-approved BEFORE you need it — credit unions you\'re a member of will move quickly." },
+      { label: 'Take a small personal loan from a financial institution ($1,800)', cash: 0, credit: -2, stress: 0, feedback: "Often 9-15% APR, far better than credit cards. Get pre-approved BEFORE you need it — credit unions you\'re a member of will move quickly." },
       { label: 'Sell the car cheap + buy a $2K beater', cash: 2700, credit: 0, stress: -2, feedback: "Tempting but risky. \"Cheap\" cars often have hidden problems and put you back in this same situation in 3 months. If you do this, get a pre-purchase inspection ($100) — non-negotiable." },
       { label: 'Get a title loan to fix the car', cash: -1800, credit: -10, stress: -3, feedback: "300%+ APR. About 20% of title loan borrowers lose their car to repossession. The cure is worse than the disease." }
     ]
@@ -3436,10 +4690,10 @@ const SKILL_LESSONS = [
   { id: 'lease', icon: '🏠', title: 'How to read a lease (and what to push back on)', mins: 5, content: `<p><strong>Before you sign anything:</strong></p><ul><li><strong>Security deposit limits.</strong> Most states cap deposits at 1-2 months\' rent. If they\'re asking for more, that\'s often illegal — Google "[your state] security deposit limit."</li><li><strong>"Joint and several" liability.</strong> If you\'re signing with roommates, this means YOU are responsible for the full rent if anyone bails. Push back on this — ask for individual leases or remove the clause.</li><li><strong>Late fees.</strong> Most states cap these at 5-10% of rent. Anything more is challengeable.</li><li><strong>"Carpet cleaning fee" charged at move-out.</strong> Often illegal. Normal wear and tear is the landlord\'s responsibility, not yours.</li><li><strong>Auto-renewal clause.</strong> Some leases auto-renew if you don\'t give 60-90 days notice. Mark this on your calendar for 4 months out.</li><li><strong>Right to repair.</strong> Most states give tenants the right to deduct from rent if the landlord won\'t fix things. Know your state law.</li></ul><p><strong>What to negotiate:</strong> A 12-month vs. 6-month term (longer = more leverage on price), waiving application fees if you have good rental history, lowering pet deposits to refundable instead of non-refundable.</p><p><strong>What to document on move-in:</strong> Take 50+ photos. Walls, carpets, appliances, anything with marks. Email them to yourself with date stamp. This is your proof at move-out.</p>` },
   { id: 'collectors', icon: '📞', title: 'Dealing with debt collectors (your rights)', mins: 6, content: `<p><strong>The Fair Debt Collection Practices Act (FDCPA) protects you.</strong> Debt collectors break the law constantly because most people don\'t know their rights. Here\'s what they CAN\'T do:</p><ul><li>Call you before 8 AM or after 9 PM.</li><li>Call you at work after you tell them not to.</li><li>Tell your family, neighbors, or employer about the debt.</li><li>Threaten arrest, lawsuit they won\'t actually file, or wage garnishment they can\'t actually do.</li><li>Use profane or harassing language.</li><li>Continue contacting you after you send a written "cease and desist" letter.</li></ul><p><strong>What to do when they call:</strong></p><ol><li><strong>Don\'t admit the debt is yours.</strong> Even saying "yeah I owe that" can restart the statute of limitations.</li><li><strong>Demand validation in writing.</strong> Within 5 days they must send you written proof of the debt. Send a "debt validation letter" within 30 days requesting this. Many "debts" can\'t actually be validated — and unvalidated debts often get dropped.</li><li><strong>Check the statute of limitations.</strong> Most states bar debt collection lawsuits after 3-6 years from the last payment. After that, they can ask but can\'t sue.</li><li><strong>Know "zombie debt."</strong> Old debts that get sold to junk debt buyers for pennies. They sue hoping you don\'t show up. If you DO show up to court and they can\'t produce documentation, you win automatically.</li></ol><p><strong>If they violate FDCPA:</strong> File a complaint at consumerfinance.gov. You can sue for up to $1,000 + attorney fees. Lawyers will often take FDCPA cases on contingency (no money up front).</p>` },
   { id: 'medical', icon: '🏥', title: 'Negotiating medical bills', mins: 5, content: `<p><strong>Almost every medical bill is negotiable.</strong> Hospitals expect you to negotiate. Most people just pay the sticker price.</p><p><strong>Step 1 — Get an itemized bill.</strong> Call the billing department and request a "fully itemized" bill. About 30-50% of bills have errors, duplicate charges, or codes that can be challenged. Demand explanations for anything you don\'t understand.</p><p><strong>Step 2 — Apply for financial assistance.</strong> Every nonprofit hospital is required by law to have a financial assistance program. They almost never tell you about it. Ask: <em>"Do you have a charity care or financial assistance application I can fill out?"</em> Many people qualify for 100% forgiveness if income is below 200-400% of poverty line.</p><p><strong>Step 3 — Negotiate cash discount.</strong> Tell them: <em>"I can pay $X today as paid in full."</em> Hospitals often accept 25-50% of the bill if you pay immediately. Get the agreement IN WRITING before paying.</p><p><strong>Step 4 — Set up a payment plan if you can\'t do cash.</strong> Most hospitals offer 0% interest payment plans, even for years. Way better than putting it on a credit card or letting it go to collections.</p><p><strong>What NOT to do:</strong> Put medical bills on a credit card (you lose negotiating power). Ignore the bill (goes to collections, hurts credit). Take out a "medical loan" from a third-party financing company (often 25%+ APR).</p><p><strong>If it\'s already in collections:</strong> Settle for 30-50% of original. Get "pay for delete" in writing — meaning they remove it from your credit report when you pay. Many will agree to this.</p>` },
-  { id: 'usedcar', icon: '🚗', title: 'Buying a used car without getting screwed', mins: 7, content: `<p><strong>The single best investment: a $100-$150 pre-purchase inspection at an independent mechanic.</strong> NEVER skip this. Sellers who refuse inspection are hiding something.</p><p><strong>Before you go look:</strong></p><ul><li>Get pre-approved for a loan from a credit union or bank — NOT the dealer. Dealers mark up loan rates as a profit center. With pre-approval, you walk in as a "cash buyer" and have leverage.</li><li>Check the going price on Kelley Blue Book (kbb.com) and Edmunds. Print it.</li><li>Run the VIN at vehiclehistory.com (free) or Carfax (~$40). Check for accidents, salvage title, flood damage.</li></ul><p><strong>Red flags during the visit:</strong></p><ul><li><strong>"As-is" sales without inspection allowed.</strong> Walk away.</li><li><strong>Title is in someone else\'s name</strong> ("my brother is selling it for me"). Probably stolen or has liens.</li><li><strong>Dealer pressure on financing.</strong> "We can only offer this price if you finance through us." Walk away — that means the price is fake.</li><li><strong>"Dealer fees" added at signing.</strong> Up to ~$500 is normal. $1,000+ is a scam — refuse or walk.</li></ul><p><strong>Negotiating:</strong> Always negotiate on the OUT-THE-DOOR price (everything included), not monthly payment. Dealers love to bury fees in long-term loans. Start ~15% below asking. Walk away at least once — that\'s when real prices come out.</p><p><strong>After the test drive, before signing:</strong></p><ol><li>Take it to YOUR mechanic for the inspection. ($100-$150)</li><li>Confirm financing through your pre-approval.</li><li>Read the contract. The numbers should match what you negotiated. Watch for "doc fees," "VIN etching," "Nitrogen tires," "extended warranty" — all add-ons you can refuse.</li></ol>` },
+  { id: 'usedcar', icon: '🚗', title: 'Buying a used car without getting screwed', mins: 7, content: `<p><strong>The single best investment: a $100-$150 pre-purchase inspection at an independent mechanic.</strong> NEVER skip this. Sellers who refuse inspection are hiding something.</p><p><strong>Before you go look:</strong></p><ul><li>Get pre-approved for a loan from your financial institution — NOT the dealer. Dealers mark up loan rates as a profit center. With pre-approval, you walk in as a "cash buyer" and have leverage.</li><li>Check the going price on Kelley Blue Book (kbb.com) and Edmunds. Print it.</li><li>Run the VIN at vehiclehistory.com (free) or Carfax (~$40). Check for accidents, salvage title, flood damage.</li></ul><p><strong>Red flags during the visit:</strong></p><ul><li><strong>"As-is" sales without inspection allowed.</strong> Walk away.</li><li><strong>Title is in someone else\'s name</strong> ("my brother is selling it for me"). Probably stolen or has liens.</li><li><strong>Dealer pressure on financing.</strong> "We can only offer this price if you finance through us." Walk away — that means the price is fake.</li><li><strong>"Dealer fees" added at signing.</strong> Up to ~$500 is normal. $1,000+ is a scam — refuse or walk.</li></ul><p><strong>Negotiating:</strong> Always negotiate on the OUT-THE-DOOR price (everything included), not monthly payment. Dealers love to bury fees in long-term loans. Start ~15% below asking. Walk away at least once — that\'s when real prices come out.</p><p><strong>After the test drive, before signing:</strong></p><ol><li>Take it to YOUR mechanic for the inspection. ($100-$150)</li><li>Confirm financing through your pre-approval.</li><li>Read the contract. The numbers should match what you negotiated. Watch for "doc fees," "VIN etching," "Nitrogen tires," "extended warranty" — all add-ons you can refuse.</li></ol>` },
   { id: 'creditreport', icon: '📋', title: 'Reading and disputing your credit report', mins: 5, content: `<p><strong>Pull your free reports.</strong> Once a year, free, all three bureaus, at AnnualCreditReport.com. Don\'t use anything else — most "free credit report" sites sell your info or sign you up for monthly subscriptions.</p><p><strong>What to look for (in order):</strong></p><ol><li><strong>Personal info errors.</strong> Wrong addresses, employers, name variations. Easy fix but important.</li><li><strong>Accounts that aren\'t yours.</strong> If you see an account you don\'t recognize, that\'s either an error or identity theft. Dispute immediately.</li><li><strong>Late payments that weren\'t late.</strong> About 25% of credit reports have errors. Common one: a payment marked late when you actually paid on time. Easy to dispute with bank statements.</li><li><strong>Old debts past statute of limitations.</strong> Most negative items must come off after 7 years. Bankruptcies after 10. If something\'s older, it has to come off.</li><li><strong>Duplicate accounts.</strong> One debt sometimes gets sold and listed multiple times. Dispute duplicates.</li></ol><p><strong>How to dispute (free):</strong></p><p>Each bureau has online dispute portals (free):</p><ul><li>Equifax: equifax.com/personal/credit-report-services/credit-dispute/</li><li>Experian: experian.com/disputes/main.html</li><li>TransUnion: transunion.com/credit-disputes</li></ul><p>By law, the bureau has 30 days to investigate. If they can\'t verify the item, it MUST come off. Many disputes succeed simply because the original creditor doesn\'t respond in time.</p><p><strong>What "credit repair companies" do:</strong> Exactly the same dispute process you can do for free. Skip them — they charge $50-$150/month for a process that takes you 30 minutes.</p>` },
   { id: 'firstapt', icon: '🔑', title: 'First apartment checklist (renter)', mins: 4, content: `<p><strong>What you need to qualify:</strong></p><ul><li><strong>Income:</strong> Most landlords require 2.5-3x rent in monthly income. ($1,000 rent = $2,500-$3,000/mo income.)</li><li><strong>Credit score:</strong> Most want 600+. Below that, you\'ll likely need a co-signer or larger deposit.</li><li><strong>References:</strong> Past landlord (if any), employer, personal reference. Have phone numbers ready.</li><li><strong>Application fee:</strong> $30-$75 per adult on the lease. Non-refundable.</li></ul><p><strong>What you\'ll pay BEFORE move-in:</strong></p><ul><li>First month\'s rent</li><li>Security deposit (usually 1 month, sometimes 2)</li><li>Sometimes "last month\'s rent" prepaid</li><li>Pet deposit if applicable ($200-$500, half should be refundable)</li><li>Utility deposits (electricity, gas, water — $100-$300 if no credit history)</li></ul><p>Total to budget: <strong>2.5-4x monthly rent</strong> in cash before you can move in.</p><p><strong>If you have bad credit / no rental history:</strong></p><ul><li>Co-signer with strong credit (parent, sibling, employer).</li><li>Larger deposit (offer 2 months instead of 1).</li><li>Several months\' rent paid upfront.</li><li>Personal landlords (smaller buildings) are way more flexible than big complexes.</li><li>"Second-chance" rental programs exist in most metros — search "[your city] second chance apartment list."</li></ul><p><strong>Day 1 in the unit:</strong> Take 50+ photos of EVERY surface. Document every existing scratch, mark, or imperfection. Email them to yourself with date stamp. This is your evidence at move-out when the landlord tries to keep your deposit.</p>` },
-  { id: 'overdraft', icon: '💸', title: 'How overdraft fees work (and how to stop them)', mins: 4, content: `<p><strong>The setup:</strong> Most banks charge $35 when you spend more than what\'s in your account. Then they charge ANOTHER $35 if you make a second purchase before catching up. People often pay $200-$400 in fees in a single bad week.</p><p><strong>The trick banks use:</strong></p><ul><li><strong>"Reordering" transactions.</strong> Some banks process big transactions before small ones, even if the small ones happened first. This forces multiple overdrafts when you only would have had one. Several banks have been sued for this.</li><li><strong>"Available balance" lies.</strong> Pending transactions might not show, so you think you have more than you do.</li><li><strong>Transferring savings to checking automatically</strong> — and charging a $10 fee for the "service" each time.</li></ul><p><strong>How to stop overdraft fees forever:</strong></p><ol><li><strong>Call your bank and turn off "overdraft protection."</strong> When it\'s OFF, purchases just get declined when you don\'t have money. No fees. Just say "Please opt me out of overdraft for debit card and ATM transactions."</li><li><strong>Switch to an account that doesn\'t allow overdrafts.</strong> Many credit unions, online banks, and fintech accounts just decline transactions instead of charging. Ask your bank or credit union which of their accounts blocks overdrafts.</li><li><strong>Set low-balance alerts.</strong> Free text alerts when you drop below a set amount. Catches problems early.</li><li><strong>If you DO get hit with a fee, call and ask for a refund.</strong> "I noticed an overdraft fee — I\'ve been a good customer. Could you waive it as a one-time courtesy?" Works ~70% of the time. Banks have wide discretion to refund fees.</li></ol><p><strong>If you keep getting hit:</strong> The problem isn\'t willpower — it\'s the system. Switch banks. Period.</p>` },
+  { id: 'overdraft', icon: '💸', title: 'How overdraft fees work (and how to stop them)', mins: 4, content: `<p><strong>The setup:</strong> Most banks charge $35 when you spend more than what\'s in your account. Then they charge ANOTHER $35 if you make a second purchase before catching up. People often pay $200-$400 in fees in a single bad week.</p><p><strong>The trick banks use:</strong></p><ul><li><strong>"Reordering" transactions.</strong> Some banks process big transactions before small ones, even if the small ones happened first. This forces multiple overdrafts when you only would have had one. Several banks have been sued for this.</li><li><strong>"Available balance" lies.</strong> Pending transactions might not show, so you think you have more than you do.</li><li><strong>Transferring savings to checking automatically</strong> — and charging a $10 fee for the "service" each time.</li></ul><p><strong>How to stop overdraft fees forever:</strong></p><ol><li><strong>Call your financial institution and turn off "overdraft protection."</strong> When it\'s OFF, purchases just get declined when you don\'t have money. No fees. Just say "Please opt me out of overdraft for debit card and ATM transactions."</li><li><strong>Switch to an account that doesn\'t allow overdrafts.</strong> Many financial institutions offer accounts that just decline transactions instead of charging. Ask your financial institution which of their accounts blocks overdrafts.</li><li><strong>Set low-balance alerts.</strong> Free text alerts when you drop below a set amount. Catches problems early.</li><li><strong>If you DO get hit with a fee, call and ask for a refund.</strong> "I noticed an overdraft fee — I\'ve been a good customer. Could you waive it as a one-time courtesy?" Works ~70% of the time. Banks have wide discretion to refund fees.</li></ol><p><strong>If you keep getting hit:</strong> The problem isn\'t willpower — it\'s the system. Switch banks. Period.</p>` },
   { id: 'hardship', icon: '🆘', title: 'Calling bills you can\'t pay (script)', mins: 4, content: `<p><strong>The biggest mistake people make:</strong> Hide from bills they can\'t pay. The single best move is calling BEFORE the due date. Almost every company has a hardship program. Almost no one asks.</p><p><strong>The script (works for utilities, credit cards, hospitals, etc.):</strong></p><blockquote style="border-left:3px solid var(--gold);padding:0.8rem 1rem;background:var(--paper-warm);font-style:italic;font-size:0.95rem;line-height:1.6;border-radius:0 2px 2px 0;">"Hi, my account number is [____]. I want to let you know I\'m going through a hardship and can\'t pay the full amount due on [date]. I want to keep my account in good standing — what programs do you have for situations like this?"</blockquote><p><strong>What to expect them to offer:</strong></p><ul><li><strong>Payment plan</strong> — pay in installments, often with no interest or late fees.</li><li><strong>Deferred payment</strong> — skip a month, add it to the end of your loan/account.</li><li><strong>Reduced minimum</strong> — pay less than the full minimum for 1-3 months.</li><li><strong>Forbearance</strong> — common with student loans, sometimes credit cards.</li><li><strong>Reduced settlement</strong> — pay 50-70% of what\'s owed in lump sum, debt is closed.</li></ul><p><strong>Important rules:</strong></p><ul><li><strong>Get any agreement in WRITING</strong> (email confirmation, screenshot, mailed letter). Reps say a lot of things they don\'t document.</li><li><strong>Note the rep\'s name and ID number.</strong> If something gets disputed later, you have a paper trail.</li><li><strong>Don\'t agree to anything you can\'t actually do.</strong> A failed payment plan is worse than the original problem.</li></ul><p><strong>Specific scripts:</strong></p><ul><li><strong>Utilities:</strong> Most states require utilities to offer payment plans before disconnect. Mention LIHEAP if you qualify — they\'ll often pause action while LIHEAP processes.</li><li><strong>Hospital:</strong> "I want to apply for your financial assistance program." (Required at all nonprofit hospitals.)</li><li><strong>Credit card:</strong> "I\'d like to enroll in your hardship program." Many programs reduce APR to 0% for 6-12 months in exchange for closing the card.</li></ul>` }
 ];
 
@@ -3494,7 +4748,7 @@ MODULES.reentry = {
             <div class="eyebrow">Tool 13</div>
             <hr class="rule-gold" />
             <h2 class="serif">Reentry Toolkit</h2>
-            <p class="lede">Coming home is its own job. ID. Bank. Phone. Job. Housing. Benefits. Doing it all at once with limited money and a record. This is the practical sequence — what to do first, what to skip, who actually helps.</p>
+            <p class="lede">Coming home is its own job. ID. Bank account. Phone. Job. Housing. Benefits. Doing it all at once with limited money and a record. This is the practical sequence — what to do first, what to skip, who actually helps.</p>
           </div>
 
           <div class="card">
@@ -3502,7 +4756,7 @@ MODULES.reentry = {
             <p class="sub">Most reentry programs say "everything is urgent." It\'s not. This is the order that works.</p>
             <div class="roadmap">
               <div class="roadmap-step"><div><div class="meta">Day 1-3</div><h4>Get your ID</h4><p>You can\'t do anything else without it. Most facilities provide a release packet — DMV may waive ID fees if you have it. Bring birth certificate (or order one — vitalchek.com), Social Security card (request at ssa.gov, free), and proof of release.</p><div class="actions"><strong>Free help:</strong> Most reentry orgs and Goodwill locations help with ID specifically. Search "[your county] reentry ID assistance."</div></div></div>
-              <div class="roadmap-step"><div><div class="meta">Week 1</div><h4>Open a bank account</h4><p>Most banks check ChexSystems — but several don\'t. <strong>Local credit unions, online banks, and second-chance checking accounts</strong> often open accounts for people with records or ChexSystems issues. Online application takes 10 minutes. You\'ll need ID, SSN, and an address (halfway house is fine). Ask your bank or credit union about their second-chance options.</p><div class="actions"><strong>Avoid:</strong> Prepaid cards with monthly fees — they often quietly charge $5-$10/month and drain your balance.</div></div></div>
+              <div class="roadmap-step"><div><div class="meta">Week 1</div><h4>Open a checking account</h4><p>Most banks check ChexSystems — but several don\'t. <strong>Credit unions, online-only accounts, and second-chance checking accounts</strong> often open accounts for people with records or ChexSystems issues. Online application takes 10 minutes. You\'ll need ID, SSN, and an address (halfway house is fine). Ask your financial institution about their second-chance options.</p><div class="actions"><strong>Avoid:</strong> Prepaid cards with monthly fees — they often quietly charge $5-$10/month and drain your balance.</div></div></div>
               <div class="roadmap-step"><div><div class="meta">Week 1-2</div><h4>Apply for benefits</h4><p>SNAP, Medicaid, and (if eligible) TANF can usually be approved within 7-30 days. Apply for ALL OF THEM AT ONCE through your state\'s benefits portal or at benefits.gov. Don\'t skip Medicaid — every state covers people coming out of incarceration.</p><div class="actions"><strong>Lifeline phone:</strong> $9.25/month off + free phone from carriers like SafeLink or Assurance. Apply at lifelinesupport.org.</div></div></div>
               <div class="roadmap-step"><div><div class="meta">Week 2-4</div><h4>Job search</h4><p>Federal "Ban the Box" laws limit when employers can ask about records. Some states ban asking entirely. <strong>Companies known to hire people with records:</strong> Amazon, FedEx, UPS, Walmart, Home Depot, Lowe\'s, most restaurant chains, manufacturing, construction, trucking (CDL programs especially).</p><div class="actions"><strong>Federal Bonding Program</strong> insures employers up to $5,000 for hiring people with records — free to the employer, just need to ask your state\'s Workforce Development Board.</div></div></div>
               <div class="roadmap-step"><div><div class="meta">Month 2+</div><h4>Look into expungement / sealing</h4><p>Most states allow some criminal records to be sealed or expunged after a waiting period. Process varies wildly by state. Free legal help is often available through Legal Aid or law school clinics.</p><div class="actions"><strong>Check eligibility:</strong> Search "[your state] expungement eligibility tool" or call 211 — most states now have free online checkers.</div></div></div>
@@ -3518,7 +4772,7 @@ MODULES.reentry = {
 
           <div class="tip">
             <span class="tip-head">The hardest part is asking</span>
-            <strong>Most people who succeed at reentry have one thing in common:</strong> they asked for help repeatedly, even when it was uncomfortable, and they went where the help was. Reentry organizations exist in every metro. They know which employers are friendly, which landlords will rent, which banks will open accounts. Use them. That\'s what they\'re there for. <strong>Search "[your county] reentry program" or call 211.</strong>
+            <strong>Most people who succeed at reentry have one thing in common:</strong> they asked for help repeatedly, even when it was uncomfortable, and they went where the help was. Reentry organizations exist in every metro. They know which employers are friendly, which landlords will rent, which financial institutions will open accounts. Use them. That\'s what they\'re there for. <strong>Search "[your county] reentry program" or call 211.</strong>
           </div>
         </div>
       </section>
@@ -3678,7 +4932,7 @@ MODULES.veteran = {
             <ul style="list-style:none;padding:0;">
               ${[['Zero down payment.','Most home loans require 5-20%. VA loans require 0%. On a $250K home, that\'s $12,500-$50,000 you don\'t need upfront.'],['No private mortgage insurance (PMI).','Conventional loans charge $100-$300/month in PMI when you put less than 20% down. VA loans never charge PMI. Saves $1,200-$3,600/year.'],['Lower interest rates.','VA-backed loans typically run 0.25-0.50% lower than conventional. Saves tens of thousands over the life of the loan.'],['Reusable.','Sell the house? You can use the benefit again on your next one.'],['No prepayment penalties.','Pay off early without fees. Refinance whenever rates drop.']].map(([t,d])=>`<li style="padding:0.7rem 0;border-top:1px solid var(--rule-soft);display:flex;gap:0.7rem;"><span style="color:var(--gold);font-size:1.2rem;">▶</span><div><strong>${t}</strong> ${d}</div></li>`).join('')}
             </ul>
-            <p style="margin-top:1rem;font-size:0.92rem;"><strong>To get started:</strong> Request your Certificate of Eligibility (COE) at va.gov/housing-assistance/home-loans. Then shop with VA-approved lenders. Most major banks and credit unions offer VA loans.</p>
+            <p style="margin-top:1rem;font-size:0.92rem;"><strong>To get started:</strong> Request your Certificate of Eligibility (COE) at va.gov/housing-assistance/home-loans. Then shop with VA-approved lenders. Most major lenders offer VA loans.</p>
           </div>
 
           <div class="card">
@@ -4286,10 +5540,10 @@ ES_RENDERS.banking = function() {
           <div class="eyebrow">Herramienta 09</div>
           <hr class="rule-gold" />
           <h2 class="serif">Banca 101</h2>
-          <p class="lede">Si estás pagando para cobrar cheques o constantemente recibes cargos por sobregiro, el banco te está robando. Aquí está cómo funciona la banca realmente — qué abrir, qué evitar, y cómo conseguir una cuenta aunque te hayan rechazado antes.</p>
+          <p class="lede">Si estás pagando para cobrar cheques o constantemente recibes cargos por sobregiro, estás perdiendo dinero en cargos. Aquí está cómo funciona la banca realmente — qué abrir, qué evitar, y cómo conseguir una cuenta aunque te hayan rechazado antes.</p>
         </div>
         <div class="card">
-          <h3 class="serif">El costo de no tener banco</h3>
+          <h3 class="serif">El costo de no tener cuenta</h3>
           <p class="sub">Verificación rápida de cuánto cuesta al año vivir en efectivo y lugares de cobro de cheques.</p>
           <div class="field-row">
             <div class="field"><label>Pago mensual neto (efectivo)</label><div class="input-prefix"><span class="pfx">$</span><input type="number" id="ub-income" value="2000" min="0" step="50" oninput="calcUnbanked()" /></div></div>
@@ -4299,12 +5553,12 @@ ES_RENDERS.banking = function() {
         </div>
         <div class="card">
           <h3 class="serif">Tipos de cuenta — del mejor al peor</h3>
-          <p class="sub">Para la mayoría, una cooperativa de crédito o banco en línea gana. Aquí está la comparación.</p>
+          <p class="sub">Para la mayoría, una cuenta corriente de bajo costo gana. Aquí está la comparación.</p>
           <div style="display:grid;gap:0.7rem;">
             ${[
-              {icon:'🥇',name:'Cooperativa de Crédito Local',pros:'Tarifas más bajas, mejor servicio, perdonan errores pequeños, ofrecen préstamos pequeños "PAL" (máx 28% APR), a menudo tienen cuentas de segunda oportunidad.',cons:'Tienes que ser miembro (la mayoría acepta a cualquiera en tu área).',best:'Lo mejor para: la mayoría de personas. Busca "credit union near me" + tu ciudad.'},
-              {icon:'🥈',name:'Banco en línea o cuenta fintech',pros:'A menudo sin tarifas mensuales, sin saldo mínimo, pueden pagarte 1-2 días antes, app móvil primero.',cons:'Sin sucursal física (todo via app o por correo).',best:'Lo mejor para: cómodo con teléfonos, no necesitas depósitos en efectivo seguido.'},
-              {icon:'🥉',name:'App de pago entre personas con tarjeta de débito',pros:'Rápido de configurar, sin mínimo, fácil persona-a-persona.',cons:'Protecciones limitadas, estafas dirigidas, no puede reemplazar un banco real para pagos.',best:'Lo mejor para: cuenta secundaria, NO para depósito directo de tu único pago.'},
+              {icon:'🥇',name:'Institución comunitaria',pros:'Tarifas más bajas, mejor servicio, perdonan errores pequeños, ofrecen préstamos pequeños "PAL" (máx 28% APR), a menudo tienen cuentas de segunda oportunidad.',cons:'Tienes que ser miembro (la mayoría acepta a cualquiera en tu área).',best:'Lo mejor para: la mayoría de personas. Compara cuentas corrientes de bajo costo disponibles en tu área.'},
+              {icon:'🥈',name:'Cuenta en línea o cuenta fintech',pros:'A menudo sin tarifas mensuales, sin saldo mínimo, pueden pagarte 1-2 días antes, app móvil primero.',cons:'Sin sucursal física (todo via app o por correo).',best:'Lo mejor para: cómodo con teléfonos, no necesitas depósitos en efectivo seguido.'},
+              {icon:'🥉',name:'App de pago entre personas con tarjeta de débito',pros:'Rápido de configurar, sin mínimo, fácil persona-a-persona.',cons:'Protecciones limitadas, estafas dirigidas, no puede reemplazar una cuenta corriente principal para pagos.',best:'Lo mejor para: cuenta secundaria, NO para depósito directo de tu único pago.'},
               {icon:'❌',name:'Cuenta corriente con tarifas mensuales altas',pros:'Puede ofrecer muchas sucursales y cajeros.',cons:'$5-$15/mes en tarifas si el saldo es bajo, $35 por sobregiro, menos perdonadores.',best:'Evita a menos que: siempre mantengas el saldo mínimo para evitar la tarifa mensual.'}
             ].map(t => `<div style="background:var(--paper-light);border:1px solid var(--rule);border-radius:2px;padding:1rem 1.2rem;"><div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.5rem;"><span style="font-size:1.5rem;">${t.icon}</span><strong style="color:var(--navy);font-size:1.05rem;">${t.name}</strong></div><div style="font-size:0.88rem;line-height:1.55;color:var(--ink);"><strong style="color:var(--green);">A favor:</strong> ${t.pros}<br/><strong style="color:var(--red);">En contra:</strong> ${t.cons}<br/><em style="color:var(--gold);font-weight:600;">${t.best}</em></div></div>`).join('')}
           </div>
@@ -4313,18 +5567,18 @@ ES_RENDERS.banking = function() {
           <h3 class="serif">¿Te rechazaron? Consigue una cuenta de "Segunda Oportunidad"</h3>
           <p class="sub">Si un banco te rechazó, probablemente es ChexSystems — una base de datos que rastrea cuentas cerradas, sobregiros, y cheques rebotados. Se queda 5 años. Pero varios bancos lo ignoran.</p>
           <div class="resources">
-            ${[['✅','Cuenta que bloquea sobregiros','Algunos bancos y cooperativas ofrecen cuentas que simplemente rechazan transacciones cuando no hay dinero — sin tarifas de $35. A menudo $0-$5/mes, evitable. Pregunta a tu banco sobre opciones de "segunda oportunidad" o "sin cheques".'],['✅','Banco en línea sin revisión de ChexSystems','Varios bancos en línea abren cuentas corrientes sin verificar ChexSystems. Sin tarifas mensuales, sin mínimos. Abre en línea en minutos.'],['✅','Cuenta fintech sin verificación de crédito ni ChexSystems','Algunas cuentas fintech abren para cualquiera, gratis, sin verificar crédito. A menudo te pagan 1-2 días antes. Solo en línea.'],['✅','Cooperativa de crédito local','Muchas no usan ChexSystems para membresía. Siempre pregunta.'],['📞','Obtén tu reporte ChexSystems','Gratis una vez al año en chexsystems.com. Disputa errores.']].map(([i,n,d])=>`<div class="resource"><span class="ico">${i}</span><div><div class="name">${n}</div><div class="desc">${d}</div></div></div>`).join('')}
+            ${[['✅','Cuenta que bloquea sobregiros','Algunas instituciones financieras ofrecen cuentas que simplemente rechazan transacciones cuando no hay dinero — sin tarifas de $35. A menudo $0-$5/mes, evitable. Pregunta a tu institución financiera sobre opciones de "segunda oportunidad" o "sin cheques".'],['✅','Cuenta en línea sin revisión de ChexSystems','Varios bancos en línea abren cuentas corrientes sin verificar ChexSystems. Sin tarifas mensuales, sin mínimos. Abre en línea en minutos.'],['✅','Cuenta fintech sin verificación de crédito ni ChexSystems','Algunas cuentas fintech abren para cualquiera, gratis, sin verificar crédito. A menudo te pagan 1-2 días antes. Solo en línea.'],['✅','Institución comunitaria','Muchas no usan ChexSystems para membresía. Siempre pregunta.'],['📞','Obtén tu reporte ChexSystems','Gratis una vez al año en chexsystems.com. Disputa errores.']].map(([i,n,d])=>`<div class="resource"><span class="ico">${i}</span><div><div class="name">${n}</div><div class="desc">${d}</div></div></div>`).join('')}
           </div>
         </div>
         <div class="card">
           <h3 class="serif">Evitando cargos por sobregiro</h3>
           <ul style="list-style:none;padding:0;">
-            ${[['Apaga la "protección" de sobregiro.','Suena protector. En realidad significa que el banco te deja gastar dinero que no tienes, luego te cobra $35. Llama a tu banco y apágalo — las compras solo se rechazarán. Mucho mejor que una tarifa de $35 en un café de $4.'],['Configura alertas de saldo bajo.','La mayoría de bancos permiten alertas de texto gratis cuando el saldo cae bajo $X. Gratis, fácil, previene la mayoría de sobregiros.'],['Cambia a una cuenta que no permita sobregiros.','Muchas cooperativas de crédito, bancos en línea, y cuentas fintech simplemente rechazan transacciones si no hay dinero. Pregunta a tu banco o cooperativa qué cuentas bloquean los sobregiros.'],['Si te cobran, llama y pide reembolso.','Los bancos a menudo exoneran la primera tarifa por año si llamas y pides cortésmente. "Noté un cargo por sobregiro — ¿podrían exonerarlo como cortesía?" Funciona ~70% del tiempo.']].map(([t,d])=>`<li style="padding:0.7rem 0;border-top:1px solid var(--rule-soft);display:flex;gap:0.7rem;"><span style="color:var(--gold);font-size:1.2rem;">▶</span><div><strong>${t}</strong> ${d}</div></li>`).join('')}
+            ${[['Apaga la "protección" de sobregiro.','Suena protector. En realidad significa que el banco te deja gastar dinero que no tienes, luego te cobra $35. Llama a tu institución financiera y apágalo — las compras solo se rechazarán. Mucho mejor que una tarifa de $35 en un café de $4.'],['Configura alertas de saldo bajo.','La mayoría de bancos permiten alertas de texto gratis cuando el saldo cae bajo $X. Gratis, fácil, previene la mayoría de sobregiros.'],['Cambia a una cuenta que no permita sobregiros.','Muchas instituciones financieras ofrecen cuentas que simplemente rechazan transacciones si no hay dinero. Pregunta a tu institución financiera qué cuentas bloquean los sobregiros.'],['Si te cobran, llama y pide reembolso.','Los bancos a menudo exoneran la primera tarifa por año si llamas y pides cortésmente. "Noté un cargo por sobregiro — ¿podrían exonerarlo como cortesía?" Funciona ~70% del tiempo.']].map(([t,d])=>`<li style="padding:0.7rem 0;border-top:1px solid var(--rule-soft);display:flex;gap:0.7rem;"><span style="color:var(--gold);font-size:1.2rem;">▶</span><div><strong>${t}</strong> ${d}</div></li>`).join('')}
           </ul>
         </div>
         <div class="tip">
           <span class="tip-head">Primer paso</span>
-          <strong>Si no tienes una cuenta corriente ahora,</strong> abre una en línea hoy — tu cooperativa de crédito local, un banco en línea, o una cuenta fintech. Toma 10 minutos. Luego empieza depósito directo en tu próximo pago. Eso solo le ahorra a la mayoría de personas $300-$1,000/año vs cobrar cheques.
+          <strong>Si no tienes una cuenta corriente ahora,</strong> abre una en línea hoy — una cuenta corriente de una cooperativa de crédito, una cuenta en línea, o una cuenta fintech. Toma 10 minutos. Luego empieza depósito directo en tu próximo pago. Eso solo le ahorra a la mayoría de personas $300-$1,000/año vs cobrar cheques.
         </div>
       </div>
     </section>
@@ -4344,7 +5598,7 @@ calcUnbanked = function() {
     <div class="result-light" style="margin-top:1.4rem;">
       <h4 class="serif">Lo que el cobro de cheques realmente te cuesta</h4>
       <div class="big-num warn mono">${fmt$(annualFee)}/año</div>
-      <div class="small" style="color:var(--muted);font-size:0.9rem;">pagado a lugares de cobro de cheques — por un servicio que es gratis en cualquier banco o cooperativa</div>
+      <div class="small" style="color:var(--muted);font-size:0.9rem;">pagado a lugares de cobro de cheques — por un servicio que es gratis en casi cualquier institución financiera</div>
       <p style="margin-top:1rem;font-size:0.92rem;line-height:1.55;"><strong>Eso son ${fmt$(monthlyFee)}/mes.</strong> Sobre 5 años, son ${fmt$(annualFee * 5)} que pudiste haber guardado. Mismo pago. Mismo trabajo. Solo dónde lo cobras.</p>
     </div>
   `;
@@ -4409,7 +5663,7 @@ const BIGDEC_SCENARIOS_ES = [
     setup: 'Transmisión. El mecánico dice $1,800. Tu carro vale $4,500. Tienes $740 en ahorros (más lo que hayas agregado). Necesitas el carro para trabajar.',
     choices: [
       { label: 'Pagar efectivo + plan de pago con el taller', cash: -740, credit: 0, stress: -1, feedback: 'La mayoría de talleres harán esto si preguntas. Mitad enganche, resto sobre 60-90 días, a menudo sin interés.' },
-      { label: 'Préstamo personal de cooperativa de crédito ($1,800)', cash: 0, credit: -2, stress: 0, feedback: 'A menudo 9-15% APR, mucho mejor que tarjetas de crédito. Obtén pre-aprobación ANTES de necesitarla.' },
+      { label: 'Préstamo personal de una institución financiera ($1,800)', cash: 0, credit: -2, stress: 0, feedback: 'A menudo 9-15% APR, mucho mejor que tarjetas de crédito. Obtén pre-aprobación ANTES de necesitarla.' },
       { label: 'Vender el carro barato + comprar carro de $2K', cash: 2700, credit: 0, stress: -2, feedback: 'Tentador pero riesgoso. Carros "baratos" a menudo tienen problemas escondidos. Si lo haces, obtén inspección pre-compra ($100) — no negociable.' },
       { label: 'Préstamo de título para arreglar el carro', cash: -1800, credit: -10, stress: -3, feedback: '300%+ APR. Como 20% de prestatarios pierden su carro a la repo. La cura es peor que la enfermedad.' }
     ]
@@ -4584,7 +5838,7 @@ ES_RENDERS.goaltracker = function() {
         </div>
         <div class="tip">
           <span class="tip-head">Tip — hazlo automático</span>
-          <strong>El truco más confiable de ahorro:</strong> programa una transferencia automática de cuenta corriente a una cuenta de ahorros separada el día de pago. Si nunca ves el dinero, no lo gastas. La mayoría de bancos te dejan configurar esto en 2 minutos en línea.
+          <strong>El truco más confiable de ahorro:</strong> programa una transferencia automática de cuenta corriente a una cuenta de ahorros separada el día de pago. Si nunca ves el dinero, no lo gastas. La mayoría de instituciones financieras te dejan configurar esto en 2 minutos en línea.
         </div>
       </div>
     </section>
@@ -4641,10 +5895,10 @@ const SKILL_LESSONS_ES = [
   { id: 'lease', title: 'Cómo leer un contrato de alquiler', mins: 5, content: `<p><strong>Antes de firmar nada:</strong></p><ul><li><strong>Límites de depósito.</strong> La mayoría de estados limitan depósitos a 1-2 meses de renta. Si piden más, a menudo es ilegal — busca "[tu estado] security deposit limit."</li><li><strong>Responsabilidad "conjunta y solidaria".</strong> Si firmas con compañeros de cuarto, esto significa que TÚ eres responsable de la renta total si alguien se va. Empuja contra esto.</li><li><strong>Cargos por pago tardío.</strong> La mayoría de estados los limitan a 5-10% de la renta. Más es disputable.</li><li><strong>"Cargo de limpieza de alfombra" cobrado al salir.</strong> A menudo ilegal. El desgaste normal es responsabilidad del propietario.</li><li><strong>Cláusula de auto-renovación.</strong> Algunos contratos se auto-renuevan si no das aviso de 60-90 días. Marca el calendario para 4 meses antes.</li><li><strong>Derecho a reparación.</strong> La mayoría de estados dan a inquilinos el derecho a deducir de la renta si el propietario no arregla cosas.</li></ul><p><strong>Qué documentar al mudarte:</strong> Toma 50+ fotos. Paredes, alfombras, electrodomésticos, cualquier cosa con marcas. Envíatelas por correo con sello de fecha. Esta es tu evidencia al salir.</p>` },
   { id: 'collectors', title: 'Lidiando con cobradores de deuda (tus derechos)', mins: 6, content: `<p><strong>La Ley de Prácticas Justas de Cobro (FDCPA) te protege.</strong> Los cobradores rompen la ley constantemente porque la mayoría no conoce sus derechos. Lo que NO PUEDEN hacer:</p><ul><li>Llamarte antes de las 8 AM o después de las 9 PM.</li><li>Llamarte al trabajo después de que les digas que no.</li><li>Decirle a tu familia, vecinos, o empleador sobre la deuda.</li><li>Amenazar con arresto, demanda que no van a presentar, o embargo de salario.</li><li>Usar lenguaje profano u ofensivo.</li><li>Continuar contactándote después de enviar carta de "cesar y desistir" por escrito.</li></ul><p><strong>Qué hacer cuando llaman:</strong></p><ol><li><strong>No admitas que la deuda es tuya.</strong> Hasta decir "sí debo eso" puede reiniciar la prescripción.</li><li><strong>Demanda validación por escrito.</strong> Dentro de 5 días deben enviarte prueba escrita.</li><li><strong>Verifica la prescripción.</strong> La mayoría de estados prohíbe demandas de cobro después de 3-6 años desde el último pago.</li><li><strong>Conoce la "deuda zombie."</strong> Deudas viejas vendidas a compradores de deuda basura por centavos. Te demandan esperando que no aparezcas.</li></ol><p><strong>Si violan FDCPA:</strong> Presenta queja en consumerfinance.gov. Puedes demandar por hasta $1,000 + honorarios de abogado.</p>` },
   { id: 'medical', title: 'Negociando facturas médicas', mins: 5, content: `<p><strong>Casi toda factura médica es negociable.</strong> Los hospitales esperan que negocies.</p><p><strong>Paso 1 — Obtén factura detallada.</strong> Llama a facturación y solicita una factura "totalmente detallada". Como 30-50% de facturas tienen errores, cargos duplicados, o códigos disputables.</p><p><strong>Paso 2 — Aplica para asistencia financiera.</strong> Cada hospital sin fines de lucro está requerido por ley a tener un programa de asistencia financiera. Casi nunca te lo dicen. Pregunta: <em>"¿Tienen una solicitud de asistencia financiera o cuidado de caridad?"</em></p><p><strong>Paso 3 — Negocia descuento por efectivo.</strong> Diles: <em>"Puedo pagar $X hoy como pago completo."</em> Los hospitales a menudo aceptan 25-50% si pagas inmediatamente. Obtén el acuerdo POR ESCRITO antes de pagar.</p><p><strong>Paso 4 — Plan de pago si no puedes efectivo.</strong> La mayoría de hospitales ofrecen planes de 0% interés.</p><p><strong>Qué NO hacer:</strong> Poner facturas médicas en tarjeta de crédito (pierdes poder negociador). Ignorar la factura. Préstamo médico de tercero (a menudo 25%+ APR).</p>` },
-  { id: 'usedcar', title: 'Comprar carro usado sin que te estafen', mins: 7, content: `<p><strong>La mejor inversión: una inspección pre-compra de $100-$150 con mecánico independiente.</strong> NUNCA te la saltes. Vendedores que rehúsan inspección esconden algo.</p><p><strong>Antes de ir a ver:</strong></p><ul><li>Obtén pre-aprobación de préstamo de cooperativa o banco — NO del concesionario. Los concesionarios marcan tasas de préstamo como ganancia.</li><li>Verifica el precio en kbb.com y Edmunds. Imprímelo.</li><li>Corre el VIN en vehiclehistory.com (gratis) o Carfax (~$40). Verifica accidentes, título de salvamento, daño por inundación.</li></ul><p><strong>Banderas rojas durante la visita:</strong></p><ul><li><strong>Ventas "como está" sin permitir inspección.</strong> Vete.</li><li><strong>Título a nombre de otra persona</strong> ("mi hermano lo está vendiendo por mí"). Probablemente robado o con gravámenes.</li><li><strong>Presión del concesionario sobre financiamiento.</strong></li><li><strong>"Cargos de concesionario" añadidos al firmar.</strong> Hasta ~$500 es normal. $1,000+ es estafa.</li></ul><p><strong>Negociando:</strong> Siempre negocia el precio TOTAL CON IMPUESTOS, no el pago mensual. Empieza ~15% abajo del precio listado. Vete por lo menos una vez.</p>` },
+  { id: 'usedcar', title: 'Comprar carro usado sin que te estafen', mins: 7, content: `<p><strong>La mejor inversión: una inspección pre-compra de $100-$150 con mecánico independiente.</strong> NUNCA te la saltes. Vendedores que rehúsan inspección esconden algo.</p><p><strong>Antes de ir a ver:</strong></p><ul><li>Obtén pre-aprobación de préstamo de tu institución financiera — NO del concesionario. Los concesionarios marcan tasas de préstamo como ganancia.</li><li>Verifica el precio en kbb.com y Edmunds. Imprímelo.</li><li>Corre el VIN en vehiclehistory.com (gratis) o Carfax (~$40). Verifica accidentes, título de salvamento, daño por inundación.</li></ul><p><strong>Banderas rojas durante la visita:</strong></p><ul><li><strong>Ventas "como está" sin permitir inspección.</strong> Vete.</li><li><strong>Título a nombre de otra persona</strong> ("mi hermano lo está vendiendo por mí"). Probablemente robado o con gravámenes.</li><li><strong>Presión del concesionario sobre financiamiento.</strong></li><li><strong>"Cargos de concesionario" añadidos al firmar.</strong> Hasta ~$500 es normal. $1,000+ es estafa.</li></ul><p><strong>Negociando:</strong> Siempre negocia el precio TOTAL CON IMPUESTOS, no el pago mensual. Empieza ~15% abajo del precio listado. Vete por lo menos una vez.</p>` },
   { id: 'creditreport', title: 'Leyendo y disputando tu reporte de crédito', mins: 5, content: `<p><strong>Saca tus reportes gratis.</strong> Una vez al año, gratis, las tres oficinas, en AnnualCreditReport.com. No uses nada más.</p><p><strong>Qué buscar (en orden):</strong></p><ol><li><strong>Errores de información personal.</strong></li><li><strong>Cuentas que no son tuyas.</strong> Si ves una que no reconoces, es error o robo de identidad.</li><li><strong>Pagos tardíos que no fueron tardíos.</strong> Como 25% de reportes tienen errores. Disputa con estados de cuenta.</li><li><strong>Deudas viejas pasadas de prescripción.</strong> La mayoría de items negativos deben quitarse después de 7 años.</li><li><strong>Cuentas duplicadas.</strong></li></ol><p><strong>Cómo disputar (gratis):</strong> Cada oficina tiene portales en línea. Por ley, la oficina tiene 30 días para investigar. Si no pueden verificar, DEBE quitarse.</p><p><strong>Qué hacen las "compañías de reparación de crédito":</strong> Exactamente el mismo proceso de disputa que puedes hacer gratis. Sáltatelas.</p>` },
   { id: 'firstapt', title: 'Lista para primer apartamento (inquilino)', mins: 4, content: `<p><strong>Qué necesitas para calificar:</strong></p><ul><li><strong>Ingreso:</strong> La mayoría requiere 2.5-3x la renta en ingreso mensual.</li><li><strong>Puntaje de crédito:</strong> La mayoría quiere 600+. Por debajo, necesitarás co-firmante o depósito mayor.</li><li><strong>Referencias:</strong> Propietario pasado, empleador, referencia personal.</li><li><strong>Cuota de aplicación:</strong> $30-$75 por adulto. No reembolsable.</li></ul><p><strong>Qué pagarás ANTES de mudarte:</strong></p><ul><li>Primer mes de renta</li><li>Depósito de seguridad (usualmente 1 mes, a veces 2)</li><li>A veces "último mes" prepagado</li><li>Depósito de mascota si aplica</li><li>Depósitos de servicios (electricidad, gas, agua — $100-$300 si no tienes historial)</li></ul><p>Total a presupuestar: <strong>2.5-4x la renta mensual</strong> en efectivo antes de mudarte.</p><p><strong>Si tienes mal crédito / sin historial:</strong></p><ul><li>Co-firmante con buen crédito.</li><li>Depósito mayor (ofrece 2 meses en vez de 1).</li><li>Varios meses de renta pagados por adelantado.</li><li>Propietarios personales (edificios pequeños) son mucho más flexibles.</li></ul><p><strong>Día 1 en la unidad:</strong> Toma 50+ fotos de CADA superficie. Documenta cada rasguño existente. Esta es tu evidencia al salir.</p>` },
-  { id: 'overdraft', title: 'Cómo funcionan los cargos por sobregiro', mins: 4, content: `<p><strong>El esquema:</strong> La mayoría de bancos cobra $35 cuando gastas más de lo que tienes. Luego cobran OTROS $35 si haces una segunda compra antes de ponerte al día. La gente a menudo paga $200-$400 en cargos en una sola mala semana.</p><p><strong>El truco que usan los bancos:</strong></p><ul><li><strong>"Reordenando" transacciones.</strong> Algunos bancos procesan transacciones grandes antes de las pequeñas, forzando múltiples sobregiros.</li><li><strong>Mentiras de "saldo disponible".</strong> Transacciones pendientes pueden no mostrarse.</li></ul><p><strong>Cómo detener cargos por sobregiro para siempre:</strong></p><ol><li><strong>Llama y apaga la "protección de sobregiro".</strong> Cuando está apagada, las compras simplemente se rechazan. Sin cargos.</li><li><strong>Cambia a una cuenta que no permita sobregiros.</strong> Muchas cooperativas, bancos en línea, y cuentas fintech — solo rechazan transacciones. Pregunta a tu banco o cooperativa qué cuentas bloquean los sobregiros.</li><li><strong>Configura alertas de saldo bajo.</strong></li><li><strong>Si TE cobran, llama y pide reembolso.</strong> Funciona ~70% del tiempo.</li></ol>` },
+  { id: 'overdraft', title: 'Cómo funcionan los cargos por sobregiro', mins: 4, content: `<p><strong>El esquema:</strong> La mayoría de bancos cobra $35 cuando gastas más de lo que tienes. Luego cobran OTROS $35 si haces una segunda compra antes de ponerte al día. La gente a menudo paga $200-$400 en cargos en una sola mala semana.</p><p><strong>El truco que usan los bancos:</strong></p><ul><li><strong>"Reordenando" transacciones.</strong> Algunos bancos procesan transacciones grandes antes de las pequeñas, forzando múltiples sobregiros.</li><li><strong>Mentiras de "saldo disponible".</strong> Transacciones pendientes pueden no mostrarse.</li></ul><p><strong>Cómo detener cargos por sobregiro para siempre:</strong></p><ol><li><strong>Llama y apaga la "protección de sobregiro".</strong> Cuando está apagada, las compras simplemente se rechazan. Sin cargos.</li><li><strong>Cambia a una cuenta que no permita sobregiros.</strong> Muchas instituciones financieras ofrecen cuentas que solo rechazan transacciones. Pregunta a tu institución financiera qué cuentas bloquean los sobregiros.</li><li><strong>Configura alertas de saldo bajo.</strong></li><li><strong>Si TE cobran, llama y pide reembolso.</strong> Funciona ~70% del tiempo.</li></ol>` },
   { id: 'hardship', title: 'Llamando cuentas que no puedes pagar (guión)', mins: 4, content: `<p><strong>El error más grande:</strong> Esconderte de cuentas que no puedes pagar. La mejor jugada es llamar ANTES de la fecha de vencimiento.</p><p><strong>El guión (funciona para servicios, tarjetas, hospitales, etc.):</strong></p><blockquote style="border-left:3px solid var(--gold);padding:0.8rem 1rem;background:var(--paper-warm);font-style:italic;font-size:0.95rem;line-height:1.6;border-radius:0 2px 2px 0;">"Hola, mi número de cuenta es [____]. Quiero hacerles saber que estoy pasando por una dificultad y no puedo pagar el monto completo el [fecha]. Quiero mantener mi cuenta en buen estado — ¿qué programas tienen para situaciones como esta?"</blockquote><p><strong>Qué esperar que ofrezcan:</strong></p><ul><li><strong>Plan de pago</strong> — paga en cuotas, a menudo sin interés.</li><li><strong>Pago diferido</strong> — saltarse un mes, agregarlo al final.</li><li><strong>Mínimo reducido</strong> — pagar menos por 1-3 meses.</li><li><strong>Acuerdo reducido</strong> — pagar 50-70% en lump sum, deuda cerrada.</li></ul><p><strong>Reglas importantes:</strong></p><ul><li><strong>Obtén cualquier acuerdo POR ESCRITO</strong> (correo, screenshot, carta).</li><li><strong>Anota nombre del rep e ID.</strong></li><li><strong>No acuerdes algo que no puedas hacer.</strong></li></ul>` }
 ];
 
@@ -4698,7 +5952,7 @@ ES_RENDERS.reentry = function() {
           <div class="eyebrow">Herramienta 13</div>
           <hr class="rule-gold" />
           <h2 class="serif">Kit de Reingreso</h2>
-          <p class="lede">Volver a casa es su propio trabajo. Identificación. Banco. Teléfono. Trabajo. Vivienda. Beneficios. Hacerlo todo a la vez con dinero limitado y un récord. Esta es la secuencia práctica — qué hacer primero, qué saltar, quién realmente ayuda.</p>
+          <p class="lede">Volver a casa es su propio trabajo. Identificación. Cuenta bancaria. Teléfono. Trabajo. Vivienda. Beneficios. Hacerlo todo a la vez con dinero limitado y un récord. Esta es la secuencia práctica — qué hacer primero, qué saltar, quién realmente ayuda.</p>
         </div>
 
         <div class="card">
@@ -4706,7 +5960,7 @@ ES_RENDERS.reentry = function() {
           <p class="sub">La mayoría de programas de reingreso dicen "todo es urgente". No lo es. Este es el orden que funciona.</p>
           <div class="roadmap">
             <div class="roadmap-step"><div><div class="meta">Día 1-3</div><h4>Obtén tu identificación</h4><p>No puedes hacer nada sin ella. La mayoría de instalaciones proveen un paquete de liberación — el DMV puede exonerar tarifas si lo tienes. Lleva certificado de nacimiento (o pídelo — vitalchek.com), tarjeta de Seguro Social (solicita en ssa.gov, gratis), y prueba de liberación.</p><div class="actions"><strong>Ayuda gratis:</strong> La mayoría de organizaciones de reingreso y ubicaciones de Goodwill ayudan específicamente con identificación. Busca "[tu condado] reentry ID assistance".</div></div></div>
-            <div class="roadmap-step"><div><div class="meta">Semana 1</div><h4>Abre una cuenta de banco</h4><p>La mayoría de bancos verifican ChexSystems — pero varios no. <strong>La mayoría de cooperativas locales, bancos en línea, y cuentas de segunda oportunidad</strong> abren cuentas para personas con récords. Aplicación en línea toma 10 minutos. Necesitarás ID, SSN, y una dirección (casa de medio camino está bien). Pregunta a tu banco o cooperativa sobre sus opciones de segunda oportunidad.</p><div class="actions"><strong>Evita:</strong> Tarjetas prepagadas con tarifas mensuales — suelen cobrar $5-$10/mes en silencio y vacían tu saldo.</div></div></div>
+            <div class="roadmap-step"><div><div class="meta">Semana 1</div><h4>Abre una cuenta corriente</h4><p>La mayoría de bancos verifican ChexSystems — pero varios no. <strong>La mayoría de cooperativas de crédito, cuentas en línea, y cuentas de segunda oportunidad</strong> abren cuentas para personas con récords. Aplicación en línea toma 10 minutos. Necesitarás ID, SSN, y una dirección (casa de medio camino está bien). Pregunta a tu institución financiera sobre sus opciones de segunda oportunidad.</p><div class="actions"><strong>Evita:</strong> Tarjetas prepagadas con tarifas mensuales — suelen cobrar $5-$10/mes en silencio y vacían tu saldo.</div></div></div>
             <div class="roadmap-step"><div><div class="meta">Semana 1-2</div><h4>Aplica a beneficios</h4><p>SNAP, Medicaid, y (si elegible) TANF generalmente pueden aprobarse en 7-30 días. Aplica a TODOS A LA VEZ a través del portal de beneficios de tu estado o en benefits.gov. No te saltes Medicaid — cada estado cubre personas saliendo de encarcelamiento.</p><div class="actions"><strong>Teléfono Lifeline:</strong> $9.25/mes de descuento + teléfono gratis de proveedores como SafeLink o Assurance. Aplica en lifelinesupport.org.</div></div></div>
             <div class="roadmap-step"><div><div class="meta">Semana 2-4</div><h4>Búsqueda de trabajo</h4><p>Las leyes federales "Ban the Box" limitan cuándo los empleadores pueden preguntar sobre récords. Algunos estados prohíben preguntar completamente. <strong>Compañías conocidas por contratar personas con récords:</strong> Amazon, FedEx, UPS, Walmart, Home Depot, Lowe's, la mayoría de cadenas de restaurantes, manufactura, construcción, transporte (programas CDL especialmente).</p><div class="actions"><strong>Programa Federal de Bonos</strong> asegura a empleadores hasta $5,000 por contratar personas con récords — gratis para el empleador, solo necesita pedirlo a la Junta de Desarrollo de Fuerza Laboral de tu estado.</div></div></div>
             <div class="roadmap-step"><div><div class="meta">Mes 2+</div><h4>Investiga eliminación / sellado</h4><p>La mayoría de estados permiten que algunos récords criminales sean sellados o eliminados después de un período de espera. El proceso varía mucho por estado. Ayuda legal gratis a menudo está disponible a través de Legal Aid o clínicas de escuelas de derecho.</p><div class="actions"><strong>Verifica elegibilidad:</strong> Busca "[tu estado] expungement eligibility tool" o llama 211 — la mayoría de estados ahora tienen verificadores en línea gratis.</div></div></div>
@@ -4722,7 +5976,7 @@ ES_RENDERS.reentry = function() {
 
         <div class="tip">
           <span class="tip-head">La parte más difícil es pedir</span>
-          <strong>La mayoría de personas que tienen éxito en reingreso tienen una cosa en común:</strong> pidieron ayuda repetidamente, incluso cuando era incómodo, y fueron donde estaba la ayuda. Las organizaciones de reingreso existen en cada metro. Saben qué empleadores son amigables, qué propietarios alquilarán, qué bancos abrirán cuentas. Úsalas. <strong>Busca "[tu condado] reentry program" o llama 211.</strong>
+          <strong>La mayoría de personas que tienen éxito en reingreso tienen una cosa en común:</strong> pidieron ayuda repetidamente, incluso cuando era incómodo, y fueron donde estaba la ayuda. Las organizaciones de reingreso existen en cada metro. Saben qué empleadores son amigables, qué propietarios alquilarán, qué instituciones financieras abrirán cuentas. Úsalas. <strong>Busca "[tu condado] reentry program" o llama 211.</strong>
         </div>
       </div>
     </section>
@@ -5161,6 +6415,19 @@ MODULES.admin = {
               </div>
             </div>
 
+            <!-- ===== Institution Type ===== -->
+            <div class="admin-card">
+              <div class="admin-card-head"><h3>${isEs ? 'Tipo de instituci\u00f3n' : 'Institution Type'}</h3></div>
+              <p class="admin-card-sub">${isEs ? 'Elige si esta instituci\u00f3n es un banco o una cooperativa de cr\u00e9dito. El contenido educativo se mantiene enfocado en productos; esto solo ajusta las pocas referencias directas como \u201ctu banco\u201d o \u201ctu cooperativa\u201d.' : 'Choose whether this institution is a bank or a credit union. Educational content stays product-first; this only adjusts the few unavoidable direct references like \u201cyour bank\u201d vs. \u201cyour credit union.\u201d'}</p>
+              <div class="field">
+                <label>${isEs ? 'Esta instituci\u00f3n es un(a)\u2026' : 'This institution is a\u2026'}</label>
+                <select id="admin-inst-type" onchange="adminUpdateInstitution()">
+                  <option value="creditUnion" ${instType() === 'creditUnion' ? 'selected' : ''}>${isEs ? 'Cooperativa de cr\u00e9dito' : 'Credit Union'}</option>
+                  <option value="bank" ${instType() === 'bank' ? 'selected' : ''}>${isEs ? 'Banco' : 'Bank'}</option>
+                </select>
+              </div>
+            </div>
+
             <!-- ===== Language ===== -->
             <div class="admin-card">
               <div class="admin-card-head"><h3>${isEs ? 'Idioma' : 'Language'}</h3></div>
@@ -5503,6 +6770,17 @@ function adminUpdateLang() {
   saveConfig();
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) langToggle.style.display = allow ? '' : 'none';
+}
+
+function adminUpdateInstitution() {
+  const sel = document.getElementById('admin-inst-type');
+  if (!sel) return;
+  CONFIG.institutionType = sel.value === 'bank' ? 'bank' : 'creditUnion';
+  saveConfig();
+  // Re-render whatever tool the user is viewing so possessive references update live.
+  const userApp = $('user-app');
+  if (userApp && userApp.classList.contains('active')) renderActiveTool();
+  showToast(LANG === 'es' ? 'Tipo de instituci\u00f3n actualizado' : 'Institution type updated', 'success');
 }
 
 function adminToggleAnnouncement(active) {

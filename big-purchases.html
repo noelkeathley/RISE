@@ -703,6 +703,22 @@
   html.embedded .header-inner { justify-content: flex-start; }
   html.embedded .module-tabs { width: 100%; }
   html.embedded .section-nav { top: 0; }
+
+  /* ===== Big-purchase launch cards ===== */
+  .bp-launch-wrap { max-width: 1100px; margin: 0 auto; padding: 22px 20px 0; }
+  .bp-launch-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: var(--gold); margin: 0 0 12px; }
+  .bp-launch { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 560px) { .bp-launch { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .bp-launch { grid-template-columns: repeat(4, 1fr); } }
+  .bp-launch-card { text-align: left; font-family: 'Inter', sans-serif; cursor: pointer; background: var(--paper); border: 1px solid #e4e4e4; border-radius: 12px; padding: 18px 18px; display: flex; flex-direction: column; gap: 6px; transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .bp-launch-card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0,0,0,0.10); }
+  .bp-launch-card.active { border-color: var(--navy); border-width: 2px; background: var(--teal-soft); padding: 17px 17px; }
+  .bp-launch-card .ic { font-size: 30px; line-height: 1; }
+  .bp-launch-card .ttl { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--navy); line-height: 1.1; }
+  .bp-launch-card .sb { font-size: 13.5px; color: #555; line-height: 1.4; flex: 1; }
+  .bp-launch-card .cta { font-size: 13px; font-weight: 700; color: var(--teal); margin-top: 4px; }
+  html.embedded .bp-launch-wrap { padding-top: 16px; }
+
 </style>
 <script>
   // Detect iframe embedding before paint so the embedded styles apply immediately.
@@ -722,6 +738,16 @@
     </div>
   </div>
 </header>
+
+<div class="bp-launch-wrap">
+  <p class="bp-launch-lbl" data-i18n="bp.launch.lbl">Pick a big purchase to explore</p>
+  <div class="bp-launch">
+    <button type="button" class="bp-launch-card active" data-module="car"><span class="ic">🚗</span><span class="ttl" data-i18n="bp.card.car.title">Buy a Car</span><span class="sb" data-i18n="bp.card.car.sub">Price, loan, interest &amp; true cost</span><span class="cta" data-i18n="bp.card.explore">Explore →</span></button>
+    <button type="button" class="bp-launch-card" data-module="house"><span class="ic">🏠</span><span class="ttl" data-i18n="bp.card.house.title">Buy a Home</span><span class="sb" data-i18n="bp.card.house.sub">Mortgage, down payment &amp; monthly cost</span><span class="cta" data-i18n="bp.card.explore">Explore →</span></button>
+    <button type="button" class="bp-launch-card" data-module="rent"><span class="ic">🔑</span><span class="ttl" data-i18n="bp.card.rent.title">Rent or Buy?</span><span class="sb" data-i18n="bp.card.rent.sub">Compare both paths</span><span class="cta" data-i18n="bp.card.compare">Compare →</span></button>
+    <button type="button" class="bp-launch-card" data-module="refi"><span class="ic">🔄</span><span class="ttl" data-i18n="bp.card.refi.title">Refinance</span><span class="sb" data-i18n="bp.card.refi.sub">Can a new loan actually save you money?</span><span class="cta" data-i18n="bp.card.see">See how →</span></button>
+  </div>
+</div>
 
 <!-- ============== CAR MODULE ============== -->
 <div class="module active" id="module-car">
@@ -1434,7 +1460,7 @@
       <div class="steps">
         <div class="step"><span class="step-num">i.</span><h3 data-i18n="refi.step1.title">Check credit & equity</h3><p data-i18n="refi.step1.body">Pull a fresh credit report. Estimate home value vs. balance — you'll usually want at least 20% equity for the best terms.</p></div>
         <div class="step"><span class="step-num">ii.</span><h3 data-i18n="refi.step2.title">Define your goal</h3><p data-i18n="refi.step2.body">Lower payment? Shorter term? Cash out? Each goal points to a different loan structure.</p></div>
-        <div class="step"><span class="step-num">iii.</span><h3 data-i18n="refi.step3.title">Shop at least 3 lenders</h3><p data-i18n="refi.step3.body">Get Loan Estimates from your financial institution, a bank, and a broker. Compare APR, not just the rate.</p></div>
+        <div class="step"><span class="step-num">iii.</span><h3 data-i18n="refi.step3.title">Shop at least 3 lenders</h3><p data-i18n="refi.step3.body">Get Loan Estimates from at least three lenders — your financial institution, another lender, and a broker. Compare APR, not just the rate.</p></div>
         <div class="step"><span class="step-num">iv.</span><h3 data-i18n="refi.step4.title">Lock the rate</h3><p data-i18n="refi.step4.body">Once you pick a lender, lock your rate. Most locks are 30–60 days. Closing within that window is essential.</p></div>
         <div class="step"><span class="step-num">v.</span><h3 data-i18n="refi.step5.title">Underwriting & appraisal</h3><p data-i18n="refi.step5.body">The lender re-verifies your finances and orders a home appraisal. Provide everything quickly to keep the timeline.</p></div>
         <div class="step"><span class="step-num">vi.</span><h3 data-i18n="refi.step6.title">Close on the new loan</h3><p data-i18n="refi.step6.body">Sign roughly 30 pages, pay closing costs (or roll them in), and your new mortgage replaces the old one.</p></div>
@@ -1498,17 +1524,27 @@
 </div>
 
 <script>
-  // ---------- Tab switching ----------
-  document.querySelectorAll('.module-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.module;
-      document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('module-' + target).classList.add('active');
+  // ---------- Tab / launch-card switching ----------
+  function bpSelect(target, scrollToContent) {
+    if (!target || !document.getElementById('module-' + target)) return;
+    document.querySelectorAll('.module-tab').forEach(t => t.classList.toggle('active', t.dataset.module === target));
+    document.querySelectorAll('.bp-launch-card').forEach(c => c.classList.toggle('active', c.dataset.module === target));
+    document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+    document.getElementById('module-' + target).classList.add('active');
+    if (scrollToContent) {
+      const el = document.getElementById('module-' + target);
+      const y = el ? el.getBoundingClientRect().top + window.pageYOffset - 64 : 0;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
+    }
+  }
+  document.querySelectorAll('.module-tab').forEach(tab => { tab.addEventListener('click', () => bpSelect(tab.dataset.module, false)); });
+  document.querySelectorAll('.bp-launch-card').forEach(card => { card.addEventListener('click', () => bpSelect(card.dataset.module, true)); });
+  // Deep-link from the parent app (Scenario Explorer) — switch to a specific module.
+  window.addEventListener('message', (e) => { if (e.data && e.data.type === 'rise-tab' && e.data.module) bpSelect(e.data.module, false); });
+  // Sync the launch cards with whatever tab is active on load (default: car).
+  (function(){ const a = document.querySelector('.module-tab.active'); bpSelect(a ? a.dataset.module : 'car', false); })();
 
   const fmt = n => '$' + Math.round(n).toLocaleString();
   const fmtCents = n => '$' + n.toFixed(0);
@@ -1895,6 +1931,18 @@
     en: {
       // Common / shared
       'common.tab.car': 'Car',
+      'bp.launch.lbl': 'Pick a big purchase to explore',
+      'bp.card.car.title': 'Buy a Car',
+      'bp.card.car.sub': 'Price, loan, interest & true cost',
+      'bp.card.house.title': 'Buy a Home',
+      'bp.card.house.sub': 'Mortgage, down payment & monthly cost',
+      'bp.card.rent.title': 'Rent or Buy?',
+      'bp.card.rent.sub': 'Compare both paths',
+      'bp.card.refi.title': 'Refinance',
+      'bp.card.refi.sub': 'Can a new loan actually save you money?',
+      'bp.card.explore': 'Explore →',
+      'bp.card.compare': 'Compare →',
+      'bp.card.see': 'See how →',
       'common.tab.house': 'House',
       'common.tab.rent': 'Rent vs. Buy',
       'common.tab.refi': 'Refinance',
@@ -2501,7 +2549,7 @@
       'refi.step2.title': 'Define your goal',
       'refi.step2.body': 'Lower payment? Shorter term? Cash out? Each goal points to a different loan structure.',
       'refi.step3.title': 'Shop at least 3 lenders',
-      'refi.step3.body': 'Get Loan Estimates from your financial institution, a bank, and a broker. Compare APR, not just the rate.',
+      'refi.step3.body': 'Get Loan Estimates from at least three lenders — your financial institution, another lender, and a broker. Compare APR, not just the rate.',
       'refi.step4.title': 'Lock the rate',
       'refi.step4.body': 'Once you pick a lender, lock your rate. Most locks are 30–60 days. Closing within that window is essential.',
       'refi.step5.title': 'Underwriting & appraisal',
@@ -2580,6 +2628,18 @@
     es: {
       // Common / shared
       'common.tab.car': 'Auto',
+      'bp.launch.lbl': 'Elige una compra grande para explorar',
+      'bp.card.car.title': 'Comprar un auto',
+      'bp.card.car.sub': 'Precio, préstamo, interés y costo real',
+      'bp.card.house.title': 'Comprar una casa',
+      'bp.card.house.sub': 'Hipoteca, enganche y costo mensual',
+      'bp.card.rent.title': '¿Alquilar o comprar?',
+      'bp.card.rent.sub': 'Compara ambos caminos',
+      'bp.card.refi.title': 'Refinanciar',
+      'bp.card.refi.sub': '¿Un nuevo préstamo de verdad te ahorra dinero?',
+      'bp.card.explore': 'Explorar →',
+      'bp.card.compare': 'Comparar →',
+      'bp.card.see': 'Ver cómo →',
       'common.tab.house': 'Casa',
       'common.tab.rent': 'Alquilar o comprar',
       'common.tab.refi': 'Refinanciar',
@@ -3186,7 +3246,7 @@
       'refi.step2.title': 'Define tu meta',
       'refi.step2.body': '¿Pago más bajo? ¿Plazo más corto? ¿Sacar efectivo? Cada meta apunta a una estructura de préstamo distinta.',
       'refi.step3.title': 'Compara al menos 3 prestamistas',
-      'refi.step3.body': 'Obtén Loan Estimates de tu institución financiera, un banco y un corredor. Compara el APR, no solo la tasa.',
+      'refi.step3.body': 'Obtén Loan Estimates de al menos tres prestamistas — tu institución financiera, otro prestamista y un corredor. Compara el APR, no solo la tasa.',
       'refi.step4.title': 'Asegura (lock) la tasa',
       'refi.step4.body': 'Una vez que elijas prestamista, asegura tu tasa. La mayoría de los locks son 30–60 días. Cerrar dentro de ese plazo es esencial.',
       'refi.step5.title': 'Análisis y avalúo',
