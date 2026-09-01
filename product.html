@@ -884,6 +884,14 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
             <div id="cc-logo-preview" class="admin-logo-preview" aria-live="polite"></div>
             <div class="hint">Uploaded logos save to your browser. Use this to drop in a partner's logo for a white-label demo.</div>
           </div>
+          <div class="field" style="margin-top:1.2rem;">
+            <label>Institution type</label>
+            <select id="admin-inst-type" onchange="adminUpdateInstitution()">
+              <option value="creditUnion">Credit Union</option>
+              <option value="bank">Bank</option>
+            </select>
+            <div class="hint">Keeps lessons product-first; only swaps unavoidable references like &ldquo;your bank&rdquo; vs &ldquo;your credit union.&rdquo;</div>
+          </div>
         </div>
       </section>
 
@@ -917,6 +925,39 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
         <p class="sub">Toggle modules on or off. Disabled modules won't appear in the user app's navigation.</p>
         <div id="module-controls">
           <!-- Built dynamically -->
+        </div>
+      </section>
+
+      <!-- Access & Announcements -->
+      <section class="cc-section">
+        <h2 class="serif">Access &amp; Announcements</h2>
+        <p class="sub">Optional controls for a banner message, restricting entry with a code, and the admin password.</p>
+        <div class="card">
+          <div class="field">
+            <label style="display:flex;align-items:center;justify-content:space-between;gap:0.8rem;">
+              <span>Announcement banner</span>
+              <span class="admin-switch"><input type="checkbox" id="cc-announce-toggle" onchange="adminToggleAnnouncement(this.checked)" /><span class="slider"></span></span>
+            </label>
+            <textarea id="admin-announcement-input" rows="2" oninput="adminUpdateAnnouncement()" placeholder="e.g. Free tax workshop Friday 6 PM. Call 555-0100 to register." style="width:100%;padding:0.7rem 0.9rem;border:1px solid var(--rule);border-radius:2px;font-family:'Manrope',sans-serif;font-size:0.9rem;background:var(--paper);resize:vertical;margin-top:0.5rem;"></textarea>
+            <div class="hint">Shows across the top of the app while the switch is on.</div>
+          </div>
+          <div class="field" style="margin-top:1.4rem;">
+            <label style="display:flex;align-items:center;justify-content:space-between;gap:0.8rem;">
+              <span>Require an access code</span>
+              <span class="admin-switch"><input type="checkbox" id="cc-access-toggle" onchange="adminToggleAccessCode(this.checked)" /><span class="slider"></span></span>
+            </label>
+            <input type="text" id="admin-access-code" maxlength="12" oninput="adminUpdateAccessCode()" placeholder="e.g. RISE2026" style="font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;margin-top:0.5rem;" />
+            <div class="hint">Users must enter this code to open the app.</div>
+          </div>
+          <div class="field" style="margin-top:1.4rem;">
+            <label>Admin password</label>
+            <div class="field-row">
+              <input type="password" id="admin-new-pwd" placeholder="New password (min 6)" />
+              <input type="password" id="admin-new-pwd2" placeholder="Confirm password" />
+            </div>
+            <button class="btn btn-primary btn-small" style="margin-top:0.6rem;" onclick="adminChangePassword()">Update Password</button>
+            <div class="hint">Protects both this Command Center and the Admin tab.</div>
+          </div>
         </div>
       </section>
 
@@ -3445,6 +3486,11 @@ function syncCCInputs() {
   $('cfg-brand-tag').value = CONFIG.brandTag;
   $('cfg-default-lang').value = CONFIG.defaultLang;
   $('cfg-allow-lang').value = String(CONFIG.allowLangSwitch);
+  var _it = $('admin-inst-type'); if (_it) _it.value = instType();
+  var _an = $('admin-announcement-input'); if (_an) _an.value = CONFIG.announcement || '';
+  var _at = $('cc-announce-toggle'); if (_at) _at.checked = !!CONFIG.announcementActive;
+  var _ac = $('admin-access-code'); if (_ac) _ac.value = CONFIG.accessCode || '';
+  var _act = $('cc-access-toggle'); if (_act) _act.checked = !!CONFIG.accessCodeRequired;
 }
 
 function buildModuleControls() {
@@ -6355,11 +6401,11 @@ MODULES.admin = {
           <div class="tool-head" style="text-align:center;max-width:680px;margin:0 auto;">
             <div class="eyebrow">${isEs ? 'Panel de administrador' : 'Admin Control Center'}</div>
             <hr class="rule-gold" style="margin-left:auto;margin-right:auto;" />
-            <h2 class="serif">${isEs ? 'Configuración en vivo' : 'Live Configuration'}</h2>
-            <p class="lede">${isEs ? 'Los cambios se aplican al instante para todos los usuarios. La sesión de administrador termina al cerrar el navegador.' : 'Changes apply instantly for all users. Your admin session ends when you close the browser.'}</p>
+            <h2 class="serif">${isEs ? 'Usuarios y actividad' : 'Users & Activity'}</h2>
+            <p class="lede">${isEs ? 'Mira quién usa la aplicación y administra las cuentas. La configuración del programa (marca, logo, módulos, idioma, acceso) vive en el Centro de Comando.' : 'See who is using the app and manage accounts. Program setup — branding, logo, modules, language and access — lives in the Command Center.'}</p>
             <div style="display:inline-flex;gap:0.5rem;margin-top:0.7rem;flex-wrap:wrap;justify-content:center;">
+              <button class="btn btn-primary btn-small" onclick="openAdmin()">⚙ ${isEs ? 'Abrir el Centro de Comando' : 'Open the Command Center'}</button>
               <button class="btn btn-ghost btn-small" onclick="adminTabLock()">⏻ ${isEs ? 'Cerrar sesión admin' : 'Sign out of admin'}</button>
-              <button class="btn btn-ghost btn-small" onclick="openAdmin()">⚙ ${isEs ? 'Centro de comando' : 'Full Command Center'}</button>
             </div>
           </div>
 
@@ -6384,119 +6430,15 @@ MODULES.admin = {
               </div>
             </div>
 
-            <!-- ===== Module toggles ===== -->
+            <!-- ===== Program setup now lives in the Command Center ===== -->
             <div class="admin-card admin-card-wide">
               <div class="admin-card-head">
                 <div>
-                  <h3>${isEs ? 'Módulos' : 'Modules'}</h3>
-                  <p class="admin-card-sub">${isEs ? 'Activa o desactiva cualquier módulo. Lo apagado desaparece de la barra de pestañas para todos los usuarios.' : 'Turn any module on or off. Disabled modules disappear from the tab nav for everyone using this app.'}</p>
+                  <h3>${isEs ? 'Configuración del programa' : 'Program Setup'}</h3>
+                  <p class="admin-card-sub">${isEs ? 'La marca, el logo, los colores, el tipo de institución, los módulos, el idioma, los anuncios y el código de acceso viven en el Centro de Comando.' : 'Branding, logo, colors, institution type, modules, language, announcements and access code all live in the Command Center.'}</p>
                 </div>
-                <span class="label-tag">${stats.enabledModules}/${stats.totalModules} ${isEs ? 'activos' : 'enabled'}</span>
               </div>
-              <div class="admin-bulk">
-                <button onclick="adminBulkToggle(true)">${isEs ? 'Activar todos' : 'Enable all'}</button>
-                <button onclick="adminBulkToggle(false)">${isEs ? 'Desactivar todos' : 'Disable all'}</button>
-                <button onclick="adminLoadPresetPrompt()">${isEs ? 'Cargar preconfig…' : 'Load preset…'}</button>
-              </div>
-              <div id="admin-mod-toggles">${adminBuildModRows()}</div>
-            </div>
-
-            <!-- ===== Branding ===== -->
-            <div class="admin-card">
-              <div class="admin-card-head"><h3>${isEs ? 'Marca' : 'Branding'}</h3></div>
-              <p class="admin-card-sub">${isEs ? 'Personaliza el nombre y la frase de tu organización. Para subir un logo, abre el panel de Command Center.' : 'White-label the platform for your organization. To upload a logo, open the Command Center.'}</p>
-              <div class="field">
-                <label>${isEs ? 'Nombre' : 'Brand name'}</label>
-                <input type="text" id="admin-brand-name" value="${adminEsc(CONFIG.brandName)}" oninput="adminUpdateBrand()" />
-              </div>
-              <div class="field" style="margin-top:0.6rem;">
-                <label>${isEs ? 'Frase / Tagline' : 'Tagline'}</label>
-                <input type="text" id="admin-brand-tag" value="${adminEsc(CONFIG.brandTag)}" oninput="adminUpdateBrand()" />
-              </div>
-            </div>
-
-            <!-- ===== Institution Type ===== -->
-            <div class="admin-card">
-              <div class="admin-card-head"><h3>${isEs ? 'Tipo de instituci\u00f3n' : 'Institution Type'}</h3></div>
-              <p class="admin-card-sub">${isEs ? 'Elige si esta instituci\u00f3n es un banco o una cooperativa de cr\u00e9dito. El contenido educativo se mantiene enfocado en productos; esto solo ajusta las pocas referencias directas como \u201ctu banco\u201d o \u201ctu cooperativa\u201d.' : 'Choose whether this institution is a bank or a credit union. Educational content stays product-first; this only adjusts the few unavoidable direct references like \u201cyour bank\u201d vs. \u201cyour credit union.\u201d'}</p>
-              <div class="field">
-                <label>${isEs ? 'Esta instituci\u00f3n es un(a)\u2026' : 'This institution is a\u2026'}</label>
-                <select id="admin-inst-type" onchange="adminUpdateInstitution()">
-                  <option value="creditUnion" ${instType() === 'creditUnion' ? 'selected' : ''}>${isEs ? 'Cooperativa de cr\u00e9dito' : 'Credit Union'}</option>
-                  <option value="bank" ${instType() === 'bank' ? 'selected' : ''}>${isEs ? 'Banco' : 'Bank'}</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- ===== Language ===== -->
-            <div class="admin-card">
-              <div class="admin-card-head"><h3>${isEs ? 'Idioma' : 'Language'}</h3></div>
-              <p class="admin-card-sub">${isEs ? 'Elige el idioma por defecto y si los usuarios pueden cambiarlo.' : 'Set the default language and whether users can switch.'}</p>
-              <div class="field">
-                <label>${isEs ? 'Idioma por defecto' : 'Default language'}</label>
-                <select id="admin-default-lang" onchange="adminUpdateLang()">
-                  <option value="en" ${CONFIG.defaultLang === 'en' ? 'selected' : ''}>English</option>
-                  <option value="es" ${CONFIG.defaultLang === 'es' ? 'selected' : ''}>Español</option>
-                </select>
-              </div>
-              <div class="field" style="margin-top:0.6rem;">
-                <label>${isEs ? '¿Permitir cambio de idioma?' : 'Allow language switching?'}</label>
-                <select id="admin-allow-lang" onchange="adminUpdateLang()">
-                  <option value="true" ${CONFIG.allowLangSwitch ? 'selected' : ''}>${isEs ? 'Sí' : 'Yes'}</option>
-                  <option value="false" ${!CONFIG.allowLangSwitch ? 'selected' : ''}>${isEs ? 'No' : 'No'}</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- ===== Announcement banner ===== -->
-            <div class="admin-card admin-card-wide">
-              <div class="admin-card-head">
-                <div>
-                  <h3>${isEs ? 'Anuncio en banner' : 'Announcement Banner'}</h3>
-                  <p class="admin-card-sub">${isEs ? 'Muestra un mensaje en la parte superior de la aplicación. Ideal para horarios de oficina, fechas límite, o noticias rápidas.' : 'Show a message across the top of the app. Great for office hours, deadlines, or quick news.'}</p>
-                </div>
-                <label class="admin-switch" title="${isEs ? 'Activar banner' : 'Activate banner'}">
-                  <input type="checkbox" ${CONFIG.announcementActive ? 'checked' : ''} onchange="adminToggleAnnouncement(this.checked)" />
-                  <span class="slider"></span>
-                </label>
-              </div>
-              <div class="field" style="margin-top:0.8rem;">
-                <textarea id="admin-announcement-input" rows="2" placeholder="${isEs ? 'Ej: Taller gratuito de impuestos el viernes a las 6 PM. Llama al 555-0100 para registrarte.' : 'e.g. Free tax workshop Friday 6 PM. Call 555-0100 to register.'}" oninput="adminUpdateAnnouncement()" style="width:100%;padding:0.7rem 0.9rem;border:1px solid var(--rule);border-radius:2px;font-family:'Manrope',sans-serif;font-size:0.9rem;background:var(--paper);resize:vertical;">${adminEsc(CONFIG.announcement || '')}</textarea>
-                <p class="hint">${isEs ? 'Se muestra solo cuando el interruptor está encendido.' : 'Only displayed while the toggle above is on.'}</p>
-              </div>
-            </div>
-
-            <!-- ===== Access code ===== -->
-            <div class="admin-card">
-              <div class="admin-card-head">
-                <div><h3>${isEs ? 'Código de acceso' : 'Access Code'}</h3></div>
-                <label class="admin-switch" title="${isEs ? 'Requerir código' : 'Require code'}">
-                  <input type="checkbox" ${CONFIG.accessCodeRequired ? 'checked' : ''} onchange="adminToggleAccessCode(this.checked)" />
-                  <span class="slider"></span>
-                </label>
-              </div>
-              <p class="admin-card-sub">${isEs ? 'Restringe la entrada a la aplicación con un código compartido por tu organización.' : 'Restrict the app entrance with a code your organization shares with users.'}</p>
-              <div class="field">
-                <label>${isEs ? 'Código (4–12 caracteres)' : 'Code (4–12 characters)'}</label>
-                <input type="text" id="admin-access-code" maxlength="12" value="${adminEsc(CONFIG.accessCode || '')}" oninput="adminUpdateAccessCode()" placeholder="${isEs ? 'p.ej. RISE2026' : 'e.g. RISE2026'}" style="font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;" />
-                <p class="hint">${isEs ? 'Demo: listo para conectar a un backend real.' : 'Demo-grade: ready to wire to a real backend.'}</p>
-              </div>
-            </div>
-
-            <!-- ===== Admin password ===== -->
-            <div class="admin-card">
-              <div class="admin-card-head"><h3>${isEs ? 'Contraseña de admin' : 'Admin Password'}</h3></div>
-              <p class="admin-card-sub">${isEs ? 'Cambia la contraseña que protege este panel. Importante en demos y entregas a clientes.' : 'Change the password that protects this panel. Important for demos and client handoffs.'}</p>
-              <div class="field">
-                <label>${isEs ? 'Nueva contraseña' : 'New password'}</label>
-                <input type="password" id="admin-new-pwd" placeholder="${isEs ? 'Mínimo 6 caracteres' : 'At least 6 characters'}" />
-              </div>
-              <div class="field" style="margin-top:0.6rem;">
-                <label>${isEs ? 'Confirmar' : 'Confirm'}</label>
-                <input type="password" id="admin-new-pwd2" placeholder="${isEs ? 'Repite la contraseña' : 'Repeat password'}" />
-              </div>
-              <button class="btn btn-primary btn-small" style="margin-top:0.8rem;" onclick="adminChangePassword()">${isEs ? 'Actualizar contraseña' : 'Update Password'}</button>
-              ${CONFIG.adminPasswordOverride ? `<p class="hint" style="color:var(--green);margin-top:0.6rem;">✓ ${isEs ? 'Contraseña personalizada activa.' : 'Custom password is active.'} <a href="#" onclick="event.preventDefault();adminResetPassword();" style="color:var(--red);">${isEs ? 'Restablecer' : 'Reset to default'}</a></p>` : ''}
+              <button class="btn btn-primary btn-small" style="margin-top:0.4rem;" onclick="openAdmin()">⚙ ${isEs ? 'Abrir el Centro de Comando' : 'Open the Command Center'}</button>
             </div>
 
             <!-- ===== Module usage chart ===== -->
