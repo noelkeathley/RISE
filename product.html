@@ -873,6 +873,25 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 400; color: var(--
               <div class="hint">Shows under the title. Leave blank to use the default.</div>
             </div>
           </div>
+          <div class="field-row" style="margin-top:1.2rem;">
+            <div class="field">
+              <label>Primary color</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input type="color" id="cfg-primary-color" value="#0a1f3d" oninput="ccUpdateColor('primary','picker')" style="width:46px;height:40px;padding:2px;border:1px solid var(--rule);border-radius:3px;cursor:pointer;background:var(--paper);flex:0 0 auto;" />
+                <input type="text" id="cfg-primary-hex" value="#0A1F3D" maxlength="7" oninput="ccUpdateColor('primary','hex')" placeholder="#0A1F3D" style="flex:1;min-width:0;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.05em;" />
+              </div>
+              <div class="hint">Masthead, buttons, headings. Paste the institution&rsquo;s exact hex code.</div>
+            </div>
+            <div class="field">
+              <label>Accent color</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input type="color" id="cfg-accent-color" value="#0d7377" oninput="ccUpdateColor('accent','picker')" style="width:46px;height:40px;padding:2px;border:1px solid var(--rule);border-radius:3px;cursor:pointer;background:var(--paper);flex:0 0 auto;" />
+                <input type="text" id="cfg-accent-hex" value="#0D7377" maxlength="7" oninput="ccUpdateColor('accent','hex')" placeholder="#0D7377" style="flex:1;min-width:0;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.05em;" />
+              </div>
+              <div class="hint">Highlights, links, focus rings, rules. Exact hex, or use the swatch.</div>
+            </div>
+          </div>
+          <div style="margin-top:0.5rem;"><a href="#" onclick="event.preventDefault();ccResetColors();" style="font-size:0.78rem;color:var(--muted);text-decoration:underline;">Reset to default colors</a></div>
           <div class="field" style="margin-top:1.2rem;">
             <label>Logo (replaces the brand name in the masthead)</label>
             <input type="file" id="cc-logo-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden />
@@ -3309,6 +3328,38 @@ function shadeColor(hex, percent) {
 // Precedence mirrors branding: admin CONFIG override > partners.json default > built-in theme.
 //   primaryColor -> --navy / --navy-soft   (masthead, buttons, footer, headings)
 //   accentColor  -> --gold / --gold-soft   (rules, focus rings, highlights, CTAs)
+// Command Center brand-color controls (native swatch + exact hex field, kept in sync).
+function ccNormHex(v) {
+  v = (v || '').trim();
+  if (v && v.charAt(0) !== '#') v = '#' + v;
+  return /^#[0-9a-fA-F]{6}$/.test(v) ? v.toLowerCase() : null;
+}
+function ccUpdateColor(which, source) {
+  var colorEl = document.getElementById('cfg-' + which + '-color');
+  var hexEl = document.getElementById('cfg-' + which + '-hex');
+  if (!colorEl || !hexEl) return;
+  var val;
+  if (source === 'hex') {
+    val = ccNormHex(hexEl.value);
+    if (!val) return;            // wait until a full valid #rrggbb is typed
+    colorEl.value = val;
+  } else {
+    val = colorEl.value;
+    hexEl.value = val.toUpperCase();
+  }
+  if (which === 'primary') CONFIG.primaryColor = val; else CONFIG.accentColor = val;
+  saveConfig();
+  applyBrandColors();
+}
+function ccResetColors() {
+  CONFIG.primaryColor = '';
+  CONFIG.accentColor = '';
+  saveConfig();
+  applyBrandColors();
+  if (typeof syncCCInputs === 'function') syncCCInputs();
+  if (typeof showToast === 'function') showToast(LANG === 'es' ? 'Colores restablecidos' : 'Colors reset to default', 'success');
+}
+
 function applyBrandColors() {
   const root = document.documentElement;
   const partnerPrimary = (PARTNER_CONFIG && PARTNER_CONFIG.primaryColor) || '';
@@ -3491,6 +3542,19 @@ function syncCCInputs() {
   var _at = $('cc-announce-toggle'); if (_at) _at.checked = !!CONFIG.announcementActive;
   var _ac = $('admin-access-code'); if (_ac) _ac.value = CONFIG.accessCode || '';
   var _act = $('cc-access-toggle'); if (_act) _act.checked = !!CONFIG.accessCodeRequired;
+  (function () {
+    var cs = getComputedStyle(document.documentElement);
+    function eff(varName, cfgVal, fb) {
+      var v = (cfgVal || '').trim();
+      if (!v) v = (cs.getPropertyValue(varName) || '').trim();
+      return /^#[0-9a-fA-F]{6}$/.test(v) ? v : fb;
+    }
+    var p = eff('--navy', CONFIG.primaryColor, '#0a1f3d');
+    var a = eff('--gold', CONFIG.accentColor, '#0d7377');
+    var pc = $('cfg-primary-color'), ph = $('cfg-primary-hex'), acc = $('cfg-accent-color'), ah = $('cfg-accent-hex');
+    if (pc) pc.value = p; if (ph) ph.value = p.toUpperCase();
+    if (acc) acc.value = a; if (ah) ah.value = a.toUpperCase();
+  })();
 }
 
 function buildModuleControls() {
